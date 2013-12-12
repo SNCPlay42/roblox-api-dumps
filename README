@@ -1,0 +1,7 @@
+This repository stores API dumps and ReflectionMetadata.xml for each
+version of ROBLOX on gametest1-5 and www.roblox.com.
+
+Currently the setup sites are checked hourly by an always-on
+(hopefully!) machine, however as this machine is neither Windows nor
+x86 there could be significantly long delays in processing the API
+dumps. This situation may change in the future.
