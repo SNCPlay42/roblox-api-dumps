@@ -971,6 +971,7 @@ Class NetworkClient : NetworkPeer [notCreatable]
 	Property string NetworkClient.Ticket
 	Function void NetworkClient:Disconnect(int blockDuration = 3000) [LocalUserSecurity]
 	Function Instance NetworkClient:PlayerConnect(int userId, string server, int serverPort, int clientPort = 0, int threadSleepTime = 30) [LocalUserSecurity]
+	Function void NetworkClient:SetGameSessionID(string gameSessionID) [RobloxSecurity]
 	Event NetworkClient.ConnectionAccepted(string peer, Instance replicator)
 	Event NetworkClient.ConnectionFailed(string peer, int code, string reason)
 	Event NetworkClient.ConnectionRejected(string peer)
@@ -1052,6 +1053,7 @@ Class ObjectValue : Instance
 	Property Object ObjectValue.Value
 	Event ObjectValue.Changed(Instance value)
 	Event ObjectValue.changed(Instance value) [deprecated]
+Class OneQuarterClusterPacketCacheBase : Instance
 Class PVInstance : Instance [notbrowsable]
 	Property CoordinateFrame PVInstance.CoordinateFrame [deprecated] [writeonly]
 Class BasePart : PVInstance [notbrowsable]
@@ -1272,6 +1274,7 @@ Class Player : Instance
 	Function void Player:ClearCharacterAppearance()
 	Function float Player:DistanceFromCharacter(Vector3 point)
 	Function FriendStatus Player:GetFriendStatus(Instance player) [RobloxScriptSecurity]
+	Function string Player:GetGameSessionID() [RobloxSecurity]
 	Function Instance Player:GetMouse()
 	Function bool Player:GetUnder13() [RobloxScriptSecurity]
 	Function void Player:JumpCharacter() [RobloxScriptSecurity]
