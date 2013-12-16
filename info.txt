@@ -1,0 +1,6 @@
+SetupVersion: version-28a069d7dccb4f92
+ExeVersion: 0.132.0.41338
+Site: roblox.com
+Date: 2013-12-16
+Studio-SetupVersion: version-70f7cc0d6e7744f5
+Studio-ExeVersion: 2013.12.4.1
