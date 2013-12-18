@@ -499,9 +499,9 @@ Class GuiObject : GuiBase2d [notbrowsable]
 	Function bool GuiObject:TweenSizeAndPosition(UDim2 endSize, UDim2 endPosition, EasingDirection easingDirection = Out, EasingStyle easingStyle = Quad, float time = 1, bool override = false, Function callback = nil)
 	Event GuiObject.DragBegin(UDim2 initialPosition)
 	Event GuiObject.DragStopped(int x, int y)
-	Event GuiObject.InputBegan(InputObject input) [RobloxScriptSecurity]
-	Event GuiObject.InputChanged(InputObject input) [RobloxScriptSecurity]
-	Event GuiObject.InputEnded(InputObject input) [RobloxScriptSecurity]
+	Event GuiObject.InputBegan(Instance input) [RobloxScriptSecurity]
+	Event GuiObject.InputChanged(Instance input) [RobloxScriptSecurity]
+	Event GuiObject.InputEnded(Instance input) [RobloxScriptSecurity]
 	Event GuiObject.MouseEnter(int x, int y)
 	Event GuiObject.MouseLeave(int x, int y)
 	Event GuiObject.MouseMoved(int x, int y)
@@ -512,7 +512,7 @@ Class GuiObject : GuiBase2d [notbrowsable]
 	Event GuiObject.TouchPinch(Array touchPositions, float scale, float velocity, UserInputState state) [RobloxScriptSecurity]
 	Event GuiObject.TouchRotate(Array touchPositions, float rotation, float velocity, UserInputState state) [RobloxScriptSecurity]
 	Event GuiObject.TouchSwipe(SwipeDirection swipeDirection, int numberOfTouches) [RobloxScriptSecurity]
-	Event GuiObject.TouchTap(Array touchPositions) [RobloxScriptSecurity]
+	Event GuiObject.TouchTap(Array touchPositions)
 Class Frame : GuiObject
 	Property FrameStyle Frame.Style
 Class NotificationObject : Frame [notbrowsable]
@@ -770,6 +770,11 @@ Class Humanoid : Instance
 	Event Humanoid.StatusRemoved(Status status)
 	Event Humanoid.Strafing(bool active)
 	Event Humanoid.Swimming(float speed)
+Class InputObject : Instance
+	Property KeyCode InputObject.KeyCode
+	Property Vector3 InputObject.Position
+	Property UserInputState InputObject.UserInputState
+	Property UserInputType InputObject.UserInputType
 Class InsertService : Instance [notCreatable]
 	Function void InsertService:ApproveAssetId(int assetId) [deprecated]
 	Function void InsertService:ApproveAssetVersionId(int assetVersionId) [deprecated]
@@ -966,6 +971,7 @@ Class NetworkClient : NetworkPeer [notCreatable]
 	Property string NetworkClient.Ticket
 	Function void NetworkClient:Disconnect(int blockDuration = 3000) [LocalUserSecurity]
 	Function Instance NetworkClient:PlayerConnect(int userId, string server, int serverPort, int clientPort = 0, int threadSleepTime = 30) [LocalUserSecurity]
+	Function void NetworkClient:SetGameSessionID(string gameSessionID) [RobloxSecurity]
 	Event NetworkClient.ConnectionAccepted(string peer, Instance replicator)
 	Event NetworkClient.ConnectionFailed(string peer, int code, string reason)
 	Event NetworkClient.ConnectionRejected(string peer)
@@ -1047,6 +1053,7 @@ Class ObjectValue : Instance
 	Property Object ObjectValue.Value
 	Event ObjectValue.Changed(Instance value)
 	Event ObjectValue.changed(Instance value) [deprecated]
+Class OneQuarterClusterPacketCacheBase : Instance
 Class PVInstance : Instance [notbrowsable]
 	Property CoordinateFrame PVInstance.CoordinateFrame [deprecated] [writeonly]
 Class BasePart : PVInstance [notbrowsable]
@@ -1267,6 +1274,7 @@ Class Player : Instance
 	Function void Player:ClearCharacterAppearance()
 	Function float Player:DistanceFromCharacter(Vector3 point)
 	Function FriendStatus Player:GetFriendStatus(Instance player) [RobloxScriptSecurity]
+	Function string Player:GetGameSessionID() [RobloxSecurity]
 	Function Instance Player:GetMouse()
 	Function bool Player:GetUnder13() [RobloxScriptSecurity]
 	Function void Player:JumpCharacter() [RobloxScriptSecurity]
@@ -1755,17 +1763,17 @@ Class UserInputService : Instance
 	Function bool UserInputService:IsLuaTouchControls() [RobloxScriptSecurity]
 	Function void UserInputService:RotateCamera(Vector2 positionDelta) [RobloxScriptSecurity]
 	Function void UserInputService:ZoomCamera(float zoomDelta) [RobloxScriptSecurity]
-	Event UserInputService.InputBegan(InputObject input) [RobloxScriptSecurity]
-	Event UserInputService.InputChanged(InputObject input) [RobloxScriptSecurity]
-	Event UserInputService.InputEnded(InputObject input) [RobloxScriptSecurity]
+	Event UserInputService.InputBegan(Instance input) [RobloxScriptSecurity]
+	Event UserInputService.InputChanged(Instance input) [RobloxScriptSecurity]
+	Event UserInputService.InputEnded(Instance input) [RobloxScriptSecurity]
 	Event UserInputService.JumpRequest()
-	Event UserInputService.TouchEnded(InputObject touch) [RobloxScriptSecurity]
+	Event UserInputService.TouchEnded(Instance touch) [RobloxScriptSecurity]
 	Event UserInputService.TouchLongPress(Array touchPositions, UserInputState state) [RobloxScriptSecurity]
-	Event UserInputService.TouchMoved(InputObject touch) [RobloxScriptSecurity]
+	Event UserInputService.TouchMoved(Instance touch) [RobloxScriptSecurity]
 	Event UserInputService.TouchPan(Array touchPositions, Vector2 totalTranslation, Vector2 velocity, UserInputState state) [RobloxScriptSecurity]
 	Event UserInputService.TouchPinch(Array touchPositions, float scale, float velocity, UserInputState state) [RobloxScriptSecurity]
 	Event UserInputService.TouchRotate(Array touchPositions, float rotation, float velocity, UserInputState state) [RobloxScriptSecurity]
-	Event UserInputService.TouchStarted(InputObject touch) [RobloxScriptSecurity]
+	Event UserInputService.TouchStarted(Instance touch) [RobloxScriptSecurity]
 	Event UserInputService.TouchSwipe(SwipeDirection swipeDirection, int numberOfTouches) [RobloxScriptSecurity]
 	Event UserInputService.TouchTap(Array touchPositions) [RobloxScriptSecurity]
 Class Vector3Value : Instance
@@ -2134,6 +2142,116 @@ Enum JointType
 	EnumItem JointType.Glue : 9
 	EnumItem JointType.Weld : 1
 	EnumItem JointType.Snap : 3
+Enum KeyCode
+	EnumItem KeyCode.Unknown : 0
+	EnumItem KeyCode.Backspace : 8
+	EnumItem KeyCode.Tab : 9
+	EnumItem KeyCode.Clear : 12
+	EnumItem KeyCode.Return : 13
+	EnumItem KeyCode.Pause : 19
+	EnumItem KeyCode.Escape : 27
+	EnumItem KeyCode.Space : 32
+	EnumItem KeyCode.QuotedDouble : 34
+	EnumItem KeyCode.Hash : 35
+	EnumItem KeyCode.Dollar : 36
+	EnumItem KeyCode.Percent : 37
+	EnumItem KeyCode.Ampersand : 38
+	EnumItem KeyCode.Quote : 39
+	EnumItem KeyCode.LeftParenthesis : 40
+	EnumItem KeyCode.RightParenthesis : 41
+	EnumItem KeyCode.Asterisk : 42
+	EnumItem KeyCode.Plus : 43
+	EnumItem KeyCode.Comma : 44
+	EnumItem KeyCode.Minus : 45
+	EnumItem KeyCode.Period : 46
+	EnumItem KeyCode.Slash : 47
+	EnumItem KeyCode.Zero : 48
+	EnumItem KeyCode.One : 49
+	EnumItem KeyCode.Two : 50
+	EnumItem KeyCode.Three : 51
+	EnumItem KeyCode.Four : 52
+	EnumItem KeyCode.Five : 53
+	EnumItem KeyCode.Six : 54
+	EnumItem KeyCode.Seven : 55
+	EnumItem KeyCode.Eight : 56
+	EnumItem KeyCode.Nine : 57
+	EnumItem KeyCode.Colon : 58
+	EnumItem KeyCode.Semicolon : 59
+	EnumItem KeyCode.LessThan : 60
+	EnumItem KeyCode.Equals : 61
+	EnumItem KeyCode.GreaterThan : 62
+	EnumItem KeyCode.Question : 63
+	EnumItem KeyCode.At : 64
+	EnumItem KeyCode.LeftBracket : 91
+	EnumItem KeyCode.BackSlash : 92
+	EnumItem KeyCode.RightBracket : 93
+	EnumItem KeyCode.Caret : 94
+	EnumItem KeyCode.Underscore : 95
+	EnumItem KeyCode.Backquote : 96
+	EnumItem KeyCode.A : 97
+	EnumItem KeyCode.B : 98
+	EnumItem KeyCode.C : 99
+	EnumItem KeyCode.D : 100
+	EnumItem KeyCode.E : 101
+	EnumItem KeyCode.F : 102
+	EnumItem KeyCode.G : 103
+	EnumItem KeyCode.H : 104
+	EnumItem KeyCode.I : 105
+	EnumItem KeyCode.J : 106
+	EnumItem KeyCode.K : 107
+	EnumItem KeyCode.L : 108
+	EnumItem KeyCode.M : 109
+	EnumItem KeyCode.N : 110
+	EnumItem KeyCode.O : 111
+	EnumItem KeyCode.P : 112
+	EnumItem KeyCode.Q : 113
+	EnumItem KeyCode.R : 114
+	EnumItem KeyCode.S : 115
+	EnumItem KeyCode.T : 116
+	EnumItem KeyCode.U : 117
+	EnumItem KeyCode.V : 118
+	EnumItem KeyCode.W : 119
+	EnumItem KeyCode.X : 120
+	EnumItem KeyCode.Y : 121
+	EnumItem KeyCode.Z : 122
+	EnumItem KeyCode.LeftCurly : 123
+	EnumItem KeyCode.Pipe : 124
+	EnumItem KeyCode.RightCurly : 125
+	EnumItem KeyCode.Tilde : 126
+	EnumItem KeyCode.Delete : 127
+	EnumItem KeyCode.KeypadZero : 256
+	EnumItem KeyCode.KeypadOne : 257
+	EnumItem KeyCode.KeypadTwo : 258
+	EnumItem KeyCode.KeypadThree : 259
+	EnumItem KeyCode.KeypadFour : 260
+	EnumItem KeyCode.KeypadFive : 261
+	EnumItem KeyCode.KeypadSix : 262
+	EnumItem KeyCode.KeypadSeven : 263
+	EnumItem KeyCode.KeypadEight : 264
+	EnumItem KeyCode.KeypadNine : 265
+	EnumItem KeyCode.KeypadPeriod : 266
+	EnumItem KeyCode.KeypadDivide : 267
+	EnumItem KeyCode.KeypadMultiply : 268
+	EnumItem KeyCode.KeypadMinus : 269
+	EnumItem KeyCode.KeypadPlus : 270
+	EnumItem KeyCode.KeypadEnter : 271
+	EnumItem KeyCode.KeypadEquals : 272
+	EnumItem KeyCode.Up : 273
+	EnumItem KeyCode.Down : 274
+	EnumItem KeyCode.Right : 275
+	EnumItem KeyCode.Left : 276
+	EnumItem KeyCode.Insert : 277
+	EnumItem KeyCode.Home : 278
+	EnumItem KeyCode.End : 279
+	EnumItem KeyCode.PageUp : 280
+	EnumItem KeyCode.PageDown : 281
+	EnumItem KeyCode.KeypadEquals : 272
+	EnumItem KeyCode.KeypadEquals : 272
+	EnumItem KeyCode.KeypadEquals : 272
+	EnumItem KeyCode.KeypadEquals : 272
+	EnumItem KeyCode.KeypadEquals : 272
+	EnumItem KeyCode.KeypadEquals : 272
+	EnumItem KeyCode.KeypadEquals : 272
 Enum KeywordFilterType
 	EnumItem KeywordFilterType.Include : 0
 	EnumItem KeywordFilterType.Exclude : 1
