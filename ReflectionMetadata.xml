@@ -1066,6 +1066,7 @@
         <string name="ExplorerImageIndex">20</string>
       </Properties>
     </Item>
+    
     <Item class="ReflectionMetadataClass">
       <Properties>
         <string name="Name">StarterGear</string>
@@ -1073,13 +1074,30 @@
         <string name="ExplorerImageIndex">20</string>
       </Properties>
     </Item>
+    
     <Item class="ReflectionMetadataClass">
       <Properties>
         <string name="Name">StarterGui</string>
         <string name="ExplorerOrder">3</string>
         <string name="ExplorerImageIndex">46</string>
       </Properties>
+
+      <Item class="ReflectionMetadataFunctions">
+        <Item class="ReflectionMetadataMember">
+          <Properties>
+            <string name="Name">SetCoreGuiEnabled</string>
+            <string name="summary">Will stop/begin certain core gui elements being rendered. See CoreGuiType for core guis that can be modified.</string>
+          </Properties>
+        </Item>
+        <Item class="ReflectionMetadataMember">
+          <Properties>
+            <string name="Name">GetCoreGuiEnabled</string>
+            <string name="summary">Returns a boolean describing whether a CoreGuiType is currently being rendered.</string>
+          </Properties>
+        </Item>
+      </Item>
     </Item>
+    
     <Item class="ReflectionMetadataClass">
       <Properties>
         <string name="Name">CoreGui</string>
