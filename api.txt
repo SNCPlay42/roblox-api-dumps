@@ -1639,6 +1639,7 @@ Class Sound : Instance
 	Function void Sound:pause() [deprecated]
 	Function void Sound:play() [deprecated]
 	Function void Sound:stop() [deprecated]
+	Event Sound.SoundEnded(string soundid)
 	Event Sound.SoundLoaded(string soundid)
 Class StockSound : Sound [notbrowsable]
 Class SoundService : Instance [notCreatable]
