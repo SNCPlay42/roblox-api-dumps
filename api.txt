@@ -1039,6 +1039,8 @@ Class NetworkSettings : Instance [notbrowsable]
 	Property bool NetworkSettings.RenderStreamedRegions
 	Property string NetworkSettings.ReportStatURL [deprecated] [hidden]
 	Property int NetworkSettings.SendPacketBufferLimit
+	Property bool NetworkSettings.ShowPartMovementWayPoint
+	Property int NetworkSettings.TotalNumMovementWayPoint
 	Property float NetworkSettings.TouchSendRate
 	Property bool NetworkSettings.TrackDataTypes
 	Property bool NetworkSettings.TrackPhysicsDetails
@@ -1622,15 +1624,12 @@ Class SocialService : Instance
 	Function void SocialService:SetPackageContentsUrl(string stuffUrl) [LocalUserSecurity]
 	Function void SocialService:SetStuffUrl(string stuffUrl) [LocalUserSecurity]
 Class Sound : Instance
-	Property bool Sound.IsLoaded [readonly]
 	Property bool Sound.IsPaused [readonly]
 	Property bool Sound.IsPlaying [readonly]
 	Property bool Sound.Looped
 	Property float Sound.Pitch
 	Property bool Sound.PlayOnRemove
 	Property Content Sound.SoundId
-	Property float Sound.TimeLength [readonly]
-	Property float Sound.TimePosition
 	Property float Sound.Volume
 	Property bool Sound.isPlaying [deprecated] [readonly]
 	Function void Sound:Pause()
@@ -1639,8 +1638,6 @@ Class Sound : Instance
 	Function void Sound:pause() [deprecated]
 	Function void Sound:play() [deprecated]
 	Function void Sound:stop() [deprecated]
-	Event Sound.SoundEnded(string soundid)
-	Event Sound.SoundLoaded(string soundid)
 Class StockSound : Sound [notbrowsable]
 Class SoundService : Instance [notCreatable]
 	Property ReverbType SoundService.AmbientReverb
