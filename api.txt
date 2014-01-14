@@ -1039,6 +1039,8 @@ Class NetworkSettings : Instance [notbrowsable]
 	Property bool NetworkSettings.RenderStreamedRegions
 	Property string NetworkSettings.ReportStatURL [deprecated] [hidden]
 	Property int NetworkSettings.SendPacketBufferLimit
+	Property bool NetworkSettings.ShowPartMovementWayPoint
+	Property int NetworkSettings.TotalNumMovementWayPoint
 	Property float NetworkSettings.TouchSendRate
 	Property bool NetworkSettings.TrackDataTypes
 	Property bool NetworkSettings.TrackPhysicsDetails
@@ -1718,6 +1720,7 @@ Class TestService : Instance
 	Property bool TestService.IsPhysicsEnvironmentalThrottled
 	Property bool TestService.IsSleepAllowed
 	Property int TestService.NumberOfPlayers
+	Property float TestService.PhysicsSendRate
 	Property int TestService.TestCount [readonly]
 	Property double TestService.Timeout
 	Property int TestService.WarnCount [readonly]
