@@ -1066,6 +1066,7 @@
         <string name="ExplorerImageIndex">20</string>
       </Properties>
     </Item>
+    
     <Item class="ReflectionMetadataClass">
       <Properties>
         <string name="Name">StarterGear</string>
@@ -1073,13 +1074,30 @@
         <string name="ExplorerImageIndex">20</string>
       </Properties>
     </Item>
+    
     <Item class="ReflectionMetadataClass">
       <Properties>
         <string name="Name">StarterGui</string>
         <string name="ExplorerOrder">3</string>
         <string name="ExplorerImageIndex">46</string>
       </Properties>
+
+      <Item class="ReflectionMetadataFunctions">
+        <Item class="ReflectionMetadataMember">
+          <Properties>
+            <string name="Name">SetCoreGuiEnabled</string>
+            <string name="summary">Will stop/begin certain core gui elements being rendered. See CoreGuiType for core guis that can be modified.</string>
+          </Properties>
+        </Item>
+        <Item class="ReflectionMetadataMember">
+          <Properties>
+            <string name="Name">GetCoreGuiEnabled</string>
+            <string name="summary">Returns a boolean describing whether a CoreGuiType is currently being rendered.</string>
+          </Properties>
+        </Item>
+      </Item>
     </Item>
+    
     <Item class="ReflectionMetadataClass">
       <Properties>
         <string name="Name">CoreGui</string>
@@ -2019,7 +2037,7 @@
       <Properties>
         <string name="Name">ReplicatedStorage</string>
         <string name="ExplorerOrder">3</string>
-        <string name="ExplorerImageIndex">0</string>
+        <string name="ExplorerImageIndex">70</string>
         <string name="summary">A container whose contents are replicated to all clients and the server.</string>
       </Properties>
     </Item>
@@ -2028,7 +2046,7 @@
       <Properties>
         <string name="Name">ServerStorage</string>
         <string name="ExplorerOrder">3</string>
-        <string name="ExplorerImageIndex">0</string>
+        <string name="ExplorerImageIndex">69</string>
         <string name="summary">A container whose contents are only on the server.</string>
       </Properties>
     </Item>
@@ -2037,7 +2055,7 @@
       <Properties>
         <string name="Name">ServerScriptService</string>
         <string name="ExplorerOrder">3</string>
-        <string name="ExplorerImageIndex">0</string>
+        <string name="ExplorerImageIndex">71</string>
         <string name="summary">A container whose contents should be scripts. Scripts that are added to the container are run on the server.</string>
       </Properties>
     </Item>
@@ -2704,6 +2722,40 @@
         </Item>
       </Item>
     </Item>
+    
+    <Item class="ReflectionMetadataClass">
+      <Properties>
+        <string name="Name">SurfaceGui</string>
+        <string name="summary"> tbd </string>
+        <string name="ExplorerOrder">14</string>
+        <string name="ExplorerImageIndex">64</string>
+        <string name="PreferredParent">StarterGui</string>
+      </Properties>
+
+      <Item class="ReflectionMetadataProperties">
+        <Item class="ReflectionMetadataMember">
+          <Properties>
+            <string name="Name">Adornee</string>
+            <string name="summary">The Object the billboard gui uses as its base to render from.  Currently, the only way to set this property is thru a script, and must exist in the workspace.  This will only render if the object assigned derives from BasePart.</string>
+          </Properties>
+        </Item>
+        <Item class="ReflectionMetadataMember">
+          <Properties>
+            <string name="Name">Active</string>
+            <string name="summary">If true, this GuiObject can fire mouse events and will pass them to any GuiObjects layered underneath, while false will do neither.</string>
+          </Properties>
+        </Item>
+        <Item class="ReflectionMetadataMember">
+          <Properties>
+            <string name="Name">Enabled</string>
+            <string name="summary">If true, billboard gui will render, otherwise rendering will be skipped.</string>
+          </Properties>
+        </Item>
+      </Item>
+      
+    </Item>
+   
+    
     <Item class="ReflectionMetadataClass">
       <Properties>
         <string name="Name">GuiBase2d</string>
@@ -3163,6 +3215,14 @@
     </Item>
     <Item class="ReflectionMetadataClass">
       <Properties>
+        <string name="Name">AnimationController</string>
+        <string name="summary">Allows animations to be played on joints of the parent object.</string>
+        <string name="ExplorerOrder">22</string>
+        <string name="ExplorerImageIndex">60</string>
+      </Properties>
+    </Item>
+    <Item class="ReflectionMetadataClass">
+      <Properties>
         <string name="Name">CharacterMesh</string>
         <string name="summary">Modifies the appearance of a body part.</string>
         <string name="ExplorerOrder">22</string>
@@ -3245,6 +3305,23 @@
         <string name="summary">Allow events defined in one script to be subscribed to by another script across client/server boundary</string>
         <string name="ExplorerOrder">5</string>
         <string name="ExplorerImageIndex">67</string>
+      </Properties>
+    </Item>
+    <Item class="ReflectionMetadataClass">
+      <Properties>
+        <string name="Name">TerrainRegion</string>
+        <string name="summary">Object representing a snapshot of the region of terrain</string>
+        <bool name="Browsable">true</bool>
+        <string name="ExplorerOrder">0</string>
+        <string name="ExplorerImageIndex">65</string>
+      </Properties>
+    </Item>
+    <Item class="ReflectionMetadataClass">
+      <Properties>
+        <string name="Name">ModuleScript</string>
+        <string name="summary">A script fragment. Only runs when another script uses require() on it.</string>
+        <string name="ExplorerOrder">5</string>
+        <string name="ExplorerImageIndex">66</string>
       </Properties>
     </Item>
   </Item>

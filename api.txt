@@ -971,6 +971,7 @@ Class NetworkClient : NetworkPeer [notCreatable]
 	Property string NetworkClient.Ticket
 	Function void NetworkClient:Disconnect(int blockDuration = 3000) [LocalUserSecurity]
 	Function Instance NetworkClient:PlayerConnect(int userId, string server, int serverPort, int clientPort = 0, int threadSleepTime = 30) [LocalUserSecurity]
+	Function void NetworkClient:SetGameSessionID(string gameSessionID) [RobloxSecurity]
 	Event NetworkClient.ConnectionAccepted(string peer, Instance replicator)
 	Event NetworkClient.ConnectionFailed(string peer, int code, string reason)
 	Event NetworkClient.ConnectionRejected(string peer)
@@ -1038,6 +1039,8 @@ Class NetworkSettings : Instance [notbrowsable]
 	Property bool NetworkSettings.RenderStreamedRegions
 	Property string NetworkSettings.ReportStatURL [deprecated] [hidden]
 	Property int NetworkSettings.SendPacketBufferLimit
+	Property bool NetworkSettings.ShowPartMovementWayPoint
+	Property int NetworkSettings.TotalNumMovementWayPoint
 	Property float NetworkSettings.TouchSendRate
 	Property bool NetworkSettings.TrackDataTypes
 	Property bool NetworkSettings.TrackPhysicsDetails
@@ -1052,6 +1055,7 @@ Class ObjectValue : Instance
 	Property Object ObjectValue.Value
 	Event ObjectValue.Changed(Instance value)
 	Event ObjectValue.changed(Instance value) [deprecated]
+Class OneQuarterClusterPacketCacheBase : Instance
 Class PVInstance : Instance [notbrowsable]
 	Property CoordinateFrame PVInstance.CoordinateFrame [deprecated] [writeonly]
 Class BasePart : PVInstance [notbrowsable]
@@ -1295,7 +1299,6 @@ Class Player : Instance
 	Function void Player:SaveNumber(string key, double value)
 	Function void Player:SaveString(string key, string value)
 	Function void Player:SetAccountAge(int accountAge) [LocalUserSecurity]
-	Function void Player:SetGameSessionID(string gameSessionID) [RobloxSecurity]
 	Function void Player:SetMembershipType(MembershipType membershipType) [RobloxScriptSecurity]
 	Function void Player:SetSuperSafeChat(bool value) [LocalUserSecurity]
 	Function void Player:SetUnder13(bool value) [deprecated] [RobloxSecurity]
@@ -1472,7 +1475,7 @@ Class ScriptContext : Instance [notCreatable]
 	Function void ScriptContext:SetCollectScriptStats(bool enable = false) [RobloxScriptSecurity]
 	Function void ScriptContext:SetTimeout(double seconds) [LocalUserSecurity]
 	Event ScriptContext.CamelCaseViolation(Instance object, string member, Instance script) [RobloxScriptSecurity]
-	Event ScriptContext.Error(string message, string stackTrace, Instance script) [RobloxPlaceSecurity]
+	Event ScriptContext.Error(string message, string stackTrace, Instance script)
 Class ScriptDebugger : Instance [notCreatable]
 	Property int ScriptDebugger.CurrentLine [readonly]
 	Property bool ScriptDebugger.IsDebugging [readonly]
@@ -1543,7 +1546,7 @@ Class DataModel : ServiceProvider
 	Function Objects DataModel:GetObjects(Content url) [LocalUserSecurity]
 	Function bool DataModel:GetRemoteBuildMode()
 	Function string DataModel:HttpGet(string url, bool synchronous = false) [RobloxScriptSecurity]
-	Function string DataModel:HttpPost(string url, string data, bool synchronous = false) [RobloxScriptSecurity]
+	Function string DataModel:HttpPost(string url, string data, bool synchronous = false, string contentType = ) [RobloxScriptSecurity]
 	Function bool DataModel:IsGearTypeAllowed(GearType gearType)
 	Function bool DataModel:IsLoaded()
 	Function void DataModel:Load(Content url) [LocalUserSecurity]
@@ -1575,7 +1578,7 @@ Class DataModel : ServiceProvider
 	Function Objects DataModel:get(Content url) [deprecated] [LocalUserSecurity]
 	YieldFunction int DataModel:CreatePlace(string placeName, int templatePlaceID)
 	YieldFunction string DataModel:HttpGetAsync(string url) [RobloxScriptSecurity]
-	YieldFunction string DataModel:HttpPostAsync(string url, string data) [RobloxScriptSecurity]
+	YieldFunction string DataModel:HttpPostAsync(string url, string data, string contentType = ) [RobloxScriptSecurity]
 	YieldFunction Tuple DataModel:SavePlace(SaveFilter saveFilter = SaveAll)
 	YieldFunction bool DataModel:SaveToRoblox() [RobloxScriptSecurity]
 	Event DataModel.AllowedGearTypeChanged()
@@ -1621,6 +1624,7 @@ Class SocialService : Instance
 	Function void SocialService:SetPackageContentsUrl(string stuffUrl) [LocalUserSecurity]
 	Function void SocialService:SetStuffUrl(string stuffUrl) [LocalUserSecurity]
 Class Sound : Instance
+	Property bool Sound.IsLoaded [readonly]
 	Property bool Sound.IsPaused [readonly]
 	Property bool Sound.IsPlaying [readonly]
 	Property bool Sound.Looped
@@ -1637,6 +1641,8 @@ Class Sound : Instance
 	Function void Sound:pause() [deprecated]
 	Function void Sound:play() [deprecated]
 	Function void Sound:stop() [deprecated]
+	Event Sound.SoundEnded(string soundid)
+	Event Sound.SoundLoaded(string soundid)
 Class StockSound : Sound [notbrowsable]
 Class SoundService : Instance [notCreatable]
 	Property ReverbType SoundService.AmbientReverb
@@ -1719,6 +1725,7 @@ Class TestService : Instance
 	Property bool TestService.IsPhysicsEnvironmentalThrottled
 	Property bool TestService.IsSleepAllowed
 	Property int TestService.NumberOfPlayers
+	Property float TestService.PhysicsSendRate
 	Property int TestService.TestCount [readonly]
 	Property double TestService.Timeout
 	Property int TestService.WarnCount [readonly]
