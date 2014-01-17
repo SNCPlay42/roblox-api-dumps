@@ -458,7 +458,6 @@ Class GameSettings : Instance [notbrowsable]
 	Property bool GameSettings.CollisionSoundEnabled
 	Property float GameSettings.CollisionSoundVolume
 	Property bool GameSettings.HardwareMouse
-	Property UploadSetting GameSettings.ImageUploadPromptBehavior
 	Property int GameSettings.MaxCollisionSounds
 	Property int GameSettings.ReportAbuseChatHistory
 	Property bool GameSettings.SoftwareSound
@@ -1748,6 +1747,7 @@ Class UserGameSettings : Instance
 	Property bool UserGameSettings.AllTutorialsDisabled
 	Property ControlMode UserGameSettings.ControlMode
 	Property bool UserGameSettings.Fullscreen
+	Property UploadSetting UserGameSettings.ImageUploadPromptBehavior
 	Property SavedQualitySetting UserGameSettings.SavedQualityLevel
 	Property UploadSetting UserGameSettings.VideoUploadPromptBehavior
 	Function bool UserGameSettings:GetTutorialState(string tutorialId) [RobloxScriptSecurity]
