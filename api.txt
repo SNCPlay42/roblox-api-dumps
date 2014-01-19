@@ -1546,7 +1546,7 @@ Class DataModel : ServiceProvider
 	Function Objects DataModel:GetObjects(Content url) [LocalUserSecurity]
 	Function bool DataModel:GetRemoteBuildMode()
 	Function string DataModel:HttpGet(string url, bool synchronous = false) [RobloxScriptSecurity]
-	Function string DataModel:HttpPost(string url, string data, bool synchronous = false, string contentType = ) [RobloxScriptSecurity]
+	Function string DataModel:HttpPost(string url, string data, bool synchronous = false, string contentType = */*) [RobloxScriptSecurity]
 	Function bool DataModel:IsGearTypeAllowed(GearType gearType)
 	Function bool DataModel:IsLoaded()
 	Function void DataModel:Load(Content url) [LocalUserSecurity]
@@ -1578,7 +1578,7 @@ Class DataModel : ServiceProvider
 	Function Objects DataModel:get(Content url) [deprecated] [LocalUserSecurity]
 	YieldFunction int DataModel:CreatePlace(string placeName, int templatePlaceID)
 	YieldFunction string DataModel:HttpGetAsync(string url) [RobloxScriptSecurity]
-	YieldFunction string DataModel:HttpPostAsync(string url, string data, string contentType = ) [RobloxScriptSecurity]
+	YieldFunction string DataModel:HttpPostAsync(string url, string data, string contentType = */*) [RobloxScriptSecurity]
 	YieldFunction Tuple DataModel:SavePlace(SaveFilter saveFilter = SaveAll)
 	YieldFunction bool DataModel:SaveToRoblox() [RobloxScriptSecurity]
 	Event DataModel.AllowedGearTypeChanged()
