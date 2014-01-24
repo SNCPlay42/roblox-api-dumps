@@ -458,7 +458,6 @@ Class GameSettings : Instance [notbrowsable]
 	Property bool GameSettings.CollisionSoundEnabled
 	Property float GameSettings.CollisionSoundVolume
 	Property bool GameSettings.HardwareMouse
-	Property UploadSetting GameSettings.ImageUploadPromptBehavior
 	Property int GameSettings.MaxCollisionSounds
 	Property int GameSettings.ReportAbuseChatHistory
 	Property bool GameSettings.SoftwareSound
@@ -1021,6 +1020,7 @@ Class NetworkSettings : Instance [notbrowsable]
 	Property bool NetworkSettings.IsThrottledByCongestionControl
 	Property bool NetworkSettings.IsThrottledByOutgoingBandwidthLimit
 	Property int NetworkSettings.MaxDataModelSendBuffer [deprecated]
+	Property float NetworkSettings.MovementHistoryRate
 	Property float NetworkSettings.NetworkOwnerRate
 	Property int NetworkSettings.PhysicsMtuAdjust
 	Property PhysicsReceiveMethod NetworkSettings.PhysicsReceive
@@ -1546,7 +1546,7 @@ Class DataModel : ServiceProvider
 	Function Objects DataModel:GetObjects(Content url) [LocalUserSecurity]
 	Function bool DataModel:GetRemoteBuildMode()
 	Function string DataModel:HttpGet(string url, bool synchronous = false) [RobloxScriptSecurity]
-	Function string DataModel:HttpPost(string url, string data, bool synchronous = false, string contentType = ) [RobloxScriptSecurity]
+	Function string DataModel:HttpPost(string url, string data, bool synchronous = false, string contentType = */*) [RobloxScriptSecurity]
 	Function bool DataModel:IsGearTypeAllowed(GearType gearType)
 	Function bool DataModel:IsLoaded()
 	Function void DataModel:Load(Content url) [LocalUserSecurity]
@@ -1578,7 +1578,7 @@ Class DataModel : ServiceProvider
 	Function Objects DataModel:get(Content url) [deprecated] [LocalUserSecurity]
 	YieldFunction int DataModel:CreatePlace(string placeName, int templatePlaceID)
 	YieldFunction string DataModel:HttpGetAsync(string url) [RobloxScriptSecurity]
-	YieldFunction string DataModel:HttpPostAsync(string url, string data, string contentType = ) [RobloxScriptSecurity]
+	YieldFunction string DataModel:HttpPostAsync(string url, string data, string contentType = */*) [RobloxScriptSecurity]
 	YieldFunction Tuple DataModel:SavePlace(SaveFilter saveFilter = SaveAll)
 	YieldFunction bool DataModel:SaveToRoblox() [RobloxScriptSecurity]
 	Event DataModel.AllowedGearTypeChanged()
@@ -1586,13 +1586,6 @@ Class DataModel : ServiceProvider
 	Event DataModel.ItemChanged(Instance object, Property descriptor)
 	Event DataModel.Loaded()
 	Callback bool DataModel.RequestShutdown() [noyield] [RobloxScriptSecurity]
-Class App : DataModel
-	Property int App.Id [readonly]
-	Function void App:SetAppId(int newId) [LocalUserSecurity]
-	YieldFunction void App:ConnectToGame(int placeId, string actionName = )
-	YieldFunction void App:FollowUser(int userId)
-	YieldFunction Dictionary App:GetCreations(int userId, int page = 1)
-	YieldFunction void App:UnloadGame()
 Class GenericSettings : ServiceProvider
 Class GlobalSettings : GenericSettings [notbrowsable]
 	Function bool GlobalSettings:GetFFlag(string name)
@@ -1624,15 +1617,12 @@ Class SocialService : Instance
 	Function void SocialService:SetPackageContentsUrl(string stuffUrl) [LocalUserSecurity]
 	Function void SocialService:SetStuffUrl(string stuffUrl) [LocalUserSecurity]
 Class Sound : Instance
-	Property bool Sound.IsLoaded [readonly]
 	Property bool Sound.IsPaused [readonly]
 	Property bool Sound.IsPlaying [readonly]
 	Property bool Sound.Looped
 	Property float Sound.Pitch
 	Property bool Sound.PlayOnRemove
 	Property Content Sound.SoundId
-	Property int Sound.TimeLength [readonly]
-	Property int Sound.TimePosition
 	Property float Sound.Volume
 	Property bool Sound.isPlaying [deprecated] [readonly]
 	Function void Sound:Pause()
@@ -1641,8 +1631,6 @@ Class Sound : Instance
 	Function void Sound:pause() [deprecated]
 	Function void Sound:play() [deprecated]
 	Function void Sound:stop() [deprecated]
-	Event Sound.SoundEnded(string soundid)
-	Event Sound.SoundLoaded(string soundid)
 Class StockSound : Sound [notbrowsable]
 Class SoundService : Instance [notCreatable]
 	Property ReverbType SoundService.AmbientReverb
@@ -1725,7 +1713,6 @@ Class TestService : Instance
 	Property bool TestService.IsPhysicsEnvironmentalThrottled
 	Property bool TestService.IsSleepAllowed
 	Property int TestService.NumberOfPlayers
-	Property float TestService.PhysicsSendRate
 	Property int TestService.TestCount [readonly]
 	Property double TestService.Timeout
 	Property int TestService.WarnCount [readonly]
@@ -1754,6 +1741,7 @@ Class UserGameSettings : Instance
 	Property bool UserGameSettings.AllTutorialsDisabled
 	Property ControlMode UserGameSettings.ControlMode
 	Property bool UserGameSettings.Fullscreen
+	Property UploadSetting UserGameSettings.ImageUploadPromptBehavior
 	Property SavedQualitySetting UserGameSettings.SavedQualityLevel
 	Property UploadSetting UserGameSettings.VideoUploadPromptBehavior
 	Function bool UserGameSettings:GetTutorialState(string tutorialId) [RobloxScriptSecurity]
