@@ -1020,6 +1020,7 @@ Class NetworkSettings : Instance [notbrowsable]
 	Property bool NetworkSettings.IsThrottledByCongestionControl
 	Property bool NetworkSettings.IsThrottledByOutgoingBandwidthLimit
 	Property int NetworkSettings.MaxDataModelSendBuffer [deprecated]
+	Property float NetworkSettings.MovementHistoryRate
 	Property float NetworkSettings.NetworkOwnerRate
 	Property int NetworkSettings.PhysicsMtuAdjust
 	Property PhysicsReceiveMethod NetworkSettings.PhysicsReceive
@@ -1585,13 +1586,6 @@ Class DataModel : ServiceProvider
 	Event DataModel.ItemChanged(Instance object, Property descriptor)
 	Event DataModel.Loaded()
 	Callback bool DataModel.RequestShutdown() [noyield] [RobloxScriptSecurity]
-Class App : DataModel
-	Property int App.Id [readonly]
-	Function void App:SetAppId(int newId) [LocalUserSecurity]
-	YieldFunction void App:ConnectToGame(int placeId, string actionName = )
-	YieldFunction void App:FollowUser(int userId)
-	YieldFunction Dictionary App:GetCreations(int userId, int page = 1)
-	YieldFunction void App:UnloadGame()
 Class GenericSettings : ServiceProvider
 Class GlobalSettings : GenericSettings [notbrowsable]
 	Function bool GlobalSettings:GetFFlag(string name)
