@@ -900,6 +900,8 @@ Class Lighting : Instance [notCreatable]
 	Function void Lighting:setMinutesAfterMidnight(double minutes) [deprecated]
 	Event Lighting.LightingChanged(bool skyboxChanged)
 Class LocalWorkspace : Instance [notCreatable]
+Class LogService : Instance
+	Event LogService.MessageOut(string message, MessageType messageType)
 Class LoginService : Instance
 	Function void LoginService:Logout() [RobloxSecurity]
 	Function void LoginService:PromptLogin() [RobloxSecurity]
@@ -1204,6 +1206,7 @@ Class RootInstance : Model [notbrowsable]
 Class Workspace : RootInstance
 	Property Object Workspace.CurrentCamera
 	Property double Workspace.DistributedGameTime
+	Property bool Workspace.FilteringEnabled [hidden]
 	Property bool Workspace.StreamingEnabled
 	Property Object Workspace.Terrain [readonly]
 	Function void Workspace:BreakJoints(Objects objects) [LocalUserSecurity]
@@ -2299,6 +2302,11 @@ Enum MeshType
 	EnumItem MeshType.Sphere : 3
 	EnumItem MeshType.Cylinder : 4
 	EnumItem MeshType.FileMesh : 5
+Enum MessageType
+	EnumItem MessageType.MessageOutput : 0
+	EnumItem MessageType.MessageInfo : 1
+	EnumItem MessageType.MessageWarning : 2
+	EnumItem MessageType.MessageError : 3
 Enum MoveState
 	EnumItem MoveState.Stopped : 0
 	EnumItem MoveState.Coasting : 1
