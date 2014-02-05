@@ -121,11 +121,6 @@
     </Item>
     <Item class="ReflectionMetadataClass">
       <Properties>
-        <string name="Name">LogService</string>
-      </Properties>
-    </Item>
-    <Item class="ReflectionMetadataClass">
-      <Properties>
         <string name="Name">AssetService</string>
         <string name="summary">A service used to set and get information about assets stored on the Roblox website.</string>
       </Properties>
