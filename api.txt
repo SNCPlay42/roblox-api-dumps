@@ -938,6 +938,7 @@ Class Message : Instance
 	Property string Message.Text
 Class Hint : Message [deprecated]
 Class ModuleScript : Instance
+	Property ProtectedString ModuleScript.Source [LocalUserSecurity]
 Class Mouse : Instance
 	Property CoordinateFrame Mouse.Hit [readonly]
 	Property Content Mouse.Icon
