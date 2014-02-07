@@ -293,6 +293,7 @@ Class FileMesh : DataModelMesh
 Class SpecialMesh : FileMesh
 	Property MeshType SpecialMesh.MeshType
 Class DataStoreService : Instance
+	Function Instance DataStoreService:GetDataStore(string name, string scope = global)
 	Function Instance DataStoreService:GetGlobalDataStore()
 Class Debris : Instance
 	Property int Debris.MaxItems [deprecated]
@@ -937,6 +938,7 @@ Class Message : Instance
 	Property string Message.Text
 Class Hint : Message [deprecated]
 Class ModuleScript : Instance
+	Property ProtectedString ModuleScript.Source [LocalUserSecurity]
 Class Mouse : Instance
 	Property CoordinateFrame Mouse.Hit [readonly]
 	Property Content Mouse.Icon
