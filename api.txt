@@ -926,8 +926,10 @@ Class MarketplaceService : Instance
 	Function void MarketplaceService:SignalClientPurchaseSuccess(string ticket, int playerId, int productId) [RobloxScriptSecurity]
 	Function void MarketplaceService:SignalPromptProductPurchaseFinished(int userId, int productId, bool success) [RobloxScriptSecurity]
 	Function void MarketplaceService:SignalPromptPurchaseFinished(Instance player, int assetId, bool success) [RobloxScriptSecurity]
+	Function void MarketplaceService:SignalServerLuaDialogClosed(bool value) [RobloxScriptSecurity]
 	YieldFunction Dictionary MarketplaceService:GetProductInfo(int assetId, InfoType infoType = Asset)
 	YieldFunction bool MarketplaceService:PlayerOwnsAsset(Instance player, int assetId)
+	Event MarketplaceService.ClientLuaDialogRequested(Tuple arguments) [RobloxScriptSecurity]
 	Event MarketplaceService.ClientPurchaseSuccess(string ticket, int playerId, int productId) [RobloxScriptSecurity]
 	Event MarketplaceService.PromptProductPurchaseFinished(int userId, int productId, bool isPurchased)
 	Event MarketplaceService.PromptProductPurchaseRequested(Instance player, int productId, bool equipIfPurchased, CurrencyType currencyType) [RobloxScriptSecurity]
