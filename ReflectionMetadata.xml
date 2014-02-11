@@ -1147,6 +1147,110 @@
           </Item>
       </Item>
     </Item>
+    
+    <Item class="ReflectionMetadataClass">
+        <Properties>
+            <string name="Name">UserInputService</string>
+        </Properties>
+        <Item class="ReflectionMetadataProperties">
+            <Item class="ReflectionMetadataMember">
+                <Properties>
+                    <string name="Name">TouchEnabled</string>
+                    <string name="summary">Returns true if the local device accepts touch input, false otherwise.</string>
+                </Properties>
+            </Item>
+            <Item class="ReflectionMetadataMember">
+                <Properties>
+                    <string name="Name">KeyboardEnabled</string>
+                    <string name="summary">Returns true if the local device accepts keyboard input, false otherwise.</string>
+                </Properties>
+            </Item>
+            <Item class="ReflectionMetadataMember">
+                <Properties>
+                    <string name="Name">MouseEnabled</string>
+                    <string name="summary">Returns true if the local device accepts mouse input, false otherwise.</string>
+                </Properties>
+            </Item>
+        </Item>
+        
+        <Item class="ReflectionMetadataEvents">
+            <Item class="ReflectionMetadataMember">
+                <Properties>
+                    <string name="Name">TouchTap</string>
+                    <string name="summary">Fired when a user taps their finger on a TouchEnabled device. 'touchPositions' is a Lua array of Vector2, each indicating the position of all the fingers involved in the tap gesture. This event only fires locally.  This event will always fire regardless of game state.</string>
+                </Properties>
+            </Item>
+            <Item class="ReflectionMetadataMember">
+                <Properties>
+                    <string name="Name">TouchPinch</string>
+                    <string name="summary">Fired when a user pinches their fingers on a TouchEnabled device. 'touchPositions' is a Lua array of Vector2, each indicating the position of all the fingers involved in the pinch gesture. 'scale' is a float that indicates the difference from the beginning of the pinch gesture. 'velocity' is a float indicating how quickly the pinch gesture is happening. 'state' indicates the Enum.UserInputState of the gesture.  This event only fires locally.  This event will always fire regardless of game state.</string>
+                </Properties>
+            </Item>
+            <Item class="ReflectionMetadataMember">
+                <Properties>
+                    <string name="Name">TouchSwipe</string>
+                    <string name="summary">Fired when a user swipes their fingers on a TouchEnabled device. 'swipeDirection' is an Enum.SwipeDirection, indicating the direction the user swiped. 'numberOfTouches' is an int that indicates how many touches were involved with the gesture.  This event only fires locally.  This event will always fire regardless of game state.</string>
+                </Properties>
+            </Item>
+            <Item class="ReflectionMetadataMember">
+                <Properties>
+                    <string name="Name">TouchLongPress</string>
+                    <string name="summary">Fired when a user holds at least one finger for a short amount of time on the same screen position on a TouchEnabled device. 'touchPositions' is a Lua array of Vector2, each indicating the position of all the fingers involved in the gesture. 'state' indicates the Enum.UserInputState of the gesture.  This event only fires locally.  This event will always fire regardless of game state.</string>
+                </Properties>
+            </Item>
+            <Item class="ReflectionMetadataMember">
+                <Properties>
+                    <string name="Name">TouchRotate</string>
+                    <string name="summary">Fired when a user rotates two fingers on a TouchEnabled device. 'touchPositions' is a Lua array of Vector2, each indicating the position of all the fingers involved in the gesture. 'rotation' is a float indicating how much the rotation has gone from the start of the gesture. 'velocity' is a float that indicates how quickly the gesture is being performed. 'state' indicates the Enum.UserInputState of the gesture.  This event only fires locally.  This event will always fire regardless of game state.</string>
+                </Properties>
+            </Item>
+            <Item class="ReflectionMetadataMember">
+                <Properties>
+                    <string name="Name">TouchPan</string>
+                    <string name="summary">Fired when a user drags at least one finger on a TouchEnabled device. 'touchPositions' is a Lua array of Vector2, each indicating the position of all the fingers involved in the gesture. 'totalTranslation' is a Vector2, indicating how far the pan gesture has gone from its starting point. 'velocity' is a Vector2 that indicates how quickly the gesture is being performed in each dimension. 'state' indicates the Enum.UserInputState of the gesture.  This event only fires locally.  This event will always fire regardless of game state.</string>
+                </Properties>
+            </Item>
+            
+            <Item class="ReflectionMetadataMember">
+                <Properties>
+                    <string name="Name">TouchStarted</string>
+                    <string name="summary">Fired when a user places their finger on a TouchEnabled device. 'touch' is an InputObject, which contains useful data for querying user input.  This event only fires locally.  This event will always fire regardless of game state.</string>
+                </Properties>
+            </Item>
+            <Item class="ReflectionMetadataMember">
+                <Properties>
+                    <string name="Name">TouchMoved</string>
+                    <string name="summary">Fired when a user moves their finger on a TouchEnabled device. 'touch' is an InputObject, which contains useful data for querying user input.  This event only fires locally.  This event will always fire regardless of game state.</string>
+                </Properties>
+            </Item>
+            <Item class="ReflectionMetadataMember">
+                <Properties>
+                    <string name="Name">TouchEnded</string>
+                    <string name="summary">Fired when a user moves their finger on a TouchEnabled device. 'touch' is an InputObject, which contains useful data for querying user input.  This event only fires locally.  This event will always fire regardless of game state.</string>
+                </Properties>
+            </Item>
+            
+            <Item class="ReflectionMetadataMember">
+                <Properties>
+                    <string name="Name">InputBegan</string>
+                    <string name="summary">Fired when a user begins interacting via a Human-Computer Interface device (Mouse button down, touch begin, keyboard button down, etc.). 'inputObject' is an InputObject, which contains useful data for querying user input.  This event only fires locally.  This event will always fire regardless of game state.</string>
+                </Properties>
+            </Item>
+            <Item class="ReflectionMetadataMember">
+                <Properties>
+                    <string name="Name">InputChanged</string>
+                    <string name="summary">Fired when a user changes interacting via a Human-Computer Interface device (Mouse move, touch move, mouse wheel, etc.). 'inputObject' is an InputObject, which contains useful data for querying user input.  This event only fires locally.  This event will always fire regardless of game state.</string>
+                </Properties>
+            </Item>
+            <Item class="ReflectionMetadataMember">
+                <Properties>
+                    <string name="Name">InputEnded</string>
+                    <string name="summary">Fired when a user stops interacting via a Human-Computer Interface device (Mouse button up, touch end, keyboard button up, etc.). 'inputObject' is an InputObject, which contains useful data for querying user input.  This event only fires locally.  This event will always fire regardless of game state.</string>
+                </Properties>
+            </Item>
+
+        </Item>
+    </Item>
 
     <Item class="ReflectionMetadataClass">
       <Properties>
@@ -2923,6 +3027,63 @@
             <string name="summary">Fired when the mouse is inside a GuiObject and moves, as long as the GuiObject is active (see active property for more detail). Arguments 'x', and 'y' specify the absolute pixel position of the mouse.</string>
           </Properties>
         </Item>
+        
+        <Item class="ReflectionMetadataMember">
+            <Properties>
+                <string name="Name">TouchTap</string>
+                <string name="summary">Fired when a user taps their finger on a TouchEnabled device. 'touchPositions' is a Lua array of Vector2, each indicating the position of all the fingers involved in the tap gesture. This event only fires locally.  This event will always fire regardless of game state.</string>
+            </Properties>
+        </Item>
+        <Item class="ReflectionMetadataMember">
+            <Properties>
+                <string name="Name">TouchPinch</string>
+                <string name="summary">Fired when a user pinches their fingers on a TouchEnabled device. 'touchPositions' is a Lua array of Vector2, each indicating the position of all the fingers involved in the pinch gesture. 'scale' is a float that indicates the difference from the beginning of the pinch gesture. 'velocity' is a float indicating how quickly the pinch gesture is happening. 'state' indicates the Enum.UserInputState of the gesture.  This event only fires locally.</string>
+            </Properties>
+        </Item>
+        <Item class="ReflectionMetadataMember">
+            <Properties>
+                <string name="Name">TouchSwipe</string>
+                <string name="summary">Fired when a user swipes their fingers on a TouchEnabled device. 'swipeDirection' is an Enum.SwipeDirection, indicating the direction the user swiped. 'numberOfTouches' is an int that indicates how many touches were involved with the gesture.  This event only fires locally.</string>
+            </Properties>
+        </Item>
+        <Item class="ReflectionMetadataMember">
+            <Properties>
+                <string name="Name">TouchLongPress</string>
+                <string name="summary">Fired when a user holds at least one finger for a short amount of time on the same screen position on a TouchEnabled device. 'touchPositions' is a Lua array of Vector2, each indicating the position of all the fingers involved in the gesture. 'state' indicates the Enum.UserInputState of the gesture.  This event only fires locally.</string>
+            </Properties>
+        </Item>
+        <Item class="ReflectionMetadataMember">
+            <Properties>
+                <string name="Name">TouchRotate</string>
+                <string name="summary">Fired when a user rotates two fingers on a TouchEnabled device. 'touchPositions' is a Lua array of Vector2, each indicating the position of all the fingers involved in the gesture. 'rotation' is a float indicating how much the rotation has gone from the start of the gesture. 'velocity' is a float that indicates how quickly the gesture is being performed. 'state' indicates the Enum.UserInputState of the gesture.  This event only fires locally.</string>
+            </Properties>
+        </Item>
+        <Item class="ReflectionMetadataMember">
+            <Properties>
+                <string name="Name">TouchPan</string>
+                <string name="summary">Fired when a user drags at least one finger on a TouchEnabled device. 'touchPositions' is a Lua array of Vector2, each indicating the position of all the fingers involved in the gesture. 'totalTranslation' is a Vector2, indicating how far the pan gesture has gone from its starting point. 'velocity' is a Vector2 that indicates how quickly the gesture is being performed in each dimension. 'state' indicates the Enum.UserInputState of the gesture.</string>
+            </Properties>
+        </Item>
+        
+        <Item class="ReflectionMetadataMember">
+            <Properties>
+                <string name="Name">InputBegan</string>
+                <string name="summary">Fired when a user begins interacting via a Human-Computer Interface device (Mouse button down, touch begin, keyboard button down, etc.). 'inputObject' is an InputObject, which contains useful data for querying user input.  This event only fires locally.</string>
+            </Properties>
+        </Item>
+        <Item class="ReflectionMetadataMember">
+            <Properties>
+                <string name="Name">InputChanged</string>
+                <string name="summary">Fired when a user changes interacting via a Human-Computer Interface device (Mouse move, touch move, mouse wheel, etc.). 'inputObject' is an InputObject, which contains useful data for querying user input.  This event only fires locally.</string>
+            </Properties>
+        </Item>
+        <Item class="ReflectionMetadataMember">
+            <Properties>
+                <string name="Name">InputEnded</string>
+                <string name="summary">Fired when a user stops interacting via a Human-Computer Interface device (Mouse button up, touch end, keyboard button up, etc.). 'inputObject' is an InputObject, which contains useful data for querying user input.  This event only fires locally.</string>
+            </Properties>
+        </Item>
+
       </Item>
     </Item>
 
