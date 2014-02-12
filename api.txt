@@ -60,6 +60,8 @@ Class AssetService : Instance
 	Function void AssetService:SetAssetRevertUrl(string revertUrl) [LocalUserSecurity]
 	Function void AssetService:SetAssetVersionsUrl(string versionsUrl) [LocalUserSecurity]
 	Function void AssetService:SetPlaceAccessUrl(string accessUrl) [LocalUserSecurity]
+	YieldFunction int AssetService:CreatePlaceAsync(string placeName, int templatePlaceID, string description = )
+	YieldFunction int AssetService:CreatePlaceInPlayerInventoryAsync(Instance player, string placeName, int templatePlaceID, string description = )
 	YieldFunction Dictionary AssetService:GetAssetVersions(int placeId, int pageNum = 1)
 	YieldFunction int AssetService:GetCreatorAssetID(int creationID)
 	YieldFunction Dictionary AssetService:GetPlacePermissions(int placeId)
@@ -295,6 +297,7 @@ Class SpecialMesh : FileMesh
 Class DataStoreService : Instance
 	Function Instance DataStoreService:GetDataStore(string name, string scope = global)
 	Function Instance DataStoreService:GetGlobalDataStore()
+	Function Instance DataStoreService:GetOrderedDataStore(string name, string scope = global)
 Class Debris : Instance
 	Property int Debris.MaxItems [deprecated]
 	Function void Debris:AddItem(Instance item, double lifetime = 10)
@@ -473,6 +476,8 @@ Class GlobalDataStore : Instance
 	YieldFunction Variant GlobalDataStore:IncrementAsync(string key, int delta = 1)
 	YieldFunction void GlobalDataStore:SetAsync(string key, Variant value)
 	YieldFunction Tuple GlobalDataStore:UpdateAsync(string key, Function transformFunction)
+Class OrderedDataStore : GlobalDataStore
+	YieldFunction Instance OrderedDataStore:GetSortedAsync(bool ascending, int pagesize, Variant minValue, Variant maxValue)
 Class GuiBase : Instance
 Class GuiBase2d : GuiBase [notbrowsable]
 	Property Vector2 GuiBase2d.AbsolutePosition [readonly]
@@ -1230,6 +1235,10 @@ Class Workspace : RootInstance
 	Function Tuple Workspace:findPartOnRay(Ray ray, Instance ignoreDescendentsInstance = nil, bool terrainCellsAreCubes = false) [deprecated]
 	Function Objects Workspace:findPartsInRegion3(Region3 region, Instance ignoreDescendentsInstance = nil, int maxParts = 20) [deprecated]
 Class Status : Model [notCreatable]
+Class Pages : Instance
+	Property bool Pages.IsFinished [readonly]
+	Function Array Pages:GetCurrentPage()
+	YieldFunction void Pages:AdvanceToNextPageAsync()
 Class PersonalServerService : Instance
 	Property string PersonalServerService.RoleSets [RobloxScriptSecurity]
 	Function void PersonalServerService:Demote(Instance player) [RobloxScriptSecurity]
@@ -1586,7 +1595,7 @@ Class DataModel : ServiceProvider
 	YieldFunction int DataModel:CreatePlace(string placeName, int templatePlaceID)
 	YieldFunction string DataModel:HttpGetAsync(string url) [RobloxScriptSecurity]
 	YieldFunction string DataModel:HttpPostAsync(string url, string data, string contentType = */*) [RobloxScriptSecurity]
-	YieldFunction Tuple DataModel:SavePlace(SaveFilter saveFilter = SaveAll)
+	YieldFunction bool DataModel:SavePlace(SaveFilter saveFilter = SaveAll)
 	YieldFunction bool DataModel:SaveToRoblox() [RobloxScriptSecurity]
 	Event DataModel.AllowedGearTypeChanged()
 	Event DataModel.GraphicsQualityChangeRequest(bool betterQuality)
