@@ -723,6 +723,7 @@ Class GuiService : Instance [notCreatable]
 Class GuidRegistryService : Instance
 Class HttpService : Instance [notCreatable]
 	Property bool HttpService.HttpEnabled [LocalUserSecurity]
+	Function string HttpService:GenerateGUID()
 	Function Variant HttpService:JSONDecode(string input)
 	Function string HttpService:JSONEncode(Variant input)
 	Function string HttpService:UrlEncode(string input)
@@ -941,6 +942,7 @@ Class MarketplaceService : Instance
 	Event MarketplaceService.PromptPurchaseFinished(Instance player, int assetId, bool isPurchased)
 	Event MarketplaceService.PromptPurchaseRequested(Instance player, int assetId, bool equipIfPurchased, CurrencyType currencyType) [RobloxScriptSecurity]
 	Event MarketplaceService.ServerPurchaseVerification(Dictionary serverResponseTable) [RobloxScriptSecurity]
+	Callback ProductPurchaseDecision MarketplaceService.ProcessReceipt(Variant receiptInfo)
 Class Message : Instance
 	Property string Message.Text
 Class Hint : Message [deprecated]
@@ -988,6 +990,7 @@ Class NetworkClient : NetworkPeer [notCreatable]
 Class NetworkServer : NetworkPeer [notCreatable]
 	Property int NetworkServer.Port [readonly]
 	Function int NetworkServer:GetClientCount() [LocalUserSecurity]
+	Function void NetworkServer:SetGameJobId(string newGameJobId) [RobloxSecurity]
 	Function void NetworkServer:SetIsPlayerAuthenticationRequired(bool value) [RobloxSecurity]
 	Function void NetworkServer:Start(int port = 0, int threadSleepTime = 20) [LocalUserSecurity]
 	Function void NetworkServer:Stop(int blockDuration = 1000) [LocalUserSecurity]
@@ -1343,6 +1346,7 @@ Class Player : Instance
 	Event Player.FriendStatusChanged(Instance player, FriendStatus friendStatus) [RobloxScriptSecurity]
 	Event Player.Idled(double time)
 	Event Player.OnTeleport(TeleportState teleportState, int placeId, string spawnName)
+	Event Player.SimulationRadiusChanged(float radius) [LocalUserSecurity]
 Class Players : Instance
 	Property bool Players.BubbleChat [readonly]
 	Property bool Players.CharacterAutoLoads
@@ -2376,6 +2380,9 @@ Enum PrivilegeType
 	EnumItem PrivilegeType.Member : 128
 	EnumItem PrivilegeType.Visitor : 10
 	EnumItem PrivilegeType.Banned : 0
+Enum ProductPurchaseDecision
+	EnumItem ProductPurchaseDecision.NotProcessedYet : 0
+	EnumItem ProductPurchaseDecision.PurchaseGranted : 1
 Enum PyramidSides
 	EnumItem PyramidSides.3 : 3
 	EnumItem PyramidSides.4 : 4
