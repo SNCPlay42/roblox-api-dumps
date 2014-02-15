@@ -942,7 +942,7 @@ Class MarketplaceService : Instance
 	Event MarketplaceService.PromptPurchaseFinished(Instance player, int assetId, bool isPurchased)
 	Event MarketplaceService.PromptPurchaseRequested(Instance player, int assetId, bool equipIfPurchased, CurrencyType currencyType) [RobloxScriptSecurity]
 	Event MarketplaceService.ServerPurchaseVerification(Dictionary serverResponseTable) [RobloxScriptSecurity]
-	Callback ProductPurchaseDecision MarketplaceService.ProcessReceipt(Variant receiptInfo)
+	Callback ProductPurchaseDecision MarketplaceService.ProcessReceipt(Dictionary receiptInfo)
 Class Message : Instance
 	Property string Message.Text
 Class Hint : Message [deprecated]
@@ -990,7 +990,6 @@ Class NetworkClient : NetworkPeer [notCreatable]
 Class NetworkServer : NetworkPeer [notCreatable]
 	Property int NetworkServer.Port [readonly]
 	Function int NetworkServer:GetClientCount() [LocalUserSecurity]
-	Function void NetworkServer:SetGameJobId(string newGameJobId) [RobloxSecurity]
 	Function void NetworkServer:SetIsPlayerAuthenticationRequired(bool value) [RobloxSecurity]
 	Function void NetworkServer:Start(int port = 0, int threadSleepTime = 20) [LocalUserSecurity]
 	Function void NetworkServer:Stop(int blockDuration = 1000) [LocalUserSecurity]
