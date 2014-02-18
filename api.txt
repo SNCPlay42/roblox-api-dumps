@@ -66,6 +66,7 @@ Class AssetService : Instance
 	YieldFunction int AssetService:GetCreatorAssetID(int creationID)
 	YieldFunction Dictionary AssetService:GetPlacePermissions(int placeId)
 	YieldFunction bool AssetService:RevertAsset(int placeId, int versionNumber)
+	YieldFunction void AssetService:SavePlaceAsync()
 	YieldFunction bool AssetService:SetPlacePermissions(int placeId, AccessType accessType = Everyone, Array inviteList = {})
 Class BadgeService : Instance
 	Function void BadgeService:SetAwardBadgeUrl(string url) [LocalUserSecurity]
