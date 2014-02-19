@@ -938,12 +938,12 @@ Class MarketplaceService : Instance
 	YieldFunction bool MarketplaceService:PlayerOwnsAsset(Instance player, int assetId)
 	Event MarketplaceService.ClientLuaDialogRequested(Tuple arguments) [RobloxScriptSecurity]
 	Event MarketplaceService.ClientPurchaseSuccess(string ticket, int playerId, int productId) [RobloxScriptSecurity]
-	Event MarketplaceService.PromptProductPurchaseFinished(int userId, int productId, bool isPurchased)
+	Event MarketplaceService.PromptProductPurchaseFinished(int userId, int productId, bool isPurchased) [deprecated]
 	Event MarketplaceService.PromptProductPurchaseRequested(Instance player, int productId, bool equipIfPurchased, CurrencyType currencyType) [RobloxScriptSecurity]
 	Event MarketplaceService.PromptPurchaseFinished(Instance player, int assetId, bool isPurchased)
 	Event MarketplaceService.PromptPurchaseRequested(Instance player, int assetId, bool equipIfPurchased, CurrencyType currencyType) [RobloxScriptSecurity]
 	Event MarketplaceService.ServerPurchaseVerification(Dictionary serverResponseTable) [RobloxScriptSecurity]
-	Callback ProductPurchaseDecision MarketplaceService.ProcessReceipt(Variant receiptInfo)
+	Callback ProductPurchaseDecision MarketplaceService.ProcessReceipt(Dictionary receiptInfo)
 Class Message : Instance
 	Property string Message.Text
 Class Hint : Message [deprecated]
@@ -991,7 +991,6 @@ Class NetworkClient : NetworkPeer [notCreatable]
 Class NetworkServer : NetworkPeer [notCreatable]
 	Property int NetworkServer.Port [readonly]
 	Function int NetworkServer:GetClientCount() [LocalUserSecurity]
-	Function void NetworkServer:SetGameId(string newGameId) [RobloxSecurity]
 	Function void NetworkServer:SetIsPlayerAuthenticationRequired(bool value) [RobloxSecurity]
 	Function void NetworkServer:Start(int port = 0, int threadSleepTime = 20) [LocalUserSecurity]
 	Function void NetworkServer:Stop(int blockDuration = 1000) [LocalUserSecurity]
