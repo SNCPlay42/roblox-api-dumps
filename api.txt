@@ -66,6 +66,7 @@ Class AssetService : Instance
 	YieldFunction int AssetService:GetCreatorAssetID(int creationID)
 	YieldFunction Dictionary AssetService:GetPlacePermissions(int placeId)
 	YieldFunction bool AssetService:RevertAsset(int placeId, int versionNumber)
+	YieldFunction void AssetService:SavePlaceAsync()
 	YieldFunction bool AssetService:SetPlacePermissions(int placeId, AccessType accessType = Everyone, Array inviteList = {})
 Class BadgeService : Instance
 	Function void BadgeService:SetAwardBadgeUrl(string url) [LocalUserSecurity]
@@ -942,7 +943,7 @@ Class MarketplaceService : Instance
 	Event MarketplaceService.PromptPurchaseFinished(Instance player, int assetId, bool isPurchased)
 	Event MarketplaceService.PromptPurchaseRequested(Instance player, int assetId, bool equipIfPurchased, CurrencyType currencyType) [RobloxScriptSecurity]
 	Event MarketplaceService.ServerPurchaseVerification(Dictionary serverResponseTable) [RobloxScriptSecurity]
-	Callback ProductPurchaseDecision MarketplaceService.ProcessReceipt(Dictionary receiptInfo)
+	Callback ProductPurchaseDecision MarketplaceService.ProcessReceipt(Variant receiptInfo)
 Class Message : Instance
 	Property string Message.Text
 Class Hint : Message [deprecated]
@@ -990,6 +991,7 @@ Class NetworkClient : NetworkPeer [notCreatable]
 Class NetworkServer : NetworkPeer [notCreatable]
 	Property int NetworkServer.Port [readonly]
 	Function int NetworkServer:GetClientCount() [LocalUserSecurity]
+	Function void NetworkServer:SetGameId(string newGameId) [RobloxSecurity]
 	Function void NetworkServer:SetIsPlayerAuthenticationRequired(bool value) [RobloxSecurity]
 	Function void NetworkServer:Start(int port = 0, int threadSleepTime = 20) [LocalUserSecurity]
 	Function void NetworkServer:Stop(int blockDuration = 1000) [LocalUserSecurity]
