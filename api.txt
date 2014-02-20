@@ -1720,7 +1720,9 @@ Class TeleportService : Instance
 	Function void TeleportService:Teleport(int placeId, Instance player = nil)
 	Function void TeleportService:TeleportCancel() [RobloxScriptSecurity]
 	Function void TeleportService:TeleportImpl(int placeId, string spawnName) [RobloxScriptSecurity]
+	Function void TeleportService:TeleportToPlaceInstance(int placeId, string instanceId, Instance player = nil)
 	Function void TeleportService:TeleportToSpawnByName(int placeId, string spawnName, Instance player = nil)
+	YieldFunction Tuple TeleportService:GetPlayerPlaceInstanceAsync(int userId)
 	Callback bool TeleportService.ConfirmationCallback(string message, int placeId, string spawnName) [noyield] [RobloxScriptSecurity]
 	Callback void TeleportService.ErrorCallback(string message) [noyield] [RobloxScriptSecurity]
 Class TerrainRegion : Instance
