@@ -1020,6 +1020,7 @@ Class ServerReplicator : NetworkReplicator [notCreatable]
 Class NetworkSettings : Instance [notbrowsable]
 	Property bool NetworkSettings.ArePhysicsRejectionsReported
 	Property int NetworkSettings.CanSendPacketBufferLimit
+	Property float NetworkSettings.ClientPhysicsSendRate
 	Property float NetworkSettings.DataGCRate
 	Property int NetworkSettings.DataMtuAdjust
 	Property PacketPriority NetworkSettings.DataSendPriority [hidden]
@@ -1662,6 +1663,7 @@ Class Sparkles : Instance
 	Property Color3 Sparkles.Color [hidden]
 	Property bool Sparkles.Enabled
 	Property Color3 Sparkles.SparkleColor
+Class SpatialQueryCache : Instance
 Class SpawnerService : Instance
 Class StarterGear : Instance
 Class Stats : Instance [notCreatable]
