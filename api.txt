@@ -1020,6 +1020,7 @@ Class ServerReplicator : NetworkReplicator [notCreatable]
 Class NetworkSettings : Instance [notbrowsable]
 	Property bool NetworkSettings.ArePhysicsRejectionsReported
 	Property int NetworkSettings.CanSendPacketBufferLimit
+	Property float NetworkSettings.ClientPhysicsSendRate
 	Property float NetworkSettings.DataGCRate
 	Property int NetworkSettings.DataMtuAdjust
 	Property PacketPriority NetworkSettings.DataSendPriority [hidden]
