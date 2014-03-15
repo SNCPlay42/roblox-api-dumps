@@ -1362,6 +1362,7 @@ Class Players : Instance
 	Function Instance Players:GetPlayerByID(int userID) [LocalUserSecurity]
 	Function Instance Players:GetPlayerFromCharacter(Instance character)
 	Function Objects Players:GetPlayers()
+	Function bool Players:GetUseCoreScriptHealthBar() [RobloxScriptSecurity]
 	Function void Players:ReportAbuse(Instance player, string reason, string optionalMessage) [LocalUserSecurity]
 	Function void Players:SetAbuseReportUrl(string url) [RobloxSecurity]
 	Function void Players:SetBuildUserPermissionsUrl(string url) [RobloxSecurity]
@@ -2265,12 +2266,17 @@ Enum KeyCode
 	EnumItem KeyCode.PageUp : 280
 	EnumItem KeyCode.PageDown : 281
 	EnumItem KeyCode.KeypadEquals : 272
-	EnumItem KeyCode.KeypadEquals : 272
-	EnumItem KeyCode.KeypadEquals : 272
-	EnumItem KeyCode.KeypadEquals : 272
-	EnumItem KeyCode.KeypadEquals : 272
-	EnumItem KeyCode.KeypadEquals : 272
-	EnumItem KeyCode.KeypadEquals : 272
+	EnumItem KeyCode.LeftShift : 304
+	EnumItem KeyCode.RightShift : 303
+	EnumItem KeyCode.LeftMeta : 310
+	EnumItem KeyCode.RightMeta : 309
+	EnumItem KeyCode.LeftAlt : 308
+	EnumItem KeyCode.RightAlt : 307
+	EnumItem KeyCode.LeftControl : 306
+	EnumItem KeyCode.RightControl : 305
+	EnumItem KeyCode.CapsLock : 301
+	EnumItem KeyCode.NumLock : 300
+	EnumItem KeyCode.ScrollLock : 302
 Enum KeywordFilterType
 	EnumItem KeywordFilterType.Include : 0
 	EnumItem KeywordFilterType.Exclude : 1
