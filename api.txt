@@ -1606,6 +1606,7 @@ Class DataModel : ServiceProvider
 	Event DataModel.GraphicsQualityChangeRequest(bool betterQuality)
 	Event DataModel.ItemChanged(Instance object, Property descriptor)
 	Event DataModel.Loaded()
+	Callback Tuple DataModel.OnClose()
 	Callback bool DataModel.RequestShutdown() [noyield] [RobloxScriptSecurity]
 Class GenericSettings : ServiceProvider
 Class GlobalSettings : GenericSettings [notbrowsable]
