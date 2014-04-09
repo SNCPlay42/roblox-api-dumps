@@ -1296,7 +1296,6 @@ Class Player : Instance
 	Property Object Player.Character
 	Property string Player.CharacterAppearance [notbrowsable]
 	Property ChatMode Player.ChatMode [readonly] [RobloxScriptSecurity]
-	Property string Player.ClanTag [readonly]
 	Property int Player.DataComplexity [readonly]
 	Property int Player.DataComplexityLimit [LocalUserSecurity]
 	Property bool Player.DataReady [readonly]
