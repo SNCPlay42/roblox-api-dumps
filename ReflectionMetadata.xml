@@ -1113,6 +1113,49 @@
 
     <Item class="ReflectionMetadataClass">
       <Properties>
+        <string name="Name">PointsService</string>
+        <string name="summary">A service used to query and award points for Roblox users using the universal point system.</string>
+      </Properties>
+
+      <Item class="ReflectionMetadataEvents">
+        <Item class="ReflectionMetadataMember">
+          <Properties>
+            <string name="Name">PointsAwarded</string>
+            <string name="summary">Fired when points are successfully awarded 'userId'. Also returns the updated balance of points for usedId in universe via 'userBalanceInUniverse', and total points via 'userTotalBalance'. This event fires on the server and also all clients in the game that awarded the points.</string>
+          </Properties>
+        </Item>
+      </Item>
+      
+      <Item class="ReflectionMetadataYieldFunctions">
+        <Item class="ReflectionMetadataMember">
+          <Properties>
+            <string name="Name">AwardPoints</string>
+            <string name="summary">Will attempt to award the 'amount' points to 'userId', returns 'userId' awarded to, the new point total the user has in the game, and the total number of points the user now has. Will also fire PointsService.PointsAwarded. Works with server scripts ONLY.</string>
+          </Properties>
+        </Item>
+        <Item class="ReflectionMetadataMember">
+          <Properties>
+            <string name="Name">GetPointBalance</string>
+            <string name="summary">Returns the overall balance of points that player with userId has (the sum of all points across all games). Works with server scripts ONLY.</string>
+          </Properties>
+        </Item>
+        <Item class="ReflectionMetadataMember">
+          <Properties>
+            <string name="Name">GetGamePointBalance</string>
+            <string name="summary">Returns the balance of points that player with userId has in the current game (all placeID points combined within the game). Works with server scripts ONLY.</string>
+          </Properties>
+        </Item>
+        <Item class="ReflectionMetadataMember">
+          <Properties>
+            <string name="Name">GetAwardablePoints</string>
+            <string name="summary">Returns the number of points the current universe can award to players. Works with server scripts ONLY.</string>
+          </Properties>
+        </Item>
+      </Item>
+    </Item>
+
+    <Item class="ReflectionMetadataClass">
+      <Properties>
         <string name="Name">MarketplaceService</string>
         <string name="ExplorerImageIndex">46</string>
       </Properties>
@@ -1126,11 +1169,13 @@
       </Item>
 
       <Item class="ReflectionMetadataYieldFunctions">
-         <Item class="ReflectionMetadataMember">
+        <Item class="ReflectionMetadataMember">
           <Properties>
             <string name="Name">GetProductInfo</string>
             <string name="summary">Takes one argument "assetId" which should be a number of an asset on www.roblox.com.  Returns a table containing the product information (if this process fails, returns an empty table).</string>
           </Properties>
+        </Item>
+        <Item class="ReflectionMetadataMember">
           <Properties>
             <string name="Name">PlayerOwnsAsset</string>
             <string name="summary">Checks to see if 'Player' owns the product associated with 'assetId'. Returns true if the player owns it, false otherwise. This call will produce a warning if called on a guest player.</string>

@@ -909,7 +909,10 @@ Class Lighting : Instance [notCreatable]
 	Event Lighting.LightingChanged(bool skyboxChanged)
 Class LocalWorkspace : Instance [notCreatable]
 Class LogService : Instance
+	Function Array LogService:GetLogHistory()
+	Function void LogService:RequestServerOutput() [RobloxScriptSecurity]
 	Event LogService.MessageOut(string message, MessageType messageType)
+	Event LogService.ServerMessageOut(string message, MessageType messageType, int timestamp) [RobloxScriptSecurity]
 Class LoginService : Instance
 	Function void LoginService:Logout() [RobloxSecurity]
 	Function void LoginService:PromptLogin() [RobloxSecurity]
@@ -1362,6 +1365,7 @@ Class Players : Instance
 	Function Instance Players:GetPlayerByID(int userID) [LocalUserSecurity]
 	Function Instance Players:GetPlayerFromCharacter(Instance character)
 	Function Objects Players:GetPlayers()
+	Function bool Players:GetUseCoreScriptHealthBar() [RobloxScriptSecurity]
 	Function void Players:ReportAbuse(Instance player, string reason, string optionalMessage) [LocalUserSecurity]
 	Function void Players:SetAbuseReportUrl(string url) [RobloxSecurity]
 	Function void Players:SetBuildUserPermissionsUrl(string url) [RobloxSecurity]
@@ -1391,11 +1395,18 @@ Class Plugin : Instance
 	Function Instance Plugin:GetMouse() [LocalUserSecurity]
 	Function Variant Plugin:GetSetting(string key) [LocalUserSecurity]
 	Function int Plugin:GetStudioUserId() [LocalUserSecurity]
+	Function void Plugin:OpenScript(Instance script, int lineNumber = 0) [LocalUserSecurity]
 	Function void Plugin:SaveSelectedToRoblox() [LocalUserSecurity]
 	Function void Plugin:SetSetting(string key, Variant value) [LocalUserSecurity]
 	Event Plugin.Deactivation()
 Class PluginManager : Instance
 	Function Instance PluginManager:CreatePlugin() [LocalUserSecurity]
+Class PointsService : Instance
+	YieldFunction Tuple PointsService:AwardPoints(int userId, int amount)
+	YieldFunction int PointsService:GetAwardablePoints()
+	YieldFunction int PointsService:GetGamePointBalance(int userId)
+	YieldFunction int PointsService:GetPointBalance(int userId)
+	Event PointsService.PointsAwarded(int userId, int userBalanceInGame, int userTotalBalance)
 Class Pose : Instance
 	Property CoordinateFrame Pose.CFrame
 	Property float Pose.MaskWeight
@@ -1605,6 +1616,7 @@ Class DataModel : ServiceProvider
 	Event DataModel.GraphicsQualityChangeRequest(bool betterQuality)
 	Event DataModel.ItemChanged(Instance object, Property descriptor)
 	Event DataModel.Loaded()
+	Callback Tuple DataModel.OnClose()
 	Callback bool DataModel.RequestShutdown() [noyield] [RobloxScriptSecurity]
 Class GenericSettings : ServiceProvider
 Class GlobalSettings : GenericSettings [notbrowsable]
@@ -1786,6 +1798,7 @@ Class UserInputService : Instance
 	Event UserInputService.InputChanged(Instance input)
 	Event UserInputService.InputEnded(Instance input)
 	Event UserInputService.JumpRequest()
+	Event UserInputService.ProcessedEvent(Instance inputObject, bool processed) [RobloxScriptSecurity]
 	Event UserInputService.TouchEnded(Instance touch)
 	Event UserInputService.TouchLongPress(Array touchPositions, UserInputState state)
 	Event UserInputService.TouchMoved(Instance touch)
@@ -2265,12 +2278,17 @@ Enum KeyCode
 	EnumItem KeyCode.PageUp : 280
 	EnumItem KeyCode.PageDown : 281
 	EnumItem KeyCode.KeypadEquals : 272
-	EnumItem KeyCode.KeypadEquals : 272
-	EnumItem KeyCode.KeypadEquals : 272
-	EnumItem KeyCode.KeypadEquals : 272
-	EnumItem KeyCode.KeypadEquals : 272
-	EnumItem KeyCode.KeypadEquals : 272
-	EnumItem KeyCode.KeypadEquals : 272
+	EnumItem KeyCode.LeftShift : 304
+	EnumItem KeyCode.RightShift : 303
+	EnumItem KeyCode.LeftMeta : 310
+	EnumItem KeyCode.RightMeta : 309
+	EnumItem KeyCode.LeftAlt : 308
+	EnumItem KeyCode.RightAlt : 307
+	EnumItem KeyCode.LeftControl : 306
+	EnumItem KeyCode.RightControl : 305
+	EnumItem KeyCode.CapsLock : 301
+	EnumItem KeyCode.NumLock : 300
+	EnumItem KeyCode.ScrollLock : 302
 Enum KeywordFilterType
 	EnumItem KeywordFilterType.Include : 0
 	EnumItem KeywordFilterType.Exclude : 1
