@@ -909,7 +909,10 @@ Class Lighting : Instance [notCreatable]
 	Event Lighting.LightingChanged(bool skyboxChanged)
 Class LocalWorkspace : Instance [notCreatable]
 Class LogService : Instance
+	Function Array LogService:GetLogHistory()
+	Function void LogService:RequestServerOutput() [RobloxScriptSecurity]
 	Event LogService.MessageOut(string message, MessageType messageType)
+	Event LogService.ServerMessageOut(string message, MessageType messageType, int timestamp) [RobloxScriptSecurity]
 Class LoginService : Instance
 	Function void LoginService:Logout() [RobloxSecurity]
 	Function void LoginService:PromptLogin() [RobloxSecurity]
@@ -1392,11 +1395,18 @@ Class Plugin : Instance
 	Function Instance Plugin:GetMouse() [LocalUserSecurity]
 	Function Variant Plugin:GetSetting(string key) [LocalUserSecurity]
 	Function int Plugin:GetStudioUserId() [LocalUserSecurity]
+	Function void Plugin:OpenScript(Instance script, int lineNumber = 0) [LocalUserSecurity]
 	Function void Plugin:SaveSelectedToRoblox() [LocalUserSecurity]
 	Function void Plugin:SetSetting(string key, Variant value) [LocalUserSecurity]
 	Event Plugin.Deactivation()
 Class PluginManager : Instance
 	Function Instance PluginManager:CreatePlugin() [LocalUserSecurity]
+Class PointsService : Instance
+	YieldFunction Tuple PointsService:AwardPoints(int userId, int amount)
+	YieldFunction int PointsService:GetAwardablePoints()
+	YieldFunction int PointsService:GetGamePointBalance(int userId)
+	YieldFunction int PointsService:GetPointBalance(int userId)
+	Event PointsService.PointsAwarded(int userId, int userBalanceInGame, int userTotalBalance)
 Class Pose : Instance
 	Property CoordinateFrame Pose.CFrame
 	Property float Pose.MaskWeight
@@ -1606,6 +1616,7 @@ Class DataModel : ServiceProvider
 	Event DataModel.GraphicsQualityChangeRequest(bool betterQuality)
 	Event DataModel.ItemChanged(Instance object, Property descriptor)
 	Event DataModel.Loaded()
+	Callback Tuple DataModel.OnClose()
 	Callback bool DataModel.RequestShutdown() [noyield] [RobloxScriptSecurity]
 Class GenericSettings : ServiceProvider
 Class GlobalSettings : GenericSettings [notbrowsable]
@@ -1787,6 +1798,7 @@ Class UserInputService : Instance
 	Event UserInputService.InputChanged(Instance input)
 	Event UserInputService.InputEnded(Instance input)
 	Event UserInputService.JumpRequest()
+	Event UserInputService.ProcessedEvent(Instance inputObject, bool processed) [RobloxScriptSecurity]
 	Event UserInputService.TouchEnded(Instance touch)
 	Event UserInputService.TouchLongPress(Array touchPositions, UserInputState state)
 	Event UserInputService.TouchMoved(Instance touch)
