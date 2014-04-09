@@ -1415,6 +1415,8 @@ Class Plugin : Instance
 	Event Plugin.Deactivation()
 Class PluginManager : Instance
 	Function Instance PluginManager:CreatePlugin() [LocalUserSecurity]
+	Function void PluginManager:ExportPlace(string filePath = ) [LocalUserSecurity]
+	Function void PluginManager:ExportSelection(string filePath = ) [LocalUserSecurity]
 Class PointsService : Instance
 	YieldFunction Tuple PointsService:AwardPoints(int userId, int amount)
 	YieldFunction int PointsService:GetAwardablePoints()
