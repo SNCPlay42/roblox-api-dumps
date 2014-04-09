@@ -909,7 +909,10 @@ Class Lighting : Instance [notCreatable]
 	Event Lighting.LightingChanged(bool skyboxChanged)
 Class LocalWorkspace : Instance [notCreatable]
 Class LogService : Instance
+	Function Array LogService:GetLogHistory()
+	Function void LogService:RequestServerOutput() [RobloxScriptSecurity]
 	Event LogService.MessageOut(string message, MessageType messageType)
+	Event LogService.ServerMessageOut(string message, MessageType messageType, int timestamp) [RobloxScriptSecurity]
 Class LoginService : Instance
 	Function void LoginService:Logout() [RobloxSecurity]
 	Function void LoginService:PromptLogin() [RobloxSecurity]
@@ -1392,6 +1395,7 @@ Class Plugin : Instance
 	Function Instance Plugin:GetMouse() [LocalUserSecurity]
 	Function Variant Plugin:GetSetting(string key) [LocalUserSecurity]
 	Function int Plugin:GetStudioUserId() [LocalUserSecurity]
+	Function void Plugin:OpenScript(Instance script, int lineNumber = 0) [LocalUserSecurity]
 	Function void Plugin:SaveSelectedToRoblox() [LocalUserSecurity]
 	Function void Plugin:SetSetting(string key, Variant value) [LocalUserSecurity]
 	Event Plugin.Deactivation()
@@ -1473,6 +1477,7 @@ Class RenderSettings : Instance [notbrowsable]
 	Property Resolution RenderSettings.Resolution
 	Property Shadow RenderSettings.Shadow
 	Property bool RenderSettings.ShowBoundingBoxes
+	Property bool RenderSettings.ShowInterpolationpath
 	Property int RenderSettings.TextureCacheSize
 	Property bool RenderSettings.UsesPaintMessage
 	Property GraphicsMode RenderSettings.graphicsMode
