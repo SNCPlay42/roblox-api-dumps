@@ -1477,6 +1477,7 @@ Class RenderSettings : Instance [notbrowsable]
 	Property Resolution RenderSettings.Resolution
 	Property Shadow RenderSettings.Shadow
 	Property bool RenderSettings.ShowBoundingBoxes
+	Property bool RenderSettings.ShowInterpolationpath
 	Property int RenderSettings.TextureCacheSize
 	Property bool RenderSettings.UsesPaintMessage
 	Property GraphicsMode RenderSettings.graphicsMode
