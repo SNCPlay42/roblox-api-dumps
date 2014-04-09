@@ -248,10 +248,23 @@ Class ContentProvider : Instance
 	Function void ContentProvider:SetCacheSize(int count) [LocalUserSecurity]
 	Function void ContentProvider:SetThreadPool(int count) [LocalUserSecurity]
 Class ContextActionService : Instance
-	Property bool ContextActionService.ContextButtonEnabled
-	Function void ContextActionService:ActivateLocalTool() [RobloxScriptSecurity]
-	Function void ContextActionService:DeactivateLocalTool() [RobloxScriptSecurity]
+	Function void ContextActionService:BindActionToInputTypes(string actionName, Function functionToBind, bool createTouchButton, Tuple inputTypes)
+	Function void ContextActionService:CallFunction(string actionName, UserInputState state, Instance inputObject) [RobloxScriptSecurity]
+	Function void ContextActionService:FireActionButtonFoundSignal(string actionName, Instance actionButton) [RobloxScriptSecurity]
+	Function Dictionary ContextActionService:GetAllBoundActionInfo()
+	Function Dictionary ContextActionService:GetBoundActionInfo(string actionName)
 	Function string ContextActionService:GetCurrentLocalToolIcon()
+	Function void ContextActionService:SetDescription(string actionName, string description)
+	Function void ContextActionService:SetImage(string actionName, string image)
+	Function void ContextActionService:SetPosition(string actionName, UDim2 position)
+	Function void ContextActionService:SetTitle(string actionName, string title)
+	Function void ContextActionService:UnbindAction(string actionName)
+	Function void ContextActionService:UnbindAllActions()
+	YieldFunction Instance ContextActionService:GetButton(string actionName)
+	Event ContextActionService.BoundActionAdded(string actionAdded, bool createTouchButton, Dictionary functionInfoTable) [RobloxScriptSecurity]
+	Event ContextActionService.BoundActionChanged(string actionChanged, string changeName, Dictionary changeTable) [RobloxScriptSecurity]
+	Event ContextActionService.BoundActionRemoved(string actionRemoved, Dictionary functionInfoTable) [RobloxScriptSecurity]
+	Event ContextActionService.GetActionButtonEvent(string actionName) [RobloxScriptSecurity]
 	Event ContextActionService.LocalToolEquipped(Instance toolEquipped)
 	Event ContextActionService.LocalToolUnequipped(Instance toolUnequipped)
 Class Controller : Instance
@@ -909,7 +922,10 @@ Class Lighting : Instance [notCreatable]
 	Event Lighting.LightingChanged(bool skyboxChanged)
 Class LocalWorkspace : Instance [notCreatable]
 Class LogService : Instance
+	Function Array LogService:GetLogHistory()
+	Function void LogService:RequestServerOutput() [RobloxScriptSecurity]
 	Event LogService.MessageOut(string message, MessageType messageType)
+	Event LogService.ServerMessageOut(string message, MessageType messageType, int timestamp) [RobloxScriptSecurity]
 Class LoginService : Instance
 	Function void LoginService:Logout() [RobloxSecurity]
 	Function void LoginService:PromptLogin() [RobloxSecurity]
@@ -1392,11 +1408,18 @@ Class Plugin : Instance
 	Function Instance Plugin:GetMouse() [LocalUserSecurity]
 	Function Variant Plugin:GetSetting(string key) [LocalUserSecurity]
 	Function int Plugin:GetStudioUserId() [LocalUserSecurity]
+	Function void Plugin:OpenScript(Instance script, int lineNumber = 0) [LocalUserSecurity]
 	Function void Plugin:SaveSelectedToRoblox() [LocalUserSecurity]
 	Function void Plugin:SetSetting(string key, Variant value) [LocalUserSecurity]
 	Event Plugin.Deactivation()
 Class PluginManager : Instance
 	Function Instance PluginManager:CreatePlugin() [LocalUserSecurity]
+Class PointsService : Instance
+	YieldFunction Tuple PointsService:AwardPoints(int userId, int amount)
+	YieldFunction int PointsService:GetAwardablePoints()
+	YieldFunction int PointsService:GetGamePointBalance(int userId)
+	YieldFunction int PointsService:GetPointBalance(int userId)
+	Event PointsService.PointsAwarded(int userId, int userBalanceInGame, int userTotalBalance)
 Class Pose : Instance
 	Property CoordinateFrame Pose.CFrame
 	Property float Pose.MaskWeight
@@ -1788,6 +1811,7 @@ Class UserInputService : Instance
 	Event UserInputService.InputChanged(Instance input)
 	Event UserInputService.InputEnded(Instance input)
 	Event UserInputService.JumpRequest()
+	Event UserInputService.ProcessedEvent(Instance inputObject, bool processed) [RobloxScriptSecurity]
 	Event UserInputService.TouchEnded(Instance touch)
 	Event UserInputService.TouchLongPress(Array touchPositions, UserInputState state)
 	Event UserInputService.TouchMoved(Instance touch)
@@ -2266,7 +2290,6 @@ Enum KeyCode
 	EnumItem KeyCode.End : 279
 	EnumItem KeyCode.PageUp : 280
 	EnumItem KeyCode.PageDown : 281
-	EnumItem KeyCode.KeypadEquals : 272
 	EnumItem KeyCode.LeftShift : 304
 	EnumItem KeyCode.RightShift : 303
 	EnumItem KeyCode.LeftMeta : 310
