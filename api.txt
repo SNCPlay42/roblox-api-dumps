@@ -1415,8 +1415,6 @@ Class Plugin : Instance
 	Event Plugin.Deactivation()
 Class PluginManager : Instance
 	Function Instance PluginManager:CreatePlugin() [LocalUserSecurity]
-	Function void PluginManager:ExportPlace(string filePath = ) [LocalUserSecurity]
-	Function void PluginManager:ExportSelection(string filePath = ) [LocalUserSecurity]
 Class PointsService : Instance
 	YieldFunction Tuple PointsService:AwardPoints(int userId, int amount)
 	YieldFunction int PointsService:GetAwardablePoints()
@@ -1490,7 +1488,6 @@ Class RenderSettings : Instance [notbrowsable]
 	Property bool RenderSettings.IsSynchronizedWithPhysics
 	Property int RenderSettings.MeshCacheSize
 	Property QualityLevel RenderSettings.QualityLevel
-	Property bool RenderSettings.ReloadAssets
 	Property Resolution RenderSettings.Resolution
 	Property Shadow RenderSettings.Shadow
 	Property bool RenderSettings.ShowBoundingBoxes
