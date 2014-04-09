@@ -1296,6 +1296,7 @@ Class Player : Instance
 	Property Object Player.Character
 	Property string Player.CharacterAppearance [notbrowsable]
 	Property ChatMode Player.ChatMode [readonly] [RobloxScriptSecurity]
+	Property string Player.ClanTag [readonly]
 	Property int Player.DataComplexity [readonly]
 	Property int Player.DataComplexityLimit [LocalUserSecurity]
 	Property bool Player.DataReady [readonly]
@@ -1310,7 +1311,6 @@ Class Player : Instance
 	Property int Player.userId
 	Function void Player:ClearCharacterAppearance()
 	Function float Player:DistanceFromCharacter(Vector3 point)
-	Function string Player:GetClanTag()
 	Function FriendStatus Player:GetFriendStatus(Instance player) [RobloxScriptSecurity]
 	Function string Player:GetGameSessionID() [RobloxSecurity]
 	Function Instance Player:GetMouse()
@@ -1416,6 +1416,8 @@ Class Plugin : Instance
 	Event Plugin.Deactivation()
 Class PluginManager : Instance
 	Function Instance PluginManager:CreatePlugin() [LocalUserSecurity]
+	Function void PluginManager:ExportPlace(string filePath = ) [LocalUserSecurity]
+	Function void PluginManager:ExportSelection(string filePath = ) [LocalUserSecurity]
 Class PointsService : Instance
 	YieldFunction Tuple PointsService:AwardPoints(int userId, int amount)
 	YieldFunction int PointsService:GetAwardablePoints()
