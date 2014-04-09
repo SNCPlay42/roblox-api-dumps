@@ -1310,7 +1310,6 @@ Class Player : Instance
 	Property int Player.userId
 	Function void Player:ClearCharacterAppearance()
 	Function float Player:DistanceFromCharacter(Vector3 point)
-	Function string Player:GetClanTag()
 	Function FriendStatus Player:GetFriendStatus(Instance player) [RobloxScriptSecurity]
 	Function string Player:GetGameSessionID() [RobloxSecurity]
 	Function Instance Player:GetMouse()
