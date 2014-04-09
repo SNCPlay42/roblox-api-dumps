@@ -1490,6 +1490,7 @@ Class RenderSettings : Instance [notbrowsable]
 	Property bool RenderSettings.IsSynchronizedWithPhysics
 	Property int RenderSettings.MeshCacheSize
 	Property QualityLevel RenderSettings.QualityLevel
+	Property bool RenderSettings.ReloadAssets
 	Property Resolution RenderSettings.Resolution
 	Property Shadow RenderSettings.Shadow
 	Property bool RenderSettings.ShowBoundingBoxes
