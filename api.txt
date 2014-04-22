@@ -744,6 +744,7 @@ Class HttpService : Instance [notCreatable]
 	YieldFunction string HttpService:GetAsync(string url, bool nocache = false)
 	YieldFunction string HttpService:PostAsync(string url, string data, HttpContentType content_type = ApplicationJson)
 Class Humanoid : Instance
+	Property bool Humanoid.AutoRotate
 	Property float Humanoid.Health
 	Property bool Humanoid.Jump
 	Property Object Humanoid.LeftLeg
@@ -760,7 +761,9 @@ Class Humanoid : Instance
 	Property float Humanoid.maxHealth [deprecated]
 	Function bool Humanoid:AddCustomStatus(string status)
 	Function bool Humanoid:AddStatus(Status status = Poison)
+	Function void Humanoid:ChangeState(HumanoidStateType state = None)
 	Function void Humanoid:EquipTool(Instance tool)
+	Function HumanoidStateType Humanoid:GetState()
 	Function Array Humanoid:GetStatuses()
 	Function bool Humanoid:HasCustomStatus(string status)
 	Function bool Humanoid:HasStatus(Status status = Poison)
@@ -786,6 +789,7 @@ Class Humanoid : Instance
 	Event Humanoid.Ragdoll(bool active)
 	Event Humanoid.Running(float speed)
 	Event Humanoid.Seated(bool active)
+	Event Humanoid.StateChanged(HumanoidStateType old, HumanoidStateType new)
 	Event Humanoid.StatusAdded(Status status)
 	Event Humanoid.StatusRemoved(Status status)
 	Event Humanoid.Strafing(bool active)
@@ -1292,6 +1296,8 @@ Class PhysicsSettings : Instance
 Class Player : Instance
 	Property int Player.AccountAge [readonly]
 	Property bool Player.AppearanceDidLoad [readonly] [RobloxScriptSecurity]
+	Property float Player.CameraMaxZoomDistance
+	Property float Player.CameraMinZoomDistance
 	Property CameraMode Player.CameraMode
 	Property bool Player.CanLoadCharacterAppearance
 	Property Object Player.Character
@@ -1303,8 +1309,10 @@ Class Player : Instance
 	Property bool Player.DataReady [readonly]
 	Property bool Player.Guest [readonly] [RobloxScriptSecurity]
 	Property bool Player.HasBuildTools [RobloxScriptSecurity]
+	Property float Player.HealthDisplayDistance
 	Property float Player.MaximumSimulationRadius [LocalUserSecurity]
 	Property MembershipType Player.MembershipType [readonly]
+	Property float Player.NameDisplayDistance
 	Property bool Player.Neutral
 	Property int Player.PersonalServerRank [RobloxScriptSecurity]
 	Property float Player.SimulationRadius [LocalUserSecurity]
@@ -2164,6 +2172,24 @@ Enum HttpContentType
 	EnumItem HttpContentType.ApplicationUrlEncoded : 2
 	EnumItem HttpContentType.TextPlain : 3
 	EnumItem HttpContentType.TextXml : 4
+Enum HumanoidStateType
+	EnumItem HumanoidStateType.FallingDown : 0
+	EnumItem HumanoidStateType.Running : 8
+	EnumItem HumanoidStateType.Running : 10
+	EnumItem HumanoidStateType.Climbing : 12
+	EnumItem HumanoidStateType.StrafingNoPhysics : 11
+	EnumItem HumanoidStateType.Ragdoll : 1
+	EnumItem HumanoidStateType.GettingUp : 2
+	EnumItem HumanoidStateType.Jumping : 3
+	EnumItem HumanoidStateType.Landed : 7
+	EnumItem HumanoidStateType.Flying : 6
+	EnumItem HumanoidStateType.Freefall : 5
+	EnumItem HumanoidStateType.Seated : 13
+	EnumItem HumanoidStateType.PlatformStanding : 14
+	EnumItem HumanoidStateType.Dead : 15
+	EnumItem HumanoidStateType.Swimming : 4
+	EnumItem HumanoidStateType.Physics : 16
+	EnumItem HumanoidStateType.None : 18
 Enum InOut
 	EnumItem InOut.Edge : 0
 	EnumItem InOut.Inset : 1
