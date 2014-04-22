@@ -1059,7 +1059,6 @@ Class NetworkSettings : Instance [notbrowsable]
 	Property float NetworkSettings.PhysicsSendRate
 	Property int NetworkSettings.PreferredClientPort
 	Property bool NetworkSettings.PrintEvents
-	Property bool NetworkSettings.PrintFilters
 	Property bool NetworkSettings.PrintInstances
 	Property bool NetworkSettings.PrintPhysicsErrors
 	Property bool NetworkSettings.PrintProperties
