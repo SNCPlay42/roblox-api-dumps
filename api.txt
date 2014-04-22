@@ -1297,6 +1297,7 @@ Class Player : Instance
 	Property Object Player.Character
 	Property string Player.CharacterAppearance [notbrowsable]
 	Property ChatMode Player.ChatMode [readonly] [RobloxScriptSecurity]
+	Property string Player.ClanTag
 	Property int Player.DataComplexity [readonly]
 	Property int Player.DataComplexityLimit [LocalUserSecurity]
 	Property bool Player.DataReady [readonly]
@@ -1416,12 +1417,14 @@ Class Plugin : Instance
 	Event Plugin.Deactivation()
 Class PluginManager : Instance
 	Function Instance PluginManager:CreatePlugin() [LocalUserSecurity]
+	Function void PluginManager:ExportPlace(string filePath = ) [LocalUserSecurity]
+	Function void PluginManager:ExportSelection(string filePath = ) [LocalUserSecurity]
 Class PointsService : Instance
 	YieldFunction Tuple PointsService:AwardPoints(int userId, int amount)
 	YieldFunction int PointsService:GetAwardablePoints()
 	YieldFunction int PointsService:GetGamePointBalance(int userId)
 	YieldFunction int PointsService:GetPointBalance(int userId)
-	Event PointsService.PointsAwarded(int userId, int userBalanceInGame, int userTotalBalance)
+	Event PointsService.PointsAwarded(int userId, int pointsAwarded, int userBalanceInGame, int userTotalBalance)
 Class Pose : Instance
 	Property CoordinateFrame Pose.CFrame
 	Property float Pose.MaskWeight
@@ -1489,6 +1492,7 @@ Class RenderSettings : Instance [notbrowsable]
 	Property bool RenderSettings.IsSynchronizedWithPhysics
 	Property int RenderSettings.MeshCacheSize
 	Property QualityLevel RenderSettings.QualityLevel
+	Property bool RenderSettings.ReloadAssets
 	Property Resolution RenderSettings.Resolution
 	Property Shadow RenderSettings.Shadow
 	Property bool RenderSettings.ShowBoundingBoxes
@@ -1600,7 +1604,6 @@ Class DataModel : ServiceProvider
 	Function void DataModel:LoadGame(int assetID) [LocalUserSecurity]
 	Function void DataModel:LoadPlugins() [RobloxSecurity]
 	Function void DataModel:LoadWorld(int assetID) [LocalUserSecurity]
-	Function void DataModel:Loaded() [LocalUserSecurity]
 	Function void DataModel:RemoveStat(string stat) [LocalUserSecurity]
 	Function void DataModel:ReportMeasurement(string id, string key1, string value1, string key2, string value2) [RobloxScriptSecurity]
 	Function void DataModel:Save(Content url) [RobloxSecurity]
@@ -2304,6 +2307,21 @@ Enum KeyCode
 	EnumItem KeyCode.CapsLock : 301
 	EnumItem KeyCode.NumLock : 300
 	EnumItem KeyCode.ScrollLock : 302
+	EnumItem KeyCode.F1 : 282
+	EnumItem KeyCode.F2 : 283
+	EnumItem KeyCode.F3 : 284
+	EnumItem KeyCode.F4 : 285
+	EnumItem KeyCode.F5 : 286
+	EnumItem KeyCode.F6 : 287
+	EnumItem KeyCode.F7 : 288
+	EnumItem KeyCode.F8 : 289
+	EnumItem KeyCode.F9 : 290
+	EnumItem KeyCode.F10 : 291
+	EnumItem KeyCode.F11 : 292
+	EnumItem KeyCode.F12 : 293
+	EnumItem KeyCode.F13 : 294
+	EnumItem KeyCode.F14 : 295
+	EnumItem KeyCode.F15 : 296
 Enum KeywordFilterType
 	EnumItem KeywordFilterType.Include : 0
 	EnumItem KeywordFilterType.Exclude : 1
