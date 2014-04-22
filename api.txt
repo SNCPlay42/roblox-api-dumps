@@ -60,10 +60,13 @@ Class AssetService : Instance
 	Function void AssetService:SetAssetRevertUrl(string revertUrl) [LocalUserSecurity]
 	Function void AssetService:SetAssetVersionsUrl(string versionsUrl) [LocalUserSecurity]
 	Function void AssetService:SetPlaceAccessUrl(string accessUrl) [LocalUserSecurity]
+	YieldFunction int AssetService:CreatePlaceAsync(string placeName, int templatePlaceID, string description = )
+	YieldFunction int AssetService:CreatePlaceInPlayerInventoryAsync(Instance player, string placeName, int templatePlaceID, string description = )
 	YieldFunction Dictionary AssetService:GetAssetVersions(int placeId, int pageNum = 1)
 	YieldFunction int AssetService:GetCreatorAssetID(int creationID)
 	YieldFunction Dictionary AssetService:GetPlacePermissions(int placeId)
 	YieldFunction bool AssetService:RevertAsset(int placeId, int versionNumber)
+	YieldFunction void AssetService:SavePlaceAsync()
 	YieldFunction bool AssetService:SetPlacePermissions(int placeId, AccessType accessType = Everyone, Array inviteList = {})
 Class BadgeService : Instance
 	Function void BadgeService:SetAwardBadgeUrl(string url) [LocalUserSecurity]
@@ -245,10 +248,23 @@ Class ContentProvider : Instance
 	Function void ContentProvider:SetCacheSize(int count) [LocalUserSecurity]
 	Function void ContentProvider:SetThreadPool(int count) [LocalUserSecurity]
 Class ContextActionService : Instance
-	Property bool ContextActionService.ContextButtonEnabled
-	Function void ContextActionService:ActivateLocalTool() [RobloxScriptSecurity]
-	Function void ContextActionService:DeactivateLocalTool() [RobloxScriptSecurity]
+	Function void ContextActionService:BindActionToInputTypes(string actionName, Function functionToBind, bool createTouchButton, Tuple inputTypes)
+	Function void ContextActionService:CallFunction(string actionName, UserInputState state, Instance inputObject) [RobloxScriptSecurity]
+	Function void ContextActionService:FireActionButtonFoundSignal(string actionName, Instance actionButton) [RobloxScriptSecurity]
+	Function Dictionary ContextActionService:GetAllBoundActionInfo()
+	Function Dictionary ContextActionService:GetBoundActionInfo(string actionName)
 	Function string ContextActionService:GetCurrentLocalToolIcon()
+	Function void ContextActionService:SetDescription(string actionName, string description)
+	Function void ContextActionService:SetImage(string actionName, string image)
+	Function void ContextActionService:SetPosition(string actionName, UDim2 position)
+	Function void ContextActionService:SetTitle(string actionName, string title)
+	Function void ContextActionService:UnbindAction(string actionName)
+	Function void ContextActionService:UnbindAllActions()
+	YieldFunction Instance ContextActionService:GetButton(string actionName)
+	Event ContextActionService.BoundActionAdded(string actionAdded, bool createTouchButton, Dictionary functionInfoTable) [RobloxScriptSecurity]
+	Event ContextActionService.BoundActionChanged(string actionChanged, string changeName, Dictionary changeTable) [RobloxScriptSecurity]
+	Event ContextActionService.BoundActionRemoved(string actionRemoved, Dictionary functionInfoTable) [RobloxScriptSecurity]
+	Event ContextActionService.GetActionButtonEvent(string actionName) [RobloxScriptSecurity]
 	Event ContextActionService.LocalToolEquipped(Instance toolEquipped)
 	Event ContextActionService.LocalToolUnequipped(Instance toolUnequipped)
 Class Controller : Instance
@@ -293,7 +309,9 @@ Class FileMesh : DataModelMesh
 Class SpecialMesh : FileMesh
 	Property MeshType SpecialMesh.MeshType
 Class DataStoreService : Instance
+	Function Instance DataStoreService:GetDataStore(string name, string scope = global)
 	Function Instance DataStoreService:GetGlobalDataStore()
+	Function Instance DataStoreService:GetOrderedDataStore(string name, string scope = global)
 Class Debris : Instance
 	Property int Debris.MaxItems [deprecated]
 	Function void Debris:AddItem(Instance item, double lifetime = 10)
@@ -458,7 +476,6 @@ Class GameSettings : Instance [notbrowsable]
 	Property bool GameSettings.CollisionSoundEnabled
 	Property float GameSettings.CollisionSoundVolume
 	Property bool GameSettings.HardwareMouse
-	Property UploadSetting GameSettings.ImageUploadPromptBehavior
 	Property int GameSettings.MaxCollisionSounds
 	Property int GameSettings.ReportAbuseChatHistory
 	Property bool GameSettings.SoftwareSound
@@ -473,6 +490,8 @@ Class GlobalDataStore : Instance
 	YieldFunction Variant GlobalDataStore:IncrementAsync(string key, int delta = 1)
 	YieldFunction void GlobalDataStore:SetAsync(string key, Variant value)
 	YieldFunction Tuple GlobalDataStore:UpdateAsync(string key, Function transformFunction)
+Class OrderedDataStore : GlobalDataStore
+	YieldFunction Instance OrderedDataStore:GetSortedAsync(bool ascending, int pagesize, Variant minValue, Variant maxValue)
 Class GuiBase : Instance
 Class GuiBase2d : GuiBase [notbrowsable]
 	Property Vector2 GuiBase2d.AbsolutePosition [readonly]
@@ -499,19 +518,19 @@ Class GuiObject : GuiBase2d [notbrowsable]
 	Function bool GuiObject:TweenSizeAndPosition(UDim2 endSize, UDim2 endPosition, EasingDirection easingDirection = Out, EasingStyle easingStyle = Quad, float time = 1, bool override = false, Function callback = nil)
 	Event GuiObject.DragBegin(UDim2 initialPosition)
 	Event GuiObject.DragStopped(int x, int y)
-	Event GuiObject.InputBegan(Instance input) [RobloxScriptSecurity]
-	Event GuiObject.InputChanged(Instance input) [RobloxScriptSecurity]
-	Event GuiObject.InputEnded(Instance input) [RobloxScriptSecurity]
+	Event GuiObject.InputBegan(Instance input)
+	Event GuiObject.InputChanged(Instance input)
+	Event GuiObject.InputEnded(Instance input)
 	Event GuiObject.MouseEnter(int x, int y)
 	Event GuiObject.MouseLeave(int x, int y)
 	Event GuiObject.MouseMoved(int x, int y)
 	Event GuiObject.MouseWheelBackward(int x, int y)
 	Event GuiObject.MouseWheelForward(int x, int y)
-	Event GuiObject.TouchLongPress(Array touchPositions, UserInputState state) [RobloxScriptSecurity]
-	Event GuiObject.TouchPan(Array touchPositions, Vector2 totalTranslation, Vector2 velocity, UserInputState state) [RobloxScriptSecurity]
-	Event GuiObject.TouchPinch(Array touchPositions, float scale, float velocity, UserInputState state) [RobloxScriptSecurity]
-	Event GuiObject.TouchRotate(Array touchPositions, float rotation, float velocity, UserInputState state) [RobloxScriptSecurity]
-	Event GuiObject.TouchSwipe(SwipeDirection swipeDirection, int numberOfTouches) [RobloxScriptSecurity]
+	Event GuiObject.TouchLongPress(Array touchPositions, UserInputState state)
+	Event GuiObject.TouchPan(Array touchPositions, Vector2 totalTranslation, Vector2 velocity, UserInputState state)
+	Event GuiObject.TouchPinch(Array touchPositions, float scale, float velocity, UserInputState state)
+	Event GuiObject.TouchRotate(Array touchPositions, float rotation, float velocity, UserInputState state)
+	Event GuiObject.TouchSwipe(SwipeDirection swipeDirection, int numberOfTouches)
 	Event GuiObject.TouchTap(Array touchPositions)
 Class Frame : GuiObject
 	Property FrameStyle Frame.Style
@@ -718,6 +737,7 @@ Class GuiService : Instance [notCreatable]
 Class GuidRegistryService : Instance
 Class HttpService : Instance [notCreatable]
 	Property bool HttpService.HttpEnabled [LocalUserSecurity]
+	Function string HttpService:GenerateGUID()
 	Function Variant HttpService:JSONDecode(string input)
 	Function string HttpService:JSONEncode(Variant input)
 	Function string HttpService:UrlEncode(string input)
@@ -901,6 +921,11 @@ Class Lighting : Instance [notCreatable]
 	Function void Lighting:setMinutesAfterMidnight(double minutes) [deprecated]
 	Event Lighting.LightingChanged(bool skyboxChanged)
 Class LocalWorkspace : Instance [notCreatable]
+Class LogService : Instance
+	Function Array LogService:GetLogHistory()
+	Function void LogService:RequestServerOutput() [RobloxScriptSecurity]
+	Event LogService.MessageOut(string message, MessageType messageType)
+	Event LogService.ServerMessageOut(string message, MessageType messageType, int timestamp) [RobloxScriptSecurity]
 Class LoginService : Instance
 	Function void LoginService:Logout() [RobloxSecurity]
 	Function void LoginService:PromptLogin() [RobloxSecurity]
@@ -924,18 +949,22 @@ Class MarketplaceService : Instance
 	Function void MarketplaceService:SignalClientPurchaseSuccess(string ticket, int playerId, int productId) [RobloxScriptSecurity]
 	Function void MarketplaceService:SignalPromptProductPurchaseFinished(int userId, int productId, bool success) [RobloxScriptSecurity]
 	Function void MarketplaceService:SignalPromptPurchaseFinished(Instance player, int assetId, bool success) [RobloxScriptSecurity]
+	Function void MarketplaceService:SignalServerLuaDialogClosed(bool value) [RobloxScriptSecurity]
 	YieldFunction Dictionary MarketplaceService:GetProductInfo(int assetId, InfoType infoType = Asset)
 	YieldFunction bool MarketplaceService:PlayerOwnsAsset(Instance player, int assetId)
+	Event MarketplaceService.ClientLuaDialogRequested(Tuple arguments) [RobloxScriptSecurity]
 	Event MarketplaceService.ClientPurchaseSuccess(string ticket, int playerId, int productId) [RobloxScriptSecurity]
-	Event MarketplaceService.PromptProductPurchaseFinished(int userId, int productId, bool isPurchased)
+	Event MarketplaceService.PromptProductPurchaseFinished(int userId, int productId, bool isPurchased) [deprecated]
 	Event MarketplaceService.PromptProductPurchaseRequested(Instance player, int productId, bool equipIfPurchased, CurrencyType currencyType) [RobloxScriptSecurity]
 	Event MarketplaceService.PromptPurchaseFinished(Instance player, int assetId, bool isPurchased)
 	Event MarketplaceService.PromptPurchaseRequested(Instance player, int assetId, bool equipIfPurchased, CurrencyType currencyType) [RobloxScriptSecurity]
 	Event MarketplaceService.ServerPurchaseVerification(Dictionary serverResponseTable) [RobloxScriptSecurity]
+	Callback ProductPurchaseDecision MarketplaceService.ProcessReceipt(Dictionary receiptInfo)
 Class Message : Instance
 	Property string Message.Text
 Class Hint : Message [deprecated]
 Class ModuleScript : Instance
+	Property ProtectedString ModuleScript.Source [LocalUserSecurity]
 Class Mouse : Instance
 	Property CoordinateFrame Mouse.Hit [readonly]
 	Property Content Mouse.Icon
@@ -1007,6 +1036,7 @@ Class ServerReplicator : NetworkReplicator [notCreatable]
 Class NetworkSettings : Instance [notbrowsable]
 	Property bool NetworkSettings.ArePhysicsRejectionsReported
 	Property int NetworkSettings.CanSendPacketBufferLimit
+	Property float NetworkSettings.ClientPhysicsSendRate
 	Property float NetworkSettings.DataGCRate
 	Property int NetworkSettings.DataMtuAdjust
 	Property PacketPriority NetworkSettings.DataSendPriority [hidden]
@@ -1204,6 +1234,7 @@ Class RootInstance : Model [notbrowsable]
 Class Workspace : RootInstance
 	Property Object Workspace.CurrentCamera
 	Property double Workspace.DistributedGameTime
+	Property bool Workspace.FilteringEnabled [hidden]
 	Property bool Workspace.StreamingEnabled
 	Property Object Workspace.Terrain [readonly]
 	Function void Workspace:BreakJoints(Objects objects) [LocalUserSecurity]
@@ -1223,6 +1254,10 @@ Class Workspace : RootInstance
 	Function Tuple Workspace:findPartOnRay(Ray ray, Instance ignoreDescendentsInstance = nil, bool terrainCellsAreCubes = false) [deprecated]
 	Function Objects Workspace:findPartsInRegion3(Region3 region, Instance ignoreDescendentsInstance = nil, int maxParts = 20) [deprecated]
 Class Status : Model [notCreatable]
+Class Pages : Instance
+	Property bool Pages.IsFinished [readonly]
+	Function Array Pages:GetCurrentPage()
+	YieldFunction void Pages:AdvanceToNextPageAsync()
 Class PersonalServerService : Instance
 	Property string PersonalServerService.RoleSets [RobloxScriptSecurity]
 	Function void PersonalServerService:Demote(Instance player) [RobloxScriptSecurity]
@@ -1299,6 +1334,7 @@ Class Player : Instance
 	Function void Player:SaveNumber(string key, double value)
 	Function void Player:SaveString(string key, string value)
 	Function void Player:SetAccountAge(int accountAge) [LocalUserSecurity]
+	Function void Player:SetClanTag(string newClanTag) [LocalUserSecurity]
 	Function void Player:SetMembershipType(MembershipType membershipType) [RobloxScriptSecurity]
 	Function void Player:SetSuperSafeChat(bool value) [LocalUserSecurity]
 	Function void Player:SetUnder13(bool value) [deprecated] [RobloxSecurity]
@@ -1327,6 +1363,7 @@ Class Player : Instance
 	Event Player.FriendStatusChanged(Instance player, FriendStatus friendStatus) [RobloxScriptSecurity]
 	Event Player.Idled(double time)
 	Event Player.OnTeleport(TeleportState teleportState, int placeId, string spawnName)
+	Event Player.SimulationRadiusChanged(float radius) [LocalUserSecurity]
 Class Players : Instance
 	Property bool Players.BubbleChat [readonly]
 	Property bool Players.CharacterAutoLoads
@@ -1342,6 +1379,7 @@ Class Players : Instance
 	Function Instance Players:GetPlayerByID(int userID) [LocalUserSecurity]
 	Function Instance Players:GetPlayerFromCharacter(Instance character)
 	Function Objects Players:GetPlayers()
+	Function bool Players:GetUseCoreScriptHealthBar() [RobloxScriptSecurity]
 	Function void Players:ReportAbuse(Instance player, string reason, string optionalMessage) [LocalUserSecurity]
 	Function void Players:SetAbuseReportUrl(string url) [RobloxSecurity]
 	Function void Players:SetBuildUserPermissionsUrl(string url) [RobloxSecurity]
@@ -1371,11 +1409,18 @@ Class Plugin : Instance
 	Function Instance Plugin:GetMouse() [LocalUserSecurity]
 	Function Variant Plugin:GetSetting(string key) [LocalUserSecurity]
 	Function int Plugin:GetStudioUserId() [LocalUserSecurity]
+	Function void Plugin:OpenScript(Instance script, int lineNumber = 0) [LocalUserSecurity]
 	Function void Plugin:SaveSelectedToRoblox() [LocalUserSecurity]
 	Function void Plugin:SetSetting(string key, Variant value) [LocalUserSecurity]
 	Event Plugin.Deactivation()
 Class PluginManager : Instance
 	Function Instance PluginManager:CreatePlugin() [LocalUserSecurity]
+Class PointsService : Instance
+	YieldFunction Tuple PointsService:AwardPoints(int userId, int amount)
+	YieldFunction int PointsService:GetAwardablePoints()
+	YieldFunction int PointsService:GetGamePointBalance(int userId)
+	YieldFunction int PointsService:GetPointBalance(int userId)
+	Event PointsService.PointsAwarded(int userId, int userBalanceInGame, int userTotalBalance)
 Class Pose : Instance
 	Property CoordinateFrame Pose.CFrame
 	Property float Pose.MaskWeight
@@ -1446,6 +1491,7 @@ Class RenderSettings : Instance [notbrowsable]
 	Property Resolution RenderSettings.Resolution
 	Property Shadow RenderSettings.Shadow
 	Property bool RenderSettings.ShowBoundingBoxes
+	Property bool RenderSettings.ShowInterpolationpath
 	Property int RenderSettings.TextureCacheSize
 	Property bool RenderSettings.UsesPaintMessage
 	Property GraphicsMode RenderSettings.graphicsMode
@@ -1546,7 +1592,7 @@ Class DataModel : ServiceProvider
 	Function Objects DataModel:GetObjects(Content url) [LocalUserSecurity]
 	Function bool DataModel:GetRemoteBuildMode()
 	Function string DataModel:HttpGet(string url, bool synchronous = false) [RobloxScriptSecurity]
-	Function string DataModel:HttpPost(string url, string data, bool synchronous = false, string contentType = ) [RobloxScriptSecurity]
+	Function string DataModel:HttpPost(string url, string data, bool synchronous = false, string contentType = */*) [RobloxScriptSecurity]
 	Function bool DataModel:IsGearTypeAllowed(GearType gearType)
 	Function bool DataModel:IsLoaded()
 	Function void DataModel:Load(Content url) [LocalUserSecurity]
@@ -1578,21 +1624,15 @@ Class DataModel : ServiceProvider
 	Function Objects DataModel:get(Content url) [deprecated] [LocalUserSecurity]
 	YieldFunction int DataModel:CreatePlace(string placeName, int templatePlaceID)
 	YieldFunction string DataModel:HttpGetAsync(string url) [RobloxScriptSecurity]
-	YieldFunction string DataModel:HttpPostAsync(string url, string data, string contentType = ) [RobloxScriptSecurity]
-	YieldFunction Tuple DataModel:SavePlace(SaveFilter saveFilter = SaveAll)
+	YieldFunction string DataModel:HttpPostAsync(string url, string data, string contentType = */*) [RobloxScriptSecurity]
+	YieldFunction bool DataModel:SavePlace(SaveFilter saveFilter = SaveAll)
 	YieldFunction bool DataModel:SaveToRoblox() [RobloxScriptSecurity]
 	Event DataModel.AllowedGearTypeChanged()
 	Event DataModel.GraphicsQualityChangeRequest(bool betterQuality)
 	Event DataModel.ItemChanged(Instance object, Property descriptor)
 	Event DataModel.Loaded()
+	Callback Tuple DataModel.OnClose()
 	Callback bool DataModel.RequestShutdown() [noyield] [RobloxScriptSecurity]
-Class App : DataModel
-	Property int App.Id [readonly]
-	Function void App:SetAppId(int newId) [LocalUserSecurity]
-	YieldFunction void App:ConnectToGame(int placeId, string actionName = )
-	YieldFunction void App:FollowUser(int userId)
-	YieldFunction Dictionary App:GetCreations(int userId, int page = 1)
-	YieldFunction void App:UnloadGame()
 Class GenericSettings : ServiceProvider
 Class GlobalSettings : GenericSettings [notbrowsable]
 	Function bool GlobalSettings:GetFFlag(string name)
@@ -1649,6 +1689,7 @@ Class Sparkles : Instance
 	Property Color3 Sparkles.Color [hidden]
 	Property bool Sparkles.Enabled
 	Property Color3 Sparkles.SparkleColor
+Class SpatialQueryCache : Instance
 Class SpawnerService : Instance
 Class StarterGear : Instance
 Class Stats : Instance [notCreatable]
@@ -1707,7 +1748,9 @@ Class TeleportService : Instance
 	Function void TeleportService:Teleport(int placeId, Instance player = nil)
 	Function void TeleportService:TeleportCancel() [RobloxScriptSecurity]
 	Function void TeleportService:TeleportImpl(int placeId, string spawnName) [RobloxScriptSecurity]
+	Function void TeleportService:TeleportToPlaceInstance(int placeId, string instanceId, Instance player = nil)
 	Function void TeleportService:TeleportToSpawnByName(int placeId, string spawnName, Instance player = nil)
+	YieldFunction Tuple TeleportService:GetPlayerPlaceInstanceAsync(int userId)
 	Callback bool TeleportService.ConfirmationCallback(string message, int placeId, string spawnName) [noyield] [RobloxScriptSecurity]
 	Callback void TeleportService.ErrorCallback(string message) [noyield] [RobloxScriptSecurity]
 Class TerrainRegion : Instance
@@ -1748,6 +1791,7 @@ Class UserGameSettings : Instance
 	Property bool UserGameSettings.AllTutorialsDisabled
 	Property ControlMode UserGameSettings.ControlMode
 	Property bool UserGameSettings.Fullscreen
+	Property UploadSetting UserGameSettings.ImageUploadPromptBehavior
 	Property SavedQualitySetting UserGameSettings.SavedQualityLevel
 	Property UploadSetting UserGameSettings.VideoUploadPromptBehavior
 	Function bool UserGameSettings:GetTutorialState(string tutorialId) [RobloxScriptSecurity]
@@ -1765,19 +1809,20 @@ Class UserInputService : Instance
 	Function bool UserInputService:IsLuaTouchControls() [RobloxScriptSecurity]
 	Function void UserInputService:RotateCamera(Vector2 positionDelta) [RobloxScriptSecurity]
 	Function void UserInputService:ZoomCamera(float zoomDelta) [RobloxScriptSecurity]
-	Event UserInputService.InputBegan(Instance input) [RobloxScriptSecurity]
-	Event UserInputService.InputChanged(Instance input) [RobloxScriptSecurity]
-	Event UserInputService.InputEnded(Instance input) [RobloxScriptSecurity]
+	Event UserInputService.InputBegan(Instance input)
+	Event UserInputService.InputChanged(Instance input)
+	Event UserInputService.InputEnded(Instance input)
 	Event UserInputService.JumpRequest()
-	Event UserInputService.TouchEnded(Instance touch) [RobloxScriptSecurity]
-	Event UserInputService.TouchLongPress(Array touchPositions, UserInputState state) [RobloxScriptSecurity]
-	Event UserInputService.TouchMoved(Instance touch) [RobloxScriptSecurity]
-	Event UserInputService.TouchPan(Array touchPositions, Vector2 totalTranslation, Vector2 velocity, UserInputState state) [RobloxScriptSecurity]
-	Event UserInputService.TouchPinch(Array touchPositions, float scale, float velocity, UserInputState state) [RobloxScriptSecurity]
-	Event UserInputService.TouchRotate(Array touchPositions, float rotation, float velocity, UserInputState state) [RobloxScriptSecurity]
-	Event UserInputService.TouchStarted(Instance touch) [RobloxScriptSecurity]
-	Event UserInputService.TouchSwipe(SwipeDirection swipeDirection, int numberOfTouches) [RobloxScriptSecurity]
-	Event UserInputService.TouchTap(Array touchPositions) [RobloxScriptSecurity]
+	Event UserInputService.ProcessedEvent(Instance inputObject, bool processed) [RobloxScriptSecurity]
+	Event UserInputService.TouchEnded(Instance touch)
+	Event UserInputService.TouchLongPress(Array touchPositions, UserInputState state)
+	Event UserInputService.TouchMoved(Instance touch)
+	Event UserInputService.TouchPan(Array touchPositions, Vector2 totalTranslation, Vector2 velocity, UserInputState state)
+	Event UserInputService.TouchPinch(Array touchPositions, float scale, float velocity, UserInputState state)
+	Event UserInputService.TouchRotate(Array touchPositions, float rotation, float velocity, UserInputState state)
+	Event UserInputService.TouchStarted(Instance touch)
+	Event UserInputService.TouchSwipe(SwipeDirection swipeDirection, int numberOfTouches)
+	Event UserInputService.TouchTap(Array touchPositions)
 Class Vector3Value : Instance
 	Property Vector3 Vector3Value.Value
 	Event Vector3Value.Changed(Vector3 value)
@@ -2247,13 +2292,17 @@ Enum KeyCode
 	EnumItem KeyCode.End : 279
 	EnumItem KeyCode.PageUp : 280
 	EnumItem KeyCode.PageDown : 281
-	EnumItem KeyCode.KeypadEquals : 272
-	EnumItem KeyCode.KeypadEquals : 272
-	EnumItem KeyCode.KeypadEquals : 272
-	EnumItem KeyCode.KeypadEquals : 272
-	EnumItem KeyCode.KeypadEquals : 272
-	EnumItem KeyCode.KeypadEquals : 272
-	EnumItem KeyCode.KeypadEquals : 272
+	EnumItem KeyCode.LeftShift : 304
+	EnumItem KeyCode.RightShift : 303
+	EnumItem KeyCode.LeftMeta : 310
+	EnumItem KeyCode.RightMeta : 309
+	EnumItem KeyCode.LeftAlt : 308
+	EnumItem KeyCode.RightAlt : 307
+	EnumItem KeyCode.LeftControl : 306
+	EnumItem KeyCode.RightControl : 305
+	EnumItem KeyCode.CapsLock : 301
+	EnumItem KeyCode.NumLock : 300
+	EnumItem KeyCode.ScrollLock : 302
 Enum KeywordFilterType
 	EnumItem KeywordFilterType.Include : 0
 	EnumItem KeywordFilterType.Exclude : 1
@@ -2300,6 +2349,11 @@ Enum MeshType
 	EnumItem MeshType.Sphere : 3
 	EnumItem MeshType.Cylinder : 4
 	EnumItem MeshType.FileMesh : 5
+Enum MessageType
+	EnumItem MessageType.MessageOutput : 0
+	EnumItem MessageType.MessageInfo : 1
+	EnumItem MessageType.MessageWarning : 2
+	EnumItem MessageType.MessageError : 3
 Enum MoveState
 	EnumItem MoveState.Stopped : 0
 	EnumItem MoveState.Coasting : 1
@@ -2361,6 +2415,9 @@ Enum PrivilegeType
 	EnumItem PrivilegeType.Member : 128
 	EnumItem PrivilegeType.Visitor : 10
 	EnumItem PrivilegeType.Banned : 0
+Enum ProductPurchaseDecision
+	EnumItem ProductPurchaseDecision.NotProcessedYet : 0
+	EnumItem ProductPurchaseDecision.PurchaseGranted : 1
 Enum PyramidSides
 	EnumItem PyramidSides.3 : 3
 	EnumItem PyramidSides.4 : 4
