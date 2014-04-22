@@ -744,6 +744,7 @@ Class HttpService : Instance [notCreatable]
 	YieldFunction string HttpService:GetAsync(string url, bool nocache = false)
 	YieldFunction string HttpService:PostAsync(string url, string data, HttpContentType content_type = ApplicationJson)
 Class Humanoid : Instance
+	Property bool Humanoid.AutoRotate
 	Property float Humanoid.Health
 	Property bool Humanoid.Jump
 	Property Object Humanoid.LeftLeg
@@ -760,7 +761,9 @@ Class Humanoid : Instance
 	Property float Humanoid.maxHealth [deprecated]
 	Function bool Humanoid:AddCustomStatus(string status)
 	Function bool Humanoid:AddStatus(Status status = Poison)
+	Function void Humanoid:ChangeState(HumanoidStateType state = None)
 	Function void Humanoid:EquipTool(Instance tool)
+	Function HumanoidStateType Humanoid:GetState()
 	Function Array Humanoid:GetStatuses()
 	Function bool Humanoid:HasCustomStatus(string status)
 	Function bool Humanoid:HasStatus(Status status = Poison)
@@ -786,6 +789,7 @@ Class Humanoid : Instance
 	Event Humanoid.Ragdoll(bool active)
 	Event Humanoid.Running(float speed)
 	Event Humanoid.Seated(bool active)
+	Event Humanoid.StateChanged(HumanoidStateType old, HumanoidStateType new)
 	Event Humanoid.StatusAdded(Status status)
 	Event Humanoid.StatusRemoved(Status status)
 	Event Humanoid.Strafing(bool active)
@@ -1235,7 +1239,7 @@ Class RootInstance : Model [notbrowsable]
 Class Workspace : RootInstance
 	Property Object Workspace.CurrentCamera
 	Property double Workspace.DistributedGameTime
-	Property bool Workspace.FilteringEnabled [hidden]
+	Property bool Workspace.FilteringEnabled
 	Property bool Workspace.StreamingEnabled
 	Property Object Workspace.Terrain [readonly]
 	Function void Workspace:BreakJoints(Objects objects) [LocalUserSecurity]
@@ -1292,18 +1296,23 @@ Class PhysicsSettings : Instance
 Class Player : Instance
 	Property int Player.AccountAge [readonly]
 	Property bool Player.AppearanceDidLoad [readonly] [RobloxScriptSecurity]
+	Property float Player.CameraMaxZoomDistance
+	Property float Player.CameraMinZoomDistance
 	Property CameraMode Player.CameraMode
 	Property bool Player.CanLoadCharacterAppearance
 	Property Object Player.Character
 	Property string Player.CharacterAppearance [notbrowsable]
 	Property ChatMode Player.ChatMode [readonly] [RobloxScriptSecurity]
+	Property string Player.ClanTag
 	Property int Player.DataComplexity [readonly]
 	Property int Player.DataComplexityLimit [LocalUserSecurity]
 	Property bool Player.DataReady [readonly]
 	Property bool Player.Guest [readonly] [RobloxScriptSecurity]
 	Property bool Player.HasBuildTools [RobloxScriptSecurity]
+	Property float Player.HealthDisplayDistance
 	Property float Player.MaximumSimulationRadius [LocalUserSecurity]
 	Property MembershipType Player.MembershipType [readonly]
+	Property float Player.NameDisplayDistance
 	Property bool Player.Neutral
 	Property int Player.PersonalServerRank [RobloxScriptSecurity]
 	Property float Player.SimulationRadius [LocalUserSecurity]
@@ -1416,12 +1425,14 @@ Class Plugin : Instance
 	Event Plugin.Deactivation()
 Class PluginManager : Instance
 	Function Instance PluginManager:CreatePlugin() [LocalUserSecurity]
+	Function void PluginManager:ExportPlace(string filePath = ) [LocalUserSecurity]
+	Function void PluginManager:ExportSelection(string filePath = ) [LocalUserSecurity]
 Class PointsService : Instance
 	YieldFunction Tuple PointsService:AwardPoints(int userId, int amount)
 	YieldFunction int PointsService:GetAwardablePoints()
 	YieldFunction int PointsService:GetGamePointBalance(int userId)
 	YieldFunction int PointsService:GetPointBalance(int userId)
-	Event PointsService.PointsAwarded(int userId, int userBalanceInGame, int userTotalBalance)
+	Event PointsService.PointsAwarded(int userId, int pointsAwarded, int userBalanceInGame, int userTotalBalance)
 Class Pose : Instance
 	Property CoordinateFrame Pose.CFrame
 	Property float Pose.MaskWeight
@@ -1489,6 +1500,7 @@ Class RenderSettings : Instance [notbrowsable]
 	Property bool RenderSettings.IsSynchronizedWithPhysics
 	Property int RenderSettings.MeshCacheSize
 	Property QualityLevel RenderSettings.QualityLevel
+	Property bool RenderSettings.ReloadAssets
 	Property Resolution RenderSettings.Resolution
 	Property Shadow RenderSettings.Shadow
 	Property bool RenderSettings.ShowBoundingBoxes
@@ -1600,7 +1612,6 @@ Class DataModel : ServiceProvider
 	Function void DataModel:LoadGame(int assetID) [LocalUserSecurity]
 	Function void DataModel:LoadPlugins() [RobloxSecurity]
 	Function void DataModel:LoadWorld(int assetID) [LocalUserSecurity]
-	Function void DataModel:Loaded() [LocalUserSecurity]
 	Function void DataModel:RemoveStat(string stat) [LocalUserSecurity]
 	Function void DataModel:ReportMeasurement(string id, string key1, string value1, string key2, string value2) [RobloxScriptSecurity]
 	Function void DataModel:Save(Content url) [RobloxSecurity]
@@ -2161,6 +2172,24 @@ Enum HttpContentType
 	EnumItem HttpContentType.ApplicationUrlEncoded : 2
 	EnumItem HttpContentType.TextPlain : 3
 	EnumItem HttpContentType.TextXml : 4
+Enum HumanoidStateType
+	EnumItem HumanoidStateType.FallingDown : 0
+	EnumItem HumanoidStateType.Running : 8
+	EnumItem HumanoidStateType.Running : 10
+	EnumItem HumanoidStateType.Climbing : 12
+	EnumItem HumanoidStateType.StrafingNoPhysics : 11
+	EnumItem HumanoidStateType.Ragdoll : 1
+	EnumItem HumanoidStateType.GettingUp : 2
+	EnumItem HumanoidStateType.Jumping : 3
+	EnumItem HumanoidStateType.Landed : 7
+	EnumItem HumanoidStateType.Flying : 6
+	EnumItem HumanoidStateType.Freefall : 5
+	EnumItem HumanoidStateType.Seated : 13
+	EnumItem HumanoidStateType.PlatformStanding : 14
+	EnumItem HumanoidStateType.Dead : 15
+	EnumItem HumanoidStateType.Swimming : 4
+	EnumItem HumanoidStateType.Physics : 16
+	EnumItem HumanoidStateType.None : 18
 Enum InOut
 	EnumItem InOut.Edge : 0
 	EnumItem InOut.Inset : 1
@@ -2304,6 +2333,21 @@ Enum KeyCode
 	EnumItem KeyCode.CapsLock : 301
 	EnumItem KeyCode.NumLock : 300
 	EnumItem KeyCode.ScrollLock : 302
+	EnumItem KeyCode.F1 : 282
+	EnumItem KeyCode.F2 : 283
+	EnumItem KeyCode.F3 : 284
+	EnumItem KeyCode.F4 : 285
+	EnumItem KeyCode.F5 : 286
+	EnumItem KeyCode.F6 : 287
+	EnumItem KeyCode.F7 : 288
+	EnumItem KeyCode.F8 : 289
+	EnumItem KeyCode.F9 : 290
+	EnumItem KeyCode.F10 : 291
+	EnumItem KeyCode.F11 : 292
+	EnumItem KeyCode.F12 : 293
+	EnumItem KeyCode.F13 : 294
+	EnumItem KeyCode.F14 : 295
+	EnumItem KeyCode.F15 : 296
 Enum KeywordFilterType
 	EnumItem KeywordFilterType.Include : 0
 	EnumItem KeywordFilterType.Exclude : 1
