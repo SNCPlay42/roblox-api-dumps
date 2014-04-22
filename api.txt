@@ -1415,12 +1415,14 @@ Class Plugin : Instance
 	Event Plugin.Deactivation()
 Class PluginManager : Instance
 	Function Instance PluginManager:CreatePlugin() [LocalUserSecurity]
+	Function void PluginManager:ExportPlace(string filePath = ) [LocalUserSecurity]
+	Function void PluginManager:ExportSelection(string filePath = ) [LocalUserSecurity]
 Class PointsService : Instance
 	YieldFunction Tuple PointsService:AwardPoints(int userId, int amount)
 	YieldFunction int PointsService:GetAwardablePoints()
 	YieldFunction int PointsService:GetGamePointBalance(int userId)
 	YieldFunction int PointsService:GetPointBalance(int userId)
-	Event PointsService.PointsAwarded(int userId, int userBalanceInGame, int userTotalBalance)
+	Event PointsService.PointsAwarded(int userId, int pointsAwarded, int userBalanceInGame, int userTotalBalance)
 Class Pose : Instance
 	Property CoordinateFrame Pose.CFrame
 	Property float Pose.MaskWeight
@@ -1488,6 +1490,7 @@ Class RenderSettings : Instance [notbrowsable]
 	Property bool RenderSettings.IsSynchronizedWithPhysics
 	Property int RenderSettings.MeshCacheSize
 	Property QualityLevel RenderSettings.QualityLevel
+	Property bool RenderSettings.ReloadAssets
 	Property Resolution RenderSettings.Resolution
 	Property Shadow RenderSettings.Shadow
 	Property bool RenderSettings.ShowBoundingBoxes
@@ -1599,7 +1602,6 @@ Class DataModel : ServiceProvider
 	Function void DataModel:LoadGame(int assetID) [LocalUserSecurity]
 	Function void DataModel:LoadPlugins() [RobloxSecurity]
 	Function void DataModel:LoadWorld(int assetID) [LocalUserSecurity]
-	Function void DataModel:Loaded() [LocalUserSecurity]
 	Function void DataModel:RemoveStat(string stat) [LocalUserSecurity]
 	Function void DataModel:ReportMeasurement(string id, string key1, string value1, string key2, string value2) [RobloxScriptSecurity]
 	Function void DataModel:Save(Content url) [RobloxSecurity]
