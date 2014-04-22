@@ -551,6 +551,7 @@ Class ImageButton : GuiButton
 	Property Content ImageButton.Image
 	Property Vector2 ImageButton.ImageRectOffset
 	Property Vector2 ImageButton.ImageRectSize
+	Property float ImageButton.ImageTransparency
 Class TextButton : GuiButton
 	Property Font TextButton.Font
 	Property FontSize TextButton.FontSize
@@ -572,6 +573,7 @@ Class ImageLabel : GuiLabel
 	Property Content ImageLabel.Image
 	Property Vector2 ImageLabel.ImageRectOffset
 	Property Vector2 ImageLabel.ImageRectSize
+	Property float ImageLabel.ImageTransparency
 Class TextLabel : GuiLabel
 	Property Font TextLabel.Font
 	Property FontSize TextLabel.FontSize
