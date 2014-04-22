@@ -1239,7 +1239,7 @@ Class RootInstance : Model [notbrowsable]
 Class Workspace : RootInstance
 	Property Object Workspace.CurrentCamera
 	Property double Workspace.DistributedGameTime
-	Property bool Workspace.FilteringEnabled [hidden]
+	Property bool Workspace.FilteringEnabled
 	Property bool Workspace.StreamingEnabled
 	Property Object Workspace.Terrain [readonly]
 	Function void Workspace:BreakJoints(Objects objects) [LocalUserSecurity]
