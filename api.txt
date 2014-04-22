@@ -248,10 +248,23 @@ Class ContentProvider : Instance
 	Function void ContentProvider:SetCacheSize(int count) [LocalUserSecurity]
 	Function void ContentProvider:SetThreadPool(int count) [LocalUserSecurity]
 Class ContextActionService : Instance
-	Property bool ContextActionService.ContextButtonEnabled
-	Function void ContextActionService:ActivateLocalTool() [RobloxScriptSecurity]
-	Function void ContextActionService:DeactivateLocalTool() [RobloxScriptSecurity]
+	Function void ContextActionService:BindActionToInputTypes(string actionName, Function functionToBind, bool createTouchButton, Tuple inputTypes)
+	Function void ContextActionService:CallFunction(string actionName, UserInputState state, Instance inputObject) [RobloxScriptSecurity]
+	Function void ContextActionService:FireActionButtonFoundSignal(string actionName, Instance actionButton) [RobloxScriptSecurity]
+	Function Dictionary ContextActionService:GetAllBoundActionInfo()
+	Function Dictionary ContextActionService:GetBoundActionInfo(string actionName)
 	Function string ContextActionService:GetCurrentLocalToolIcon()
+	Function void ContextActionService:SetDescription(string actionName, string description)
+	Function void ContextActionService:SetImage(string actionName, string image)
+	Function void ContextActionService:SetPosition(string actionName, UDim2 position)
+	Function void ContextActionService:SetTitle(string actionName, string title)
+	Function void ContextActionService:UnbindAction(string actionName)
+	Function void ContextActionService:UnbindAllActions()
+	YieldFunction Instance ContextActionService:GetButton(string actionName)
+	Event ContextActionService.BoundActionAdded(string actionAdded, bool createTouchButton, Dictionary functionInfoTable) [RobloxScriptSecurity]
+	Event ContextActionService.BoundActionChanged(string actionChanged, string changeName, Dictionary changeTable) [RobloxScriptSecurity]
+	Event ContextActionService.BoundActionRemoved(string actionRemoved, Dictionary functionInfoTable) [RobloxScriptSecurity]
+	Event ContextActionService.GetActionButtonEvent(string actionName) [RobloxScriptSecurity]
 	Event ContextActionService.LocalToolEquipped(Instance toolEquipped)
 	Event ContextActionService.LocalToolUnequipped(Instance toolUnequipped)
 Class Controller : Instance
@@ -1321,6 +1334,7 @@ Class Player : Instance
 	Function void Player:SaveNumber(string key, double value)
 	Function void Player:SaveString(string key, string value)
 	Function void Player:SetAccountAge(int accountAge) [LocalUserSecurity]
+	Function void Player:SetClanTag(string newClanTag) [LocalUserSecurity]
 	Function void Player:SetMembershipType(MembershipType membershipType) [RobloxScriptSecurity]
 	Function void Player:SetSuperSafeChat(bool value) [LocalUserSecurity]
 	Function void Player:SetUnder13(bool value) [deprecated] [RobloxSecurity]
@@ -2278,7 +2292,6 @@ Enum KeyCode
 	EnumItem KeyCode.End : 279
 	EnumItem KeyCode.PageUp : 280
 	EnumItem KeyCode.PageDown : 281
-	EnumItem KeyCode.KeypadEquals : 272
 	EnumItem KeyCode.LeftShift : 304
 	EnumItem KeyCode.RightShift : 303
 	EnumItem KeyCode.LeftMeta : 310
