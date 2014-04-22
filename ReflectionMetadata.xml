@@ -1113,6 +1113,122 @@
 
     <Item class="ReflectionMetadataClass">
       <Properties>
+        <string name="Name">ContextActionService</string>
+        <string name="summary">A service used to bind input to various lua functions.</string>
+      </Properties>
+
+      <Item class="ReflectionMetadataFunctions">
+        <Item class="ReflectionMetadataMember">
+          <Properties>
+            <string name="Name">BindActionToInputTypes</string>
+            <string name="summary">Binds 'functionToBind' to fire when any 'inputTypes' happen. InputTypes can be variable in number and type. Types can be Enum.KeyCode, single strings corresponding to keys, or Enum.UserInputType. 'actionName' is a key used by many other ContextActionService functions to query state. 'createTouchButton' if true will create a button on screen on touch devices.  This button will fire 'functionToBind'.</string>
+          </Properties>
+        </Item>
+        <Item class="ReflectionMetadataMember">
+          <Properties>
+            <string name="Name">SetTitle</string>
+            <string name="summary">If 'actionName' key contains a bound action, then 'title' is set as the title of the touch button. Does nothing if a touch button was not created. No guarantees are made whether title will be set when button is manipulated.</string>
+          </Properties>
+        </Item>
+        <Item class="ReflectionMetadataMember">
+          <Properties>
+            <string name="Name">SetDescription</string>
+            <string name="summary">If 'actionName' key contains a bound action, then 'description' is set as the description of the bound action. This description will appear for users in a listing of current actions availables.</string>
+          </Properties>
+        </Item>
+        <Item class="ReflectionMetadataMember">
+          <Properties>
+            <string name="Name">SetImage</string>
+            <string name="summary">If 'actionName' key contains a bound action, then 'image' is set as the image of the touch button. Does nothing if a touch button was not created. No guarantees are made whether image will be set when button is manipulated.</string>
+          </Properties>
+        </Item>
+        <Item class="ReflectionMetadataMember">
+          <Properties>
+            <string name="Name">SetPosition</string>
+            <string name="summary">If 'actionName' key contains a bound action, then 'position' is set as the position of the touch button. Does nothing if a touch button was not created. No guarantees are made whether position will be set when button is manipulated.</string>
+          </Properties>
+        </Item>
+        <Item class="ReflectionMetadataMember">
+          <Properties>
+            <string name="Name">UnbindAction</string>
+            <string name="summary">If 'actionName' key contains a bound action, removes function from being called by all input that it was bound by (if function was also bound by a different action name as well, those bound input are still active). Will also remove any touch button created (if button was manipulated manually there is no guarantee it will be cleaned up).</string>
+          </Properties>
+        </Item>
+        <Item class="ReflectionMetadataMember">
+          <Properties>
+            <string name="Name">UnbindAllActions</string>
+            <string name="summary">Removes all functions bound. No actionNames will remain. All touch buttons will be removed. If button was manipulated manually there is no guarantee it will be cleaned up.</string>
+          </Properties>
+        </Item>
+        <Item class="ReflectionMetadataMember">
+          <Properties>
+            <string name="Name">GetBoundActionInfo</string>
+            <string name="summary">Returns a table with info regarding the function bound with 'actionName'. Table has the keys 'title' (current title that was set with SetTitle) 'image' (image set with SetImage) 'description' (description set with SetDescription) 'inputTypes' (tuple containing all input bound for this 'actionName') 'createTouchButton' (whether or not we created a touch button for this 'actionName'). </string>
+          </Properties>
+        </Item>
+         <Item class="ReflectionMetadataMember">
+          <Properties>
+            <string name="Name">GetAllBoundActionInfo</string>
+            <string name="summary">Returns a table with all bound action info. Each entry is a key with 'actionName' and value being the same table you would get from ContextActionService:GetBoundActionInfo('actionName').</string>
+          </Properties>
+        </Item>
+      </Item>
+      
+      <Item class="ReflectionMetadataYieldFunctions">
+        <Item class="ReflectionMetadataMember">
+          <Properties>
+            <string name="Name">GetButton</string>
+            <string name="summary">If 'actionName' key contains a bound action, then this will return the touch button (if was created). Returns nil if a touch button was not created. No guarantees are made whether button will be retrievable when button is manipulated.</string>
+          </Properties>
+        </Item>
+      </Item>
+    </Item>
+
+    <Item class="ReflectionMetadataClass">
+      <Properties>
+        <string name="Name">PointsService</string>
+        <string name="summary">A service used to query and award points for Roblox users using the universal point system.</string>
+      </Properties>
+
+      <Item class="ReflectionMetadataEvents">
+        <Item class="ReflectionMetadataMember">
+          <Properties>
+            <string name="Name">PointsAwarded</string>
+            <string name="summary">Fired when points are successfully awarded 'userId'. Also returns the updated balance of points for usedId in universe via 'userBalanceInUniverse', total points via 'userTotalBalance', and the amount points that were awarded via 'pointsAwarded'. This event fires on the server and also all clients in the game that awarded the points.</string>
+          </Properties>
+        </Item>
+      </Item>
+      
+      <Item class="ReflectionMetadataYieldFunctions">
+        <Item class="ReflectionMetadataMember">
+          <Properties>
+            <string name="Name">AwardPoints</string>
+            <string name="summary">Will attempt to award the 'amount' points to 'userId', returns 'userId' awarded to, the number of points awarded, the new point total the user has in the game, and the total number of points the user now has. Will also fire PointsService.PointsAwarded. Works with server scripts ONLY.</string>
+          </Properties>
+        </Item>
+        <Item class="ReflectionMetadataMember">
+          <Properties>
+            <string name="Name">GetPointBalance</string>
+            <string name="summary">Returns the overall balance of points that player with userId has (the sum of all points across all games). Works with server scripts ONLY.</string>
+          </Properties>
+        </Item>
+        <Item class="ReflectionMetadataMember">
+          <Properties>
+            <string name="Name">GetGamePointBalance</string>
+            <string name="summary">Returns the balance of points that player with userId has in the current game (all placeID points combined within the game). Works with server scripts ONLY.</string>
+          </Properties>
+        </Item>
+        <Item class="ReflectionMetadataMember">
+          <Properties>
+            <string name="Name">GetAwardablePoints</string>
+            <string name="summary">Returns the number of points the current universe can award to players. Works with server scripts ONLY.</string>
+          </Properties>
+        </Item>
+      </Item>
+    </Item>
+
+    <Item class="ReflectionMetadataClass">
+      <Properties>
         <string name="Name">MarketplaceService</string>
         <string name="ExplorerImageIndex">46</string>
       </Properties>
@@ -1126,11 +1242,13 @@
       </Item>
 
       <Item class="ReflectionMetadataYieldFunctions">
-         <Item class="ReflectionMetadataMember">
+        <Item class="ReflectionMetadataMember">
           <Properties>
             <string name="Name">GetProductInfo</string>
             <string name="summary">Takes one argument "assetId" which should be a number of an asset on www.roblox.com.  Returns a table containing the product information (if this process fails, returns an empty table).</string>
           </Properties>
+        </Item>
+        <Item class="ReflectionMetadataMember">
           <Properties>
             <string name="Name">PlayerOwnsAsset</string>
             <string name="summary">Checks to see if 'Player' owns the product associated with 'assetId'. Returns true if the player owns it, false otherwise. This call will produce a warning if called on a guest player.</string>
@@ -3461,6 +3579,33 @@
         <string name="summary">An object used to make dialog trees to converse with players</string>
         <string name="ExplorerOrder">22</string>
         <string name="ExplorerImageIndex">63</string>
+      </Properties>
+    </Item>
+    <Item class="ReflectionMetadataClass">
+      <Properties>
+        <string name="Name">PartOperation</string>
+        <string name="summary">A mathematical operation on Parts for example Union, Intersection, Negate</string>
+        <bool name="Browsable">true</bool>
+        <string name="ExplorerOrder">0</string>
+        <string name="ExplorerImageIndex">12</string>
+      </Properties>
+    </Item>
+    <Item class="ReflectionMetadataClass">
+      <Properties>
+        <string name="Name">UnionOperation</string>
+        <string name="summary">A Union operation on Parts</string>
+        <bool name="Browsable">true</bool>
+        <string name="ExplorerOrder">0</string>
+        <string name="ExplorerImageIndex">73</string>
+      </Properties>
+    </Item>
+    <Item class="ReflectionMetadataClass">
+      <Properties>
+        <string name="Name">NegateOperation</string>
+        <string name="summary">A Negate operation on Parts</string>
+        <bool name="Browsable">true</bool>
+        <string name="ExplorerOrder">0</string>
+        <string name="ExplorerImageIndex">72</string>
       </Properties>
     </Item>
     <Item class="ReflectionMetadataClass">
