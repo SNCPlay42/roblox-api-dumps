@@ -3288,6 +3288,65 @@
     </Item>
     <Item class="ReflectionMetadataClass">
       <Properties>
+        <string name="Name">ScrollingFrame</string>
+        <string name="summary">A container object used to layout other GUI objects, and allows for scrolling.</string>
+        <string name="ExplorerOrder">15</string>
+        <string name="ExplorerImageIndex">48</string>
+        <string name="PreferredParent">StarterGui</string>
+      </Properties>
+      <Item class="ReflectionMetadataProperties">
+        <Item class="ReflectionMetadataMember">
+          <Properties>
+            <string name="Name">ScrollingEnabled</string>
+            <string name="summary">Determines whether or not scrolling is allowed on this frame. If turned off, no scroll bars will be rendered.</string>
+          </Properties>
+        </Item>
+        <Item class="ReflectionMetadataMember">
+          <Properties>
+            <string name="Name">CanvasSize</string>
+            <string name="summary">Determines the size of the area that is scrollable. The UDim2 is calculated using the parent gui's size, similar to the regular Size property on gui objects.</string>
+          </Properties>
+        </Item>
+        <Item class="ReflectionMetadataMember">
+          <Properties>
+            <string name="Name">CanvasPosition</string>
+            <string name="summary">The absolute position the scroll frame is in respect to the canvas size. The minimum this can be set to is (0,0), while the max is the absolute canvas size - AbsoluteWindowSize.</string>
+          </Properties>
+        </Item>
+        <Item class="ReflectionMetadataMember">
+          <Properties>
+            <string name="Name">AbsoluteWindowSize</string>
+            <string name="summary">The size in pixels of the frame, without the scrollbars.</string>
+          </Properties>
+        </Item>
+        <Item class="ReflectionMetadataMember">
+          <Properties>
+            <string name="Name">ScrollBarThickness</string>
+            <string name="summary">How thick the scroll bar appears. This applies to both the horizontal and vertical scroll bars. Can be set to 0 for no bars render.</string>
+          </Properties>
+        </Item>
+        <Item class="ReflectionMetadataMember">
+          <Properties>
+            <string name="Name">TopImage</string>
+            <string name="summary">The "Up" image on the vertical scrollbar. Size of this is always ScrollBarThickness by ScrollBarThickness. This is also used as the "left" image on the horizontal scroll bar.</string>
+          </Properties>
+        </Item>
+        <Item class="ReflectionMetadataMember">
+          <Properties>
+            <string name="Name">MidImage</string>
+            <string name="summary">The "Middle" image on the vertical scrollbar. Size of this can vary in the y direction, but is always set at ScrollBarThickness in x direction. This is also used as the "mid" image on the horizontal scroll bar.</string>
+          </Properties>
+        </Item>
+        <Item class="ReflectionMetadataMember">
+          <Properties>
+            <string name="Name">BottomImage</string>
+            <string name="summary">The "Down" image on the vertical scrollbar. Size of this is always ScrollBarThickness by ScrollBarThickness. This is also used as the "right" image on the horizontal scroll bar.</string>
+          </Properties>
+        </Item>
+      </Item>
+    </Item>
+    <Item class="ReflectionMetadataClass">
+      <Properties>
         <string name="Name">ImageLabel</string>
         <string name="summary">A GUI object containing an Image</string>
         <string name="ExplorerOrder">18</string>
