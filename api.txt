@@ -770,7 +770,7 @@ Class Humanoid : Instance
 	Function bool Humanoid:HasCustomStatus(string status)
 	Function bool Humanoid:HasStatus(Status status = Poison)
 	Function Instance Humanoid:LoadAnimation(Instance animation)
-	Function void Humanoid:MoveTo(Vector3 location, Instance part)
+	Function void Humanoid:MoveTo(Vector3 location, Instance part = nil)
 	Function bool Humanoid:RemoveCustomStatus(string status)
 	Function bool Humanoid:RemoveStatus(Status status = Poison)
 	Function void Humanoid:SetClickToWalkEnabled(bool enabled) [RobloxScriptSecurity]
