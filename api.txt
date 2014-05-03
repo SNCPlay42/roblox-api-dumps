@@ -594,6 +594,15 @@ Class NotificationBox : GuiObject [notbrowsable]
 Class Scale9Frame : GuiObject
 	Property Vector2int16 Scale9Frame.ScaleEdgeSize
 	Property string Scale9Frame.SlicePrefix
+Class ScrollingFrame : GuiObject
+	Property Vector2 ScrollingFrame.AbsoluteWindowSize [readonly]
+	Property Content ScrollingFrame.BottomImage
+	Property Vector2 ScrollingFrame.CanvasPosition
+	Property UDim2 ScrollingFrame.CanvasSize
+	Property Content ScrollingFrame.MidImage
+	Property int ScrollingFrame.ScrollBarThickness
+	Property bool ScrollingFrame.ScrollingEnabled
+	Property Content ScrollingFrame.TopImage
 Class TextBox : GuiObject
 	Property bool TextBox.ClearTextOnFocus
 	Property Font TextBox.Font
@@ -1064,6 +1073,7 @@ Class NetworkSettings : Instance [notbrowsable]
 	Property PacketPriority NetworkSettings.PhysicsSendPriority [hidden]
 	Property float NetworkSettings.PhysicsSendRate
 	Property int NetworkSettings.PreferredClientPort
+	Property bool NetworkSettings.PrintBits
 	Property bool NetworkSettings.PrintEvents
 	Property bool NetworkSettings.PrintFilters
 	Property bool NetworkSettings.PrintInstances
