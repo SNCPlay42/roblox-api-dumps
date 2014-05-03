@@ -1073,6 +1073,7 @@ Class NetworkSettings : Instance [notbrowsable]
 	Property PacketPriority NetworkSettings.PhysicsSendPriority [hidden]
 	Property float NetworkSettings.PhysicsSendRate
 	Property int NetworkSettings.PreferredClientPort
+	Property bool NetworkSettings.PrintBits
 	Property bool NetworkSettings.PrintEvents
 	Property bool NetworkSettings.PrintFilters
 	Property bool NetworkSettings.PrintInstances
