@@ -3583,33 +3583,6 @@
     </Item>
     <Item class="ReflectionMetadataClass">
       <Properties>
-        <string name="Name">PartOperation</string>
-        <string name="summary">A mathematical operation on Parts for example Union, Intersection, Negate</string>
-        <bool name="Browsable">true</bool>
-        <string name="ExplorerOrder">0</string>
-        <string name="ExplorerImageIndex">12</string>
-      </Properties>
-    </Item>
-    <Item class="ReflectionMetadataClass">
-      <Properties>
-        <string name="Name">UnionOperation</string>
-        <string name="summary">A Union operation on Parts</string>
-        <bool name="Browsable">true</bool>
-        <string name="ExplorerOrder">0</string>
-        <string name="ExplorerImageIndex">73</string>
-      </Properties>
-    </Item>
-    <Item class="ReflectionMetadataClass">
-      <Properties>
-        <string name="Name">NegateOperation</string>
-        <string name="summary">A Negate operation on Parts</string>
-        <bool name="Browsable">true</bool>
-        <string name="ExplorerOrder">0</string>
-        <string name="ExplorerImageIndex">72</string>
-      </Properties>
-    </Item>
-    <Item class="ReflectionMetadataClass">
-      <Properties>
         <string name="Name">Terrain</string>
         <string name="summary">Object representing a high performance bounded grid of static 4x4 parts</string>
         <bool name="Browsable">true</bool>

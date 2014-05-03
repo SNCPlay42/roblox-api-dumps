@@ -1187,10 +1187,6 @@ Class SpawnLocation : Part
 	Property BrickColor SpawnLocation.TeamColor
 Class WedgePart : FormFactorPart
 Class ParallelRampPart : BasePart [notbrowsable]
-Class PartOperation : BasePart
-	Property bool PartOperation.ForceColor
-Class NegateOperation : PartOperation
-Class UnionOperation : PartOperation
 Class PrismPart : BasePart [notbrowsable]
 	Property PrismSides PrismPart.Sides
 Class PyramidPart : BasePart [notbrowsable]
@@ -1243,7 +1239,7 @@ Class RootInstance : Model [notbrowsable]
 Class Workspace : RootInstance
 	Property Object Workspace.CurrentCamera
 	Property double Workspace.DistributedGameTime
-	Property bool Workspace.FilteringEnabled [hidden]
+	Property bool Workspace.FilteringEnabled
 	Property bool Workspace.StreamingEnabled
 	Property Object Workspace.Terrain [readonly]
 	Function void Workspace:BreakJoints(Objects objects) [LocalUserSecurity]
