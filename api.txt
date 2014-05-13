@@ -1012,7 +1012,7 @@ Class NetworkPeer : Instance [notbrowsable]
 Class NetworkClient : NetworkPeer [notCreatable]
 	Property string NetworkClient.Ticket
 	Function void NetworkClient:Disconnect(int blockDuration = 3000) [LocalUserSecurity]
-	Function Instance NetworkClient:PlayerConnect(int userId, string server, int serverPort, int clientPort = 0, int threadSleepTime = 30) [LocalUserSecurity]
+	Function Instance NetworkClient:PlayerConnect(int userId, string server, int serverPort, int clientPort = 0, int threadSleepTime = 30) [security1]
 	Function void NetworkClient:SetGameSessionID(string gameSessionID) [RobloxSecurity]
 	Event NetworkClient.ConnectionAccepted(string peer, Instance replicator)
 	Event NetworkClient.ConnectionFailed(string peer, int code, string reason)
@@ -1021,7 +1021,7 @@ Class NetworkServer : NetworkPeer [notCreatable]
 	Property int NetworkServer.Port [readonly]
 	Function int NetworkServer:GetClientCount() [LocalUserSecurity]
 	Function void NetworkServer:SetIsPlayerAuthenticationRequired(bool value) [RobloxSecurity]
-	Function void NetworkServer:Start(int port = 0, int threadSleepTime = 20) [LocalUserSecurity]
+	Function void NetworkServer:Start(int port = 0, int threadSleepTime = 20) [security1]
 	Function void NetworkServer:Stop(int blockDuration = 1000) [LocalUserSecurity]
 	Event NetworkServer.DataBasicFiltered(Instance peer, FilterResult result, Instance instance, string member) [LocalUserSecurity]
 	Event NetworkServer.DataCustomFiltered(Instance peer, FilterResult result, Instance instance, string member) [LocalUserSecurity]
