@@ -430,10 +430,6 @@ Class Decal : FaceInstance
 Class Texture : Decal
 	Property float Texture.StudsPerTileU
 	Property float Texture.StudsPerTileV
-Class FastLogSettings : Instance
-	Function void FastLogSettings:DumpLogs(string filename) [LocalUserSecurity]
-	Function void FastLogSettings:Print(string message) [LocalUserSecurity]
-	Function void FastLogSettings:SetVariable(string group, string channel = ext) [RobloxScriptSecurity]
 Class Feature : Instance
 	Property NormalId Feature.FaceId
 	Property InOut Feature.InOut
