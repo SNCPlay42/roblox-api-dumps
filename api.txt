@@ -1826,6 +1826,7 @@ Class UserGameSettings : Instance
 	Event UserGameSettings.StudioModeChanged(bool isStudioMode)
 Class UserInputService : Instance
 	Property bool UserInputService.GamepadEnabled [readonly]
+	Property bool UserInputService.InCameraGesture [RobloxScriptSecurity]
 	Property bool UserInputService.KeyboardEnabled [readonly]
 	Property bool UserInputService.ModalEnabled
 	Property bool UserInputService.MouseEnabled [readonly]
