@@ -41,6 +41,9 @@ Class Accoutrement : Instance
 	Property Vector3 Accoutrement.AttachmentRight
 	Property Vector3 Accoutrement.AttachmentUp
 Class Hat : Accoutrement
+Class AdService : Instance
+	Function void AdService:ShowVideoAd()
+	Event AdService.VideoAdClosed()
 Class AdvancedDragger : Instance
 Class Animation : Instance
 	Property Content Animation.AnimationId
