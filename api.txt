@@ -4,7 +4,7 @@ Class Instance [notbrowsable]
 	Property int Instance.DataCost [readonly] [RobloxPlaceSecurity]
 	Property string Instance.Name
 	Property Object Instance.Parent
-	Property bool Instance.RobloxLocked [LocalUserSecurity]
+	Property bool Instance.RobloxLocked [PluginSecurity]
 	Property bool Instance.archivable [hidden]
 	Property string Instance.className [deprecated] [readonly]
 	Function void Instance:ClearAllChildren()
@@ -1358,9 +1358,9 @@ Class Player : Instance
 	Function void Player:SaveNumber(string key, double value)
 	Function void Player:SaveString(string key, string value)
 	Function void Player:SetAccountAge(int accountAge) [PluginSecurity]
-	Function void Player:SetClanTag(string newClanTag) [LocalUserSecurity]
+	Function void Player:SetClanTag(string newClanTag) [PluginSecurity]
 	Function void Player:SetMembershipType(MembershipType membershipType) [RobloxScriptSecurity]
-	Function void Player:SetSuperSafeChat(bool value) [LocalUserSecurity]
+	Function void Player:SetSuperSafeChat(bool value) [PluginSecurity]
 	Function void Player:SetUnder13(bool value) [deprecated] [RobloxSecurity]
 	Function bool Player:loadBoolean(string key) [deprecated]
 	Function Instance Player:loadInstance(string key) [deprecated]
@@ -1546,7 +1546,7 @@ Class ScriptContext : Instance [notCreatable]
 	Function void ScriptContext:RegisterLibrary(string libraryName, string assetId) [RobloxScriptSecurity]
 	Function void ScriptContext:RegisterRobloxLibrary(string libraryName, string assetId) [RobloxScriptSecurity]
 	Function void ScriptContext:SetCollectScriptStats(bool enable = false) [RobloxScriptSecurity]
-	Function void ScriptContext:SetTimeout(double seconds) [LocalUserSecurity]
+	Function void ScriptContext:SetTimeout(double seconds) [PluginSecurity]
 	Event ScriptContext.CamelCaseViolation(Instance object, string member, Instance script) [RobloxScriptSecurity]
 	Event ScriptContext.Error(string message, string stackTrace, Instance script)
 Class ScriptDebugger : Instance [notCreatable]
@@ -1631,16 +1631,16 @@ Class DataModel : ServiceProvider
 	Function void DataModel:Save(Content url) [RobloxSecurity]
 	Function void DataModel:SaveStats() [LocalUserSecurity]
 	Function void DataModel:ServerSave() [LocalUserSecurity]
-	Function void DataModel:SetCreatorID(int creatorID, CreatorType creatorType) [deprecated] [LocalUserSecurity]
-	Function void DataModel:SetCreatorId(int creatorId, CreatorType creatorType) [LocalUserSecurity]
-	Function void DataModel:SetGearSettings(GearGenreSetting genreRestriction, int allowedGenres) [LocalUserSecurity]
-	Function void DataModel:SetGenre(Genre genre) [LocalUserSecurity]
+	Function void DataModel:SetCreatorID(int creatorID, CreatorType creatorType) [deprecated] [PluginSecurity]
+	Function void DataModel:SetCreatorId(int creatorId, CreatorType creatorType) [PluginSecurity]
+	Function void DataModel:SetGearSettings(GearGenreSetting genreRestriction, int allowedGenres) [PluginSecurity]
+	Function void DataModel:SetGenre(Genre genre) [PluginSecurity]
 	Function void DataModel:SetJobsExtendedStatsWindow(double seconds) [LocalUserSecurity]
 	Function void DataModel:SetMessage(string message) [LocalUserSecurity]
 	Function void DataModel:SetMessageBrickCount() [LocalUserSecurity]
 	Function void DataModel:SetPlaceID(int placeID, bool robloxPlace = false) [deprecated] [PluginSecurity]
 	Function void DataModel:SetPlaceId(int placeId, bool robloxPlace = false) [PluginSecurity]
-	Function void DataModel:SetPlaceVersion(int placeId) [LocalUserSecurity]
+	Function void DataModel:SetPlaceVersion(int placeId) [PluginSecurity]
 	Function void DataModel:SetRemoteBuildMode(bool buildModeEnabled) [LocalUserSecurity]
 	Function void DataModel:SetScreenshotInfo(string info) [LocalUserSecurity]
 	Function void DataModel:SetServerSaveUrl(string url) [LocalUserSecurity]
@@ -1804,7 +1804,7 @@ Class TestService : Instance
 	Function void TestService:Message(string text, Instance source = nil, int line = 0)
 	Function void TestService:Require(bool condition, string description, Instance source = nil, int line = 0)
 	Function void TestService:Warn(bool condition, string description, Instance source = nil, int line = 0)
-	YieldFunction void TestService:Run() [LocalUserSecurity]
+	YieldFunction void TestService:Run() [PluginSecurity]
 	Event TestService.ServerCollectConditionalResult(bool condition, string text, Instance script, int line)
 	Event TestService.ServerCollectResult(string text, Instance script, int line)
 Class TextService : Instance [notCreatable]
