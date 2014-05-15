@@ -419,6 +419,7 @@ Class Dragger : Instance
 Class Explosion : Instance
 	Property float Explosion.BlastPressure
 	Property float Explosion.BlastRadius
+	Property float Explosion.DestroyJointRadiusPercent
 	Property ExplosionType Explosion.ExplosionType
 	Property Vector3 Explosion.Position
 	Event Explosion.Hit(Instance part, float distance)
