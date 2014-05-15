@@ -1059,7 +1059,7 @@ Class NetworkSettings : Instance [notbrowsable]
 	Property float NetworkSettings.DataSendRate
 	Property bool NetworkSettings.EnableHeavyCompression [hidden]
 	Property bool NetworkSettings.ExperimentalPhysicsEnabled
-	Property int NetworkSettings.ExtraMemoryUsed [hidden] [LocalUserSecurity]
+	Property int NetworkSettings.ExtraMemoryUsed [hidden] [PluginSecurity]
 	Property float NetworkSettings.FreeMemoryMBytes [hidden] [readonly] [LocalUserSecurity]
 	Property float NetworkSettings.FreeMemoryPoolMBytes [hidden] [readonly] [LocalUserSecurity]
 	Property double NetworkSettings.IncommingReplicationLag
@@ -1255,7 +1255,7 @@ Class Workspace : RootInstance
 	Property bool Workspace.FilteringEnabled
 	Property bool Workspace.StreamingEnabled
 	Property Object Workspace.Terrain [readonly]
-	Function void Workspace:BreakJoints(Objects objects) [LocalUserSecurity]
+	Function void Workspace:BreakJoints(Objects objects) [PluginSecurity]
 	Function Tuple Workspace:FindPartOnRay(Ray ray, Instance ignoreDescendentsInstance = nil, bool terrainCellsAreCubes = false)
 	Function Tuple Workspace:FindPartOnRayWithIgnoreList(Ray ray, Objects ignoreDescendentsTable, bool terrainCellsAreCubes = false)
 	Function Objects Workspace:FindPartsInRegion3(Region3 region, Instance ignoreDescendentsInstance = nil, int maxParts = 20)
@@ -1266,9 +1266,9 @@ Class Workspace : RootInstance
 	Function Objects Workspace:InsertContent(Content url) [LocalUserSecurity]
 	Function bool Workspace:IsRegion3Empty(Region3 region, Instance ignoreDescendentsInstance = nil)
 	Function bool Workspace:IsRegion3EmptyWithIgnoreList(Region3 region, Objects ignoreDescendentsTable)
-	Function void Workspace:MakeJoints(Objects objects) [LocalUserSecurity]
+	Function void Workspace:MakeJoints(Objects objects) [PluginSecurity]
 	Function void Workspace:SetPhysicsThrottleEnabled(bool value) [LocalUserSecurity]
-	Function void Workspace:ZoomToExtents() [LocalUserSecurity]
+	Function void Workspace:ZoomToExtents() [PluginSecurity]
 	Function Tuple Workspace:findPartOnRay(Ray ray, Instance ignoreDescendentsInstance = nil, bool terrainCellsAreCubes = false) [deprecated]
 	Function Objects Workspace:findPartsInRegion3(Region3 region, Instance ignoreDescendentsInstance = nil, int maxParts = 20) [deprecated]
 Class Status : Model [notCreatable]
@@ -1356,7 +1356,7 @@ Class Player : Instance
 	Function void Player:SaveLeaderboardData() [LocalUserSecurity]
 	Function void Player:SaveNumber(string key, double value)
 	Function void Player:SaveString(string key, string value)
-	Function void Player:SetAccountAge(int accountAge) [LocalUserSecurity]
+	Function void Player:SetAccountAge(int accountAge) [PluginSecurity]
 	Function void Player:SetClanTag(string newClanTag) [LocalUserSecurity]
 	Function void Player:SetMembershipType(MembershipType membershipType) [RobloxScriptSecurity]
 	Function void Player:SetSuperSafeChat(bool value) [LocalUserSecurity]
@@ -1397,8 +1397,8 @@ Class Players : Instance
 	Property Object Players.localPlayer [deprecated] [hidden] [readonly]
 	Property int Players.numPlayers [deprecated] [hidden] [readonly]
 	Function void Players:AddLeaderboardKey(string key) [LocalUserSecurity]
-	Function void Players:Chat(string message) [LocalUserSecurity]
-	Function Instance Players:CreateLocalPlayer(int userId) [LocalUserSecurity]
+	Function void Players:Chat(string message) [PluginSecurity]
+	Function Instance Players:CreateLocalPlayer(int userId) [PluginSecurity]
 	Function Instance Players:GetPlayerByID(int userID) [LocalUserSecurity]
 	Function Instance Players:GetPlayerFromCharacter(Instance character)
 	Function Objects Players:GetPlayers()
@@ -1407,13 +1407,13 @@ Class Players : Instance
 	Function void Players:SetAbuseReportUrl(string url) [RobloxSecurity]
 	Function void Players:SetBuildUserPermissionsUrl(string url) [RobloxSecurity]
 	Function void Players:SetChatFilterUrl(string url) [RobloxSecurity]
-	Function void Players:SetChatStyle(ChatStyle style = Classic) [LocalUserSecurity]
+	Function void Players:SetChatStyle(ChatStyle style = Classic) [PluginSecurity]
 	Function void Players:SetLoadDataUrl(string url) [LocalUserSecurity]
 	Function void Players:SetSaveDataUrl(string url) [LocalUserSecurity]
 	Function void Players:SetSaveLeaderboardDataUrl(string url) [LocalUserSecurity]
 	Function void Players:SetSysStatsUrl(string url) [LocalUserSecurity]
 	Function void Players:SetSysStatsUrlId(string urlId) [LocalUserSecurity]
-	Function void Players:TeamChat(string message) [LocalUserSecurity]
+	Function void Players:TeamChat(string message) [PluginSecurity]
 	Function void Players:WhisperChat(string message, Instance player) [LocalUserSecurity]
 	Function Instance Players:getPlayerFromCharacter(Instance character) [deprecated]
 	Function Objects Players:getPlayers() [deprecated]
