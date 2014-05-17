@@ -12,7 +12,7 @@ Class Instance [notbrowsable]
 	Function void Instance:Destroy()
 	Function Instance Instance:FindFirstChild(string name, bool recursive = false)
 	Function Objects Instance:GetChildren()
-	Function string Instance:GetDebugId(int scopeLength = 4) [notbrowsable] [PluginSecurity]
+	Function string Instance:GetDebugId(int scopeLength = 4) [notbrowsable] [LocalUserSecurity]
 	Function string Instance:GetFullName()
 	Function bool Instance:IsA(string className)
 	Function bool Instance:IsAncestorOf(Instance descendant)
@@ -1012,7 +1012,7 @@ Class PluginMouse : Mouse
 Class NetworkMarker : Instance [notbrowsable]
 	Event NetworkMarker.Received()
 Class NetworkPeer : Instance [notbrowsable]
-	Function void NetworkPeer:SetOutgoingKBPSLimit(int limit) [PluginSecurity]
+	Function void NetworkPeer:SetOutgoingKBPSLimit(int limit) [LocalUserSecurity]
 Class NetworkClient : NetworkPeer [notCreatable]
 	Property string NetworkClient.Ticket
 	Function void NetworkClient:Disconnect(int blockDuration = 3000) [LocalUserSecurity]
@@ -1037,7 +1037,7 @@ Class NetworkReplicator : Instance [notCreatable]
 	Function void NetworkReplicator:DisableProcessPackets() [LocalUserSecurity]
 	Function void NetworkReplicator:EnableProcessPackets() [LocalUserSecurity]
 	Function Instance NetworkReplicator:GetPlayer()
-	Function string NetworkReplicator:GetRakStatsString(int verbosityLevel = 0) [PluginSecurity]
+	Function string NetworkReplicator:GetRakStatsString(int verbosityLevel = 0) [LocalUserSecurity]
 	Function void NetworkReplicator:RequestCharacter() [LocalUserSecurity]
 	Function Instance NetworkReplicator:SendMarker() [LocalUserSecurity]
 	Function void NetworkReplicator:SetPropSyncExpiration(double seconds) [LocalUserSecurity]
@@ -1061,8 +1061,8 @@ Class NetworkSettings : Instance [notbrowsable]
 	Property bool NetworkSettings.EnableHeavyCompression [hidden]
 	Property bool NetworkSettings.ExperimentalPhysicsEnabled
 	Property int NetworkSettings.ExtraMemoryUsed [hidden] [PluginSecurity]
-	Property float NetworkSettings.FreeMemoryMBytes [hidden] [readonly] [PluginSecurity]
-	Property float NetworkSettings.FreeMemoryPoolMBytes [hidden] [readonly] [PluginSecurity]
+	Property float NetworkSettings.FreeMemoryMBytes [hidden] [readonly] [LocalUserSecurity]
+	Property float NetworkSettings.FreeMemoryPoolMBytes [hidden] [readonly] [LocalUserSecurity]
 	Property double NetworkSettings.IncommingReplicationLag
 	Property bool NetworkSettings.IsQueueErrorComputed
 	Property bool NetworkSettings.IsThrottledByCongestionControl
@@ -1612,11 +1612,11 @@ Class DataModel : ServiceProvider
 	Function void DataModel:ClearContent(bool resettingSimulation) [LocalUserSecurity]
 	Function void DataModel:ClearMessage() [LocalUserSecurity]
 	Function void DataModel:FinishShutdown(bool localSave) [RobloxScriptSecurity]
-	Function double DataModel:GetJobIntervalPeakFraction(string jobname, double greaterThan) [PluginSecurity]
-	Function double DataModel:GetJobTimePeakFraction(string jobname, double greaterThan) [PluginSecurity]
-	Function Array DataModel:GetJobsExtendedStats() [PluginSecurity]
-	Function Array DataModel:GetJobsInfo() [PluginSecurity]
-	Function Objects DataModel:GetObjects(Content url) [PluginSecurity]
+	Function double DataModel:GetJobIntervalPeakFraction(string jobname, double greaterThan) [LocalUserSecurity]
+	Function double DataModel:GetJobTimePeakFraction(string jobname, double greaterThan) [LocalUserSecurity]
+	Function Array DataModel:GetJobsExtendedStats() [LocalUserSecurity]
+	Function Array DataModel:GetJobsInfo() [LocalUserSecurity]
+	Function Objects DataModel:GetObjects(Content url) [LocalUserSecurity]
 	Function bool DataModel:GetRemoteBuildMode()
 	Function string DataModel:HttpGet(string url, bool synchronous = false) [RobloxScriptSecurity]
 	Function string DataModel:HttpPost(string url, string data, bool synchronous = false, string contentType = */*) [RobloxScriptSecurity]
@@ -1726,11 +1726,11 @@ Class Stats : Instance [notCreatable]
 	Function void Stats:ReportTaskScheduler(bool includeJobs = false) [RobloxScriptSecurity]
 	Function void Stats:SetReportUrl(string url) [RobloxScriptSecurity]
 Class StatsItem : Instance
-	Function double StatsItem:GetValue() [PluginSecurity]
-	Function string StatsItem:GetValueString() [PluginSecurity]
+	Function double StatsItem:GetValue() [LocalUserSecurity]
+	Function string StatsItem:GetValueString() [LocalUserSecurity]
 Class ProfilingItem : StatsItem
-	Function Tuple ProfilingItem:GetTimes(double window = 0) [PluginSecurity]
-	Function Tuple ProfilingItem:GetTimesForFrames(int frames = 1) [PluginSecurity]
+	Function Tuple ProfilingItem:GetTimes(double window = 0) [LocalUserSecurity]
+	Function Tuple ProfilingItem:GetTimesForFrames(int frames = 1) [LocalUserSecurity]
 Class RunningAverageItemDouble : StatsItem
 Class RunningAverageItemInt : StatsItem
 Class RunningAverageTimeIntervalItem : StatsItem
