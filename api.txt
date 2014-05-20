@@ -642,6 +642,7 @@ Class SurfaceGui : LayerCollector
 	Property Vector2 SurfaceGui.CanvasSize
 	Property bool SurfaceGui.Enabled
 	Property NormalId SurfaceGui.Face
+	Property float SurfaceGui.ToolPunchThroughDistance
 Class GuiBase3d : GuiBase
 	Property BrickColor GuiBase3d.Color
 	Property float GuiBase3d.Transparency
@@ -1097,6 +1098,11 @@ Class NetworkSettings : Instance [notbrowsable]
 	Property bool NetworkSettings.UseInstancePacketCache
 	Property bool NetworkSettings.UsePhysicsPacketCache
 	Property int NetworkSettings.WaitingForCharacterLogRate [deprecated] [hidden]
+Class NotificationService : Instance
+	Function void NotificationService:CancelAllNotification(int userId) [RobloxPlaceSecurity]
+	Function void NotificationService:CancelNotification(int userId, int alertId) [RobloxPlaceSecurity]
+	Function void NotificationService:ScheduleNotification(int userId, int alertId, string alertMsg, int minutesToFire) [RobloxPlaceSecurity]
+	YieldFunction Array NotificationService:GetScheduledNotifications(int userId) [RobloxPlaceSecurity]
 Class NumberValue : Instance
 	Property double NumberValue.Value
 	Event NumberValue.Changed(double value)
