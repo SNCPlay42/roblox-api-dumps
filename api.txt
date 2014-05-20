@@ -756,6 +756,7 @@ Class HttpService : Instance [notCreatable]
 	YieldFunction string HttpService:PostAsync(string url, string data, HttpContentType content_type = ApplicationJson)
 Class Humanoid : Instance
 	Property bool Humanoid.AutoRotate
+	Property Vector3 Humanoid.CameraOffset
 	Property float Humanoid.Health
 	Property bool Humanoid.Jump
 	Property Object Humanoid.LeftLeg
