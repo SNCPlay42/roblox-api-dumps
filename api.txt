@@ -1245,13 +1245,16 @@ Class VehicleSeat : BasePart
 Class Model : PVInstance
 	Property Object Model.PrimaryPart
 	Function void Model:BreakJoints()
-	Function CoordinateFrame Model:GetModelCFrame()
-	Function Vector3 Model:GetModelSize()
+	Function Vector3 Model:GetExtentsSize()
+	Function CoordinateFrame Model:GetModelCFrame() [deprecated]
+	Function Vector3 Model:GetModelSize() [deprecated]
+	Function CoordinateFrame Model:GetPrimaryPartCFrame()
 	Function void Model:MakeJoints()
-	Function void Model:MoveTo(Vector3 location)
-	Function void Model:ResetOrientationToIdentity()
-	Function void Model:SetIdentityOrientation()
-	Function void Model:TranslateBy(Vector3 offset)
+	Function void Model:MoveTo(Vector3 position)
+	Function void Model:ResetOrientationToIdentity() [deprecated]
+	Function void Model:SetIdentityOrientation() [deprecated]
+	Function void Model:SetPrimaryPartCFrame(CoordinateFrame cframe)
+	Function void Model:TranslateBy(Vector3 delta)
 	Function void Model:breakJoints() [deprecated]
 	Function void Model:makeJoints() [deprecated]
 	Function void Model:move(Vector3 location) [deprecated]
