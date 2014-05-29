@@ -1658,7 +1658,6 @@ Class DataModel : ServiceProvider
 	Function void DataModel:Shutdown() [LocalUserSecurity]
 	Function void DataModel:ToggleTools() [LocalUserSecurity]
 	Function Objects DataModel:get(Content url) [deprecated] [LocalUserSecurity]
-	YieldFunction int DataModel:CreatePlace(string placeName, int templatePlaceID)
 	YieldFunction string DataModel:HttpGetAsync(string url) [RobloxScriptSecurity]
 	YieldFunction string DataModel:HttpPostAsync(string url, string data, string contentType = */*) [RobloxScriptSecurity]
 	YieldFunction bool DataModel:SavePlace(SaveFilter saveFilter = SaveAll)
