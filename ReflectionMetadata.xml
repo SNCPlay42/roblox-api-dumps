@@ -2028,7 +2028,7 @@
         <string name="Name">Model</string>
         <string name="ExplorerOrder">10</string>
         <string name="ExplorerImageIndex">2</string>
-        <string name="summary">A construct used to group Parts and other objects together, also allows manipulation of multiple objects.</string>
+        <string name="summary">A construct used to group Parts and other objects together</string>
       </Properties>
       <Item class="ReflectionMetadataFunctions">
         <Item class="ReflectionMetadataMember">
@@ -2081,18 +2081,6 @@
         </Item>
         <Item class="ReflectionMetadataMember">
           <Properties>
-            <string name="Name">GetPrimaryPartCFrame</string>
-            <string name="summary">Returns the cframe of the Model.PrimaryPart. If PrimaryPart is nil, then this function will throw an error.</string>
-          </Properties>
-        </Item>
-        <Item class="ReflectionMetadataMember">
-          <Properties>
-            <string name="Name">SetPrimaryPartCFrame</string>
-            <string name="summary">Sets the cframe of the Model.PrimaryPart. If PrimaryPart is nil, then this function will throw an error. This also sets the cframe of all descendant Parts relative to the cframe change to PrimaryPart.</string>
-          </Properties>
-        </Item>
-        <Item class="ReflectionMetadataMember">
-          <Properties>
             <string name="Name">makeJoints</string>
             <string name="summary">Use MakeJoints() instead</string>
             <bool name="Deprecated">true</bool>
@@ -2110,7 +2098,7 @@
         <Item class="ReflectionMetadataMember">
           <Properties>
             <string name="Name">PrimaryPart</string>
-            <string name="summary">A Part that serves as a reference for the Model's CFrame. Used in conjunction with GetModelPrimaryPartCFrame and SetModelPrimaryPartCFrame. Use this to rotate/translate all Parts relative to the PrimaryPart.</string>
+            <string name="summary">Used to help calculate the Model's CFrame rotation. If this is never assigned to, the engine automatically designates a PrimaryPart to figure out rotations.</string>
           </Properties>
         </Item>
       </Item>
