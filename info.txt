@@ -1,6 +1,6 @@
-SetupVersion: version-c45daebdd904401d
+SetupVersion: version-9c075bdcbf8d44d1
 ExeVersion: 0.154.0.47178
 Site: gametest2.robloxlabs.com
-Date: 2014-06-04T02:47:04+0000
-Studio-SetupVersion: version-56ec8005540d42fc
+Date: 2014-06-04T04:30:43+0000
+Studio-SetupVersion: version-8814246ac7a9400e
 Studio-ExeVersion: 0.154.0.47178
