@@ -1533,6 +1533,10 @@ Class RenderSettings : Instance [notbrowsable]
 	Property bool RenderSettings.UsesPaintMessage
 	Property GraphicsMode RenderSettings.graphicsMode
 	Function int RenderSettings:GetMaxQualityLevel()
+Class ReplicatedFirst : Instance
+	Function bool ReplicatedFirst:IsDefaultLoadingGuiRemoved() [RobloxScriptSecurity]
+	Function void ReplicatedFirst:RemoveDefaultLoadingScreen()
+	Event ReplicatedFirst.RemoveDefaultLoadingGuiSignal() [RobloxScriptSecurity]
 Class ReplicatedStorage : Instance
 Class RunService : Instance
 	Function void RunService:Pause() [PluginSecurity]
@@ -1626,6 +1630,7 @@ Class DataModel : ServiceProvider
 	Function double DataModel:GetJobTimePeakFraction(string jobname, double greaterThan) [PluginSecurity]
 	Function Array DataModel:GetJobsExtendedStats() [PluginSecurity]
 	Function Array DataModel:GetJobsInfo() [PluginSecurity]
+	Function string DataModel:GetMessage()
 	Function Objects DataModel:GetObjects(Content url) [PluginSecurity]
 	Function bool DataModel:GetRemoteBuildMode()
 	Function string DataModel:HttpGet(string url, bool synchronous = false) [RobloxScriptSecurity]
