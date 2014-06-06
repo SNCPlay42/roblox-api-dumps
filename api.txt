@@ -1658,7 +1658,6 @@ Class DataModel : ServiceProvider
 	Function void DataModel:Shutdown() [LocalUserSecurity]
 	Function void DataModel:ToggleTools() [LocalUserSecurity]
 	Function Objects DataModel:get(Content url) [deprecated] [LocalUserSecurity]
-	YieldFunction int DataModel:CreatePlace(string placeName, int templatePlaceID)
 	YieldFunction string DataModel:HttpGetAsync(string url) [RobloxScriptSecurity]
 	YieldFunction string DataModel:HttpPostAsync(string url, string data, string contentType = */*) [RobloxScriptSecurity]
 	YieldFunction bool DataModel:SavePlace(SaveFilter saveFilter = SaveAll)
@@ -1825,10 +1824,12 @@ Class TouchTransmitter : Instance [notbrowsable] [notCreatable]
 Class TweenService : Instance
 Class UserGameSettings : Instance
 	Property bool UserGameSettings.AllTutorialsDisabled
+	Property CameraMode UserGameSettings.CameraMode
 	Property ControlMode UserGameSettings.ControlMode
 	Property bool UserGameSettings.Fullscreen
 	Property UploadSetting UserGameSettings.ImageUploadPromptBehavior
 	Property SavedQualitySetting UserGameSettings.SavedQualityLevel
+	Property TouchMovementMode UserGameSettings.TouchMovementMode
 	Property UploadSetting UserGameSettings.VideoUploadPromptBehavior
 	Function bool UserGameSettings:GetTutorialState(string tutorialId) [RobloxScriptSecurity]
 	Function bool UserGameSettings:InFullScreen()
@@ -1933,6 +1934,10 @@ Enum ButtonStyle
 Enum CameraMode
 	EnumItem CameraMode.Classic : 0
 	EnumItem CameraMode.LockFirstPerson : 1
+Enum CameraMode
+	EnumItem CameraMode.Default : 0
+	EnumItem CameraMode.Follow : 2
+	EnumItem CameraMode.Classic : 1
 Enum CameraPanMode
 	EnumItem CameraPanMode.Classic : 0
 	EnumItem CameraPanMode.EdgeBump : 1
@@ -2699,6 +2704,10 @@ Enum TopBottom
 	EnumItem TopBottom.Top : 0
 	EnumItem TopBottom.Center : 1
 	EnumItem TopBottom.Bottom : 2
+Enum TouchMovementMode
+	EnumItem TouchMovementMode.Default : 0
+	EnumItem TouchMovementMode.Thumbstick : 1
+	EnumItem TouchMovementMode.DPad : 2
 Enum TweenStatus
 	EnumItem TweenStatus.Canceled : 0
 	EnumItem TweenStatus.Completed : 1
