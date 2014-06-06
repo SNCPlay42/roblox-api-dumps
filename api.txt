@@ -2368,6 +2368,18 @@ Enum KeyCode
 	EnumItem KeyCode.CapsLock : 301
 	EnumItem KeyCode.NumLock : 300
 	EnumItem KeyCode.ScrollLock : 302
+	EnumItem KeyCode.LeftSuper : 311
+	EnumItem KeyCode.RightSuper : 312
+	EnumItem KeyCode.Mode : 313
+	EnumItem KeyCode.Compose : 314
+	EnumItem KeyCode.Help : 315
+	EnumItem KeyCode.Print : 316
+	EnumItem KeyCode.SysReq : 317
+	EnumItem KeyCode.Break : 318
+	EnumItem KeyCode.Menu : 319
+	EnumItem KeyCode.Power : 320
+	EnumItem KeyCode.Euro : 321
+	EnumItem KeyCode.Undo : 322
 	EnumItem KeyCode.F1 : 282
 	EnumItem KeyCode.F2 : 283
 	EnumItem KeyCode.F3 : 284
@@ -2383,6 +2395,102 @@ Enum KeyCode
 	EnumItem KeyCode.F13 : 294
 	EnumItem KeyCode.F14 : 295
 	EnumItem KeyCode.F15 : 296
+	EnumItem KeyCode.World0 : 160
+	EnumItem KeyCode.World1 : 161
+	EnumItem KeyCode.World2 : 162
+	EnumItem KeyCode.World3 : 163
+	EnumItem KeyCode.World4 : 164
+	EnumItem KeyCode.World5 : 165
+	EnumItem KeyCode.World6 : 166
+	EnumItem KeyCode.World7 : 167
+	EnumItem KeyCode.World8 : 168
+	EnumItem KeyCode.World9 : 169
+	EnumItem KeyCode.World10 : 170
+	EnumItem KeyCode.World11 : 171
+	EnumItem KeyCode.World12 : 172
+	EnumItem KeyCode.World13 : 173
+	EnumItem KeyCode.World14 : 174
+	EnumItem KeyCode.World15 : 175
+	EnumItem KeyCode.World16 : 176
+	EnumItem KeyCode.World17 : 177
+	EnumItem KeyCode.World18 : 178
+	EnumItem KeyCode.World19 : 179
+	EnumItem KeyCode.World20 : 180
+	EnumItem KeyCode.World21 : 181
+	EnumItem KeyCode.World22 : 182
+	EnumItem KeyCode.World23 : 183
+	EnumItem KeyCode.World24 : 184
+	EnumItem KeyCode.World25 : 185
+	EnumItem KeyCode.World26 : 186
+	EnumItem KeyCode.World27 : 187
+	EnumItem KeyCode.World28 : 188
+	EnumItem KeyCode.World29 : 189
+	EnumItem KeyCode.World30 : 190
+	EnumItem KeyCode.World31 : 191
+	EnumItem KeyCode.World32 : 192
+	EnumItem KeyCode.World33 : 193
+	EnumItem KeyCode.World34 : 194
+	EnumItem KeyCode.World35 : 195
+	EnumItem KeyCode.World36 : 196
+	EnumItem KeyCode.World37 : 197
+	EnumItem KeyCode.World38 : 198
+	EnumItem KeyCode.World39 : 199
+	EnumItem KeyCode.World40 : 200
+	EnumItem KeyCode.World41 : 201
+	EnumItem KeyCode.World42 : 202
+	EnumItem KeyCode.World43 : 203
+	EnumItem KeyCode.World44 : 204
+	EnumItem KeyCode.World45 : 205
+	EnumItem KeyCode.World46 : 206
+	EnumItem KeyCode.World47 : 207
+	EnumItem KeyCode.World48 : 208
+	EnumItem KeyCode.World49 : 209
+	EnumItem KeyCode.World50 : 210
+	EnumItem KeyCode.World51 : 211
+	EnumItem KeyCode.World52 : 212
+	EnumItem KeyCode.World53 : 213
+	EnumItem KeyCode.World54 : 214
+	EnumItem KeyCode.World55 : 215
+	EnumItem KeyCode.World56 : 216
+	EnumItem KeyCode.World57 : 217
+	EnumItem KeyCode.World58 : 218
+	EnumItem KeyCode.World59 : 219
+	EnumItem KeyCode.World60 : 220
+	EnumItem KeyCode.World61 : 221
+	EnumItem KeyCode.World62 : 222
+	EnumItem KeyCode.World63 : 223
+	EnumItem KeyCode.World64 : 224
+	EnumItem KeyCode.World65 : 225
+	EnumItem KeyCode.World66 : 226
+	EnumItem KeyCode.World67 : 227
+	EnumItem KeyCode.World68 : 228
+	EnumItem KeyCode.World69 : 229
+	EnumItem KeyCode.World70 : 230
+	EnumItem KeyCode.World71 : 231
+	EnumItem KeyCode.World72 : 232
+	EnumItem KeyCode.World73 : 233
+	EnumItem KeyCode.World74 : 234
+	EnumItem KeyCode.World75 : 235
+	EnumItem KeyCode.World76 : 236
+	EnumItem KeyCode.World77 : 237
+	EnumItem KeyCode.World78 : 238
+	EnumItem KeyCode.World79 : 239
+	EnumItem KeyCode.World80 : 240
+	EnumItem KeyCode.World81 : 241
+	EnumItem KeyCode.World82 : 242
+	EnumItem KeyCode.World83 : 243
+	EnumItem KeyCode.World84 : 244
+	EnumItem KeyCode.World85 : 245
+	EnumItem KeyCode.World86 : 246
+	EnumItem KeyCode.World87 : 247
+	EnumItem KeyCode.World88 : 248
+	EnumItem KeyCode.World89 : 249
+	EnumItem KeyCode.World90 : 250
+	EnumItem KeyCode.World91 : 251
+	EnumItem KeyCode.World92 : 252
+	EnumItem KeyCode.World93 : 253
+	EnumItem KeyCode.World94 : 254
+	EnumItem KeyCode.World95 : 255
 Enum KeywordFilterType
 	EnumItem KeywordFilterType.Include : 0
 	EnumItem KeywordFilterType.Exclude : 1
