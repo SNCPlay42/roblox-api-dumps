@@ -389,6 +389,10 @@ Class DebuggerManager : Instance [notCreatable]
 	Function Instance DebuggerManager:AddDebugger(Instance script)
 	Function void DebuggerManager:EnableDebugging() [LocalUserSecurity]
 	Function Objects DebuggerManager:GetDebuggers()
+	Function void DebuggerManager:Resume()
+	Function void DebuggerManager:StepIn()
+	Function void DebuggerManager:StepOut()
+	Function void DebuggerManager:StepOver()
 	Event DebuggerManager.DebuggerAdded(Instance debugger)
 	Event DebuggerManager.DebuggerRemoved(Instance debugger)
 Class DebuggerWatch : Instance
@@ -1580,14 +1584,14 @@ Class ScriptDebugger : Instance [notCreatable]
 	Function Map ScriptDebugger:GetUpvalues(int stackFrame = 0)
 	Function Variant ScriptDebugger:GetWatchValue(Instance watch)
 	Function Objects ScriptDebugger:GetWatches()
-	Function void ScriptDebugger:Resume()
+	Function void ScriptDebugger:Resume() [deprecated]
 	Function Instance ScriptDebugger:SetBreakpoint(int line)
 	Function void ScriptDebugger:SetGlobal(string name, Variant value)
 	Function void ScriptDebugger:SetLocal(string name, Variant value, int stackFrame = 0)
 	Function void ScriptDebugger:SetUpvalue(string name, Variant value, int stackFrame = 0)
-	Function void ScriptDebugger:StepIn()
-	Function void ScriptDebugger:StepOut()
-	Function void ScriptDebugger:StepOver()
+	Function void ScriptDebugger:StepIn() [deprecated]
+	Function void ScriptDebugger:StepOut() [deprecated]
+	Function void ScriptDebugger:StepOver() [deprecated]
 	Event ScriptDebugger.BreakpointAdded(Instance breakpoint)
 	Event ScriptDebugger.BreakpointRemoved(Instance breakpoint)
 	Event ScriptDebugger.EncounteredBreak(int line)
