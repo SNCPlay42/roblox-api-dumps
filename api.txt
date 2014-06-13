@@ -312,6 +312,7 @@ Class FileMesh : DataModelMesh
 Class SpecialMesh : FileMesh
 	Property MeshType SpecialMesh.MeshType
 Class DataStoreService : Instance
+	Property bool DataStoreService.LegacyNamingScheme [LocalUserSecurity]
 	Function Instance DataStoreService:GetDataStore(string name, string scope = global)
 	Function Instance DataStoreService:GetGlobalDataStore()
 	Function Instance DataStoreService:GetOrderedDataStore(string name, string scope = global)
@@ -388,6 +389,10 @@ Class DebuggerManager : Instance [notCreatable]
 	Function Instance DebuggerManager:AddDebugger(Instance script)
 	Function void DebuggerManager:EnableDebugging() [LocalUserSecurity]
 	Function Objects DebuggerManager:GetDebuggers()
+	Function void DebuggerManager:Resume()
+	Function void DebuggerManager:StepIn()
+	Function void DebuggerManager:StepOut()
+	Function void DebuggerManager:StepOver()
 	Event DebuggerManager.DebuggerAdded(Instance debugger)
 	Event DebuggerManager.DebuggerRemoved(Instance debugger)
 Class DebuggerWatch : Instance
@@ -968,6 +973,7 @@ Class MarketplaceService : Instance
 	Function void MarketplaceService:SignalPromptProductPurchaseFinished(int userId, int productId, bool success) [RobloxScriptSecurity]
 	Function void MarketplaceService:SignalPromptPurchaseFinished(Instance player, int assetId, bool success) [RobloxScriptSecurity]
 	Function void MarketplaceService:SignalServerLuaDialogClosed(bool value) [RobloxScriptSecurity]
+	YieldFunction Instance MarketplaceService:GetDeveloperProductsAsync()
 	YieldFunction Dictionary MarketplaceService:GetProductInfo(int assetId, InfoType infoType = Asset)
 	YieldFunction bool MarketplaceService:PlayerOwnsAsset(Instance player, int assetId)
 	Event MarketplaceService.ClientLuaDialogRequested(Tuple arguments) [RobloxScriptSecurity]
@@ -1287,6 +1293,8 @@ Class Pages : Instance
 	Property bool Pages.IsFinished [readonly]
 	Function Array Pages:GetCurrentPage()
 	YieldFunction void Pages:AdvanceToNextPageAsync()
+Class DataStorePages : Pages
+Class Pages : Pages
 Class PersonalServerService : Instance
 	Property string PersonalServerService.RoleSets [RobloxScriptSecurity]
 	Function void PersonalServerService:Demote(Instance player) [RobloxScriptSecurity]
@@ -1576,14 +1584,14 @@ Class ScriptDebugger : Instance [notCreatable]
 	Function Map ScriptDebugger:GetUpvalues(int stackFrame = 0)
 	Function Variant ScriptDebugger:GetWatchValue(Instance watch)
 	Function Objects ScriptDebugger:GetWatches()
-	Function void ScriptDebugger:Resume()
+	Function void ScriptDebugger:Resume() [deprecated]
 	Function Instance ScriptDebugger:SetBreakpoint(int line)
 	Function void ScriptDebugger:SetGlobal(string name, Variant value)
 	Function void ScriptDebugger:SetLocal(string name, Variant value, int stackFrame = 0)
 	Function void ScriptDebugger:SetUpvalue(string name, Variant value, int stackFrame = 0)
-	Function void ScriptDebugger:StepIn()
-	Function void ScriptDebugger:StepOut()
-	Function void ScriptDebugger:StepOver()
+	Function void ScriptDebugger:StepIn() [deprecated]
+	Function void ScriptDebugger:StepOut() [deprecated]
+	Function void ScriptDebugger:StepOver() [deprecated]
 	Event ScriptDebugger.BreakpointAdded(Instance breakpoint)
 	Event ScriptDebugger.BreakpointRemoved(Instance breakpoint)
 	Event ScriptDebugger.EncounteredBreak(int line)
