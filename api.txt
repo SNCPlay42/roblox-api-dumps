@@ -105,7 +105,6 @@ Class LocalScript : Script
 Class BinaryStringValue : Instance
 	Property BinaryString BinaryStringValue.Value
 	Event BinaryStringValue.Changed(BinaryString value)
-	Event BinaryStringValue.changed(BinaryString value) [deprecated]
 Class BindableEvent : Instance
 	Function void BindableEvent:Fire(Tuple arguments)
 	Event BindableEvent.Event(Tuple arguments)
