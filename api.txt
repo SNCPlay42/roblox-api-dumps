@@ -1296,7 +1296,7 @@ Class Pages : Instance
 	Function Array Pages:GetCurrentPage()
 	YieldFunction void Pages:AdvanceToNextPageAsync()
 Class DataStorePages : Pages
-Class Pages : Pages
+Class StandardPages : Pages
 Class PersonalServerService : Instance
 	Property string PersonalServerService.RoleSets [RobloxScriptSecurity]
 	Function void PersonalServerService:Demote(Instance player) [RobloxScriptSecurity]
