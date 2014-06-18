@@ -2306,6 +2306,23 @@
 
     <Item class="ReflectionMetadataClass">
       <Properties>
+        <string name="Name">ReplicatedFirst</string>
+        <string name="ExplorerOrder">3</string>
+        <string name="ExplorerImageIndex">70</string>
+        <string name="summary">A container whose contents are replicated to all clients (but not back to the server) first before anything else. Useful for creating loading guis, tutorials, etc.</string>
+      </Properties>
+      <Item class="ReflectionMetadataFunctions">
+        <Item class="ReflectionMetadataMember">
+          <Properties>
+            <string name="Name">RemoveRobloxLoadingScreen</string>
+            <string name="summary">Removes the default Roblox loading screen from view. Call this when you are ready to either show your own loading gui, or when the game is ready to play.</string>
+          </Properties>
+        </Item>
+      </Item>
+    </Item>
+
+    <Item class="ReflectionMetadataClass">
+      <Properties>
         <string name="Name">ServerStorage</string>
         <string name="ExplorerOrder">3</string>
         <string name="ExplorerImageIndex">69</string>
