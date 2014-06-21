@@ -102,6 +102,7 @@ Class Script : BaseScript
 	Property ProtectedString Script.Source [PluginSecurity]
 	Function string Script:GetHash() [RobloxPlaceSecurity]
 Class LocalScript : Script
+Class BinaryStringValue : Instance
 Class BindableEvent : Instance
 	Function void BindableEvent:Fire(Tuple arguments)
 	Event BindableEvent.Event(Tuple arguments)
@@ -168,6 +169,7 @@ Class CFrameValue : Instance
 	Property CoordinateFrame CFrameValue.Value
 	Event CFrameValue.Changed(CoordinateFrame value)
 	Event CFrameValue.changed(CoordinateFrame value) [deprecated]
+Class CSGDictionaryService : Instance
 Class CacheableContentProvider : Instance
 Class MeshContentProvider : CacheableContentProvider
 Class TextureContentProvider : CacheableContentProvider
@@ -1216,6 +1218,9 @@ Class SpawnLocation : Part
 	Property BrickColor SpawnLocation.TeamColor
 Class WedgePart : FormFactorPart
 Class ParallelRampPart : BasePart [notbrowsable]
+Class PartOperation : BasePart
+Class NegateOperation : PartOperation
+Class UnionOperation : PartOperation
 Class PrismPart : BasePart [notbrowsable]
 	Property PrismSides PrismPart.Sides
 Class PyramidPart : BasePart [notbrowsable]
@@ -1491,6 +1496,7 @@ Class ReflectionMetadataItem : Instance
 Class ReflectionMetadataClass : ReflectionMetadataItem
 	Property int ReflectionMetadataClass.ExplorerImageIndex
 	Property int ReflectionMetadataClass.ExplorerOrder
+	Property bool ReflectionMetadataClass.Insertable
 	Property string ReflectionMetadataClass.PreferredParent
 Class ReflectionMetadataMember : ReflectionMetadataItem
 Class ReflectionMetadataProperties : Instance
