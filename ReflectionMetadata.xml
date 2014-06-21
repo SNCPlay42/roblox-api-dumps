@@ -126,6 +126,11 @@
     </Item>
     <Item class="ReflectionMetadataClass">
       <Properties>
+        <string name="Name">CSGCacheService</string>
+      </Properties>
+    </Item>
+    <Item class="ReflectionMetadataClass">
+      <Properties>
         <string name="Name">AssetService</string>
         <string name="summary">A service used to set and get information about assets stored on the Roblox website.</string>
       </Properties>
@@ -3667,6 +3672,26 @@
         <string name="summary">An object used to make dialog trees to converse with players</string>
         <string name="ExplorerOrder">22</string>
         <string name="ExplorerImageIndex">63</string>
+      </Properties>
+    </Item>
+    <Item class="ReflectionMetadataClass">
+      <Properties>
+        <string name="Name">UnionOperation</string>
+        <string name="summary">A Union operation on Parts</string>
+        <bool name="Browsable">true</bool>
+        <bool name="Insertable">false</bool>
+        <string name="ExplorerOrder">0</string>
+        <string name="ExplorerImageIndex">73</string>
+      </Properties>
+    </Item>
+    <Item class="ReflectionMetadataClass">
+      <Properties>
+        <string name="Name">NegateOperation</string>
+        <string name="summary">A Negate operation on Parts</string>
+        <bool name="Browsable">true</bool>
+        <bool name="Insertable">false</bool>
+        <string name="ExplorerOrder">0</string>
+        <string name="ExplorerImageIndex">72</string>
       </Properties>
     </Item>
     <Item class="ReflectionMetadataClass">
