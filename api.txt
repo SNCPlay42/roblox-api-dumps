@@ -1,3 +1,6 @@
+ERROR: Duplicate declaration of enum value HumanoidStateType.Running:
+	EnumItem HumanoidStateType.Running : 10
+	EnumItem HumanoidStateType.Running : 8
 Class Instance [notbrowsable]
 	Property bool Instance.Archivable
 	Property string Instance.ClassName [readonly]
