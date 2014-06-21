@@ -1,3 +1,6 @@
+ERROR: Duplicate declaration of enum value HumanoidStateType.Running:
+	EnumItem HumanoidStateType.Running : 10
+	EnumItem HumanoidStateType.Running : 8
 Class Instance [notbrowsable]
 	Property bool Instance.Archivable
 	Property string Instance.ClassName [readonly]
@@ -102,6 +105,7 @@ Class Script : BaseScript
 	Property ProtectedString Script.Source [PluginSecurity]
 	Function string Script:GetHash() [RobloxPlaceSecurity]
 Class LocalScript : Script
+Class BinaryStringValue : Instance
 Class BindableEvent : Instance
 	Function void BindableEvent:Fire(Tuple arguments)
 	Event BindableEvent.Event(Tuple arguments)
@@ -168,6 +172,7 @@ Class CFrameValue : Instance
 	Property CoordinateFrame CFrameValue.Value
 	Event CFrameValue.Changed(CoordinateFrame value)
 	Event CFrameValue.changed(CoordinateFrame value) [deprecated]
+Class CSGDictionaryService : Instance
 Class CacheableContentProvider : Instance
 Class MeshContentProvider : CacheableContentProvider
 Class TextureContentProvider : CacheableContentProvider
@@ -312,6 +317,7 @@ Class FileMesh : DataModelMesh
 Class SpecialMesh : FileMesh
 	Property MeshType SpecialMesh.MeshType
 Class DataStoreService : Instance
+	Property bool DataStoreService.LegacyNamingScheme [LocalUserSecurity]
 	Function Instance DataStoreService:GetDataStore(string name, string scope = global)
 	Function Instance DataStoreService:GetGlobalDataStore()
 	Function Instance DataStoreService:GetOrderedDataStore(string name, string scope = global)
@@ -388,6 +394,10 @@ Class DebuggerManager : Instance [notCreatable]
 	Function Instance DebuggerManager:AddDebugger(Instance script)
 	Function void DebuggerManager:EnableDebugging() [LocalUserSecurity]
 	Function Objects DebuggerManager:GetDebuggers()
+	Function void DebuggerManager:Resume()
+	Function void DebuggerManager:StepIn()
+	Function void DebuggerManager:StepOut()
+	Function void DebuggerManager:StepOver()
 	Event DebuggerManager.DebuggerAdded(Instance debugger)
 	Event DebuggerManager.DebuggerRemoved(Instance debugger)
 Class DebuggerWatch : Instance
@@ -736,13 +746,20 @@ Class GuiService : Instance [notCreatable]
 	Function void GuiService:AddCenterDialog(Instance dialog, CenterDialogType centerDialogType, Function showFunction, Function hideFunction) [RobloxScriptSecurity]
 	Function void GuiService:AddKey(string key) [RobloxScriptSecurity]
 	Function void GuiService:AddSpecialKey(SpecialKey key) [RobloxScriptSecurity]
+	Function int GuiService:GetBrickCount() [RobloxScriptSecurity]
+	Function int GuiService:GetConnectorCount() [RobloxScriptSecurity]
+	Function string GuiService:GetErrorMessage() [RobloxScriptSecurity]
+	Function int GuiService:GetInstanceCount() [RobloxScriptSecurity]
+	Function int GuiService:GetVoxelCount() [RobloxScriptSecurity]
 	Function void GuiService:OpenBrowserWindow(string url) [RobloxScriptSecurity]
 	Function void GuiService:RemoveCenterDialog(Instance dialog) [RobloxScriptSecurity]
 	Function void GuiService:RemoveKey(string key) [RobloxScriptSecurity]
 	Function void GuiService:SendNotification(string title, string text, string image, int duration, Function callback) [RobloxScriptSecurity]
+	Function void GuiService:SetErrorMessage(string errorMessage) [LocalUserSecurity]
 	Function void GuiService:SetGlobalGuiInset(int x1, int y1, int x2, int y2) [RobloxScriptSecurity]
 	YieldFunction Vector2 GuiService:GetScreenResolution() [RobloxScriptSecurity]
 	Event GuiService.BrowserWindowClosed() [RobloxScriptSecurity]
+	Event GuiService.ErrorMessageChanged(string newErrorMessage) [RobloxScriptSecurity]
 	Event GuiService.EscapeKeyPressed() [RobloxScriptSecurity]
 	Event GuiService.KeyPressed(string key, string modifiers) [RobloxScriptSecurity]
 	Event GuiService.SpecialKeyPressed(SpecialKey key, string modifiers) [RobloxScriptSecurity]
@@ -958,6 +975,7 @@ Class LuaSettings : Instance
 	Property float LuaSettings.WaitingThreadsBudget
 Class LuaWebService : Instance
 Class MarketplaceService : Instance
+	Function void MarketplaceService:PromptNativePurchase(Instance player, string productId) [RobloxScriptSecurity]
 	Function void MarketplaceService:PromptProductPurchase(Instance player, int productId, bool equipIfPurchased = true, CurrencyType currencyType = Default)
 	Function void MarketplaceService:PromptPurchase(Instance player, int assetId, bool equipIfPurchased = true, CurrencyType currencyType = Default)
 	Function void MarketplaceService:PromptThirdPartyPurchase(Instance player, string productId) [RobloxPlaceSecurity]
@@ -968,10 +986,12 @@ Class MarketplaceService : Instance
 	Function void MarketplaceService:SignalPromptProductPurchaseFinished(int userId, int productId, bool success) [RobloxScriptSecurity]
 	Function void MarketplaceService:SignalPromptPurchaseFinished(Instance player, int assetId, bool success) [RobloxScriptSecurity]
 	Function void MarketplaceService:SignalServerLuaDialogClosed(bool value) [RobloxScriptSecurity]
+	YieldFunction Instance MarketplaceService:GetDeveloperProductsAsync()
 	YieldFunction Dictionary MarketplaceService:GetProductInfo(int assetId, InfoType infoType = Asset)
 	YieldFunction bool MarketplaceService:PlayerOwnsAsset(Instance player, int assetId)
 	Event MarketplaceService.ClientLuaDialogRequested(Tuple arguments) [RobloxScriptSecurity]
 	Event MarketplaceService.ClientPurchaseSuccess(string ticket, int playerId, int productId) [RobloxScriptSecurity]
+	Event MarketplaceService.NativePurchaseFinished(Instance player, string productId, bool wasPurchased) [RobloxScriptSecurity]
 	Event MarketplaceService.PromptProductPurchaseFinished(int userId, int productId, bool isPurchased) [deprecated]
 	Event MarketplaceService.PromptProductPurchaseRequested(Instance player, int productId, bool equipIfPurchased, CurrencyType currencyType) [RobloxScriptSecurity]
 	Event MarketplaceService.PromptPurchaseFinished(Instance player, int assetId, bool isPurchased)
@@ -1173,7 +1193,7 @@ Class BasePart : PVInstance [notbrowsable]
 	Function bool BasePart:resize(NormalId normalId, int deltaAmount) [deprecated]
 	Event BasePart.LocalSimulationTouched(Instance part) [deprecated]
 	Event BasePart.OutfitChanged() [deprecated]
-	Event BasePart.StoppedTouching(Instance otherPart)
+	Event BasePart.StoppedTouching(Instance otherPart) [deprecated]
 	Event BasePart.TouchEnded(Instance otherPart)
 	Event BasePart.Touched(Instance otherPart)
 	Event BasePart.touched(Instance otherPart) [deprecated]
@@ -1208,6 +1228,9 @@ Class SpawnLocation : Part
 	Property BrickColor SpawnLocation.TeamColor
 Class WedgePart : FormFactorPart
 Class ParallelRampPart : BasePart [notbrowsable]
+Class PartOperation : BasePart
+Class NegateOperation : PartOperation
+Class UnionOperation : PartOperation
 Class PrismPart : BasePart [notbrowsable]
 	Property PrismSides PrismPart.Sides
 Class PyramidPart : BasePart [notbrowsable]
@@ -1287,6 +1310,8 @@ Class Pages : Instance
 	Property bool Pages.IsFinished [readonly]
 	Function Array Pages:GetCurrentPage()
 	YieldFunction void Pages:AdvanceToNextPageAsync()
+Class DataStorePages : Pages
+Class StandardPages : Pages
 Class PersonalServerService : Instance
 	Property string PersonalServerService.RoleSets [RobloxScriptSecurity]
 	Function void PersonalServerService:Demote(Instance player) [RobloxScriptSecurity]
@@ -1481,6 +1506,7 @@ Class ReflectionMetadataItem : Instance
 Class ReflectionMetadataClass : ReflectionMetadataItem
 	Property int ReflectionMetadataClass.ExplorerImageIndex
 	Property int ReflectionMetadataClass.ExplorerOrder
+	Property bool ReflectionMetadataClass.Insertable
 	Property string ReflectionMetadataClass.PreferredParent
 Class ReflectionMetadataMember : ReflectionMetadataItem
 Class ReflectionMetadataProperties : Instance
@@ -1576,14 +1602,14 @@ Class ScriptDebugger : Instance [notCreatable]
 	Function Map ScriptDebugger:GetUpvalues(int stackFrame = 0)
 	Function Variant ScriptDebugger:GetWatchValue(Instance watch)
 	Function Objects ScriptDebugger:GetWatches()
-	Function void ScriptDebugger:Resume()
+	Function void ScriptDebugger:Resume() [deprecated]
 	Function Instance ScriptDebugger:SetBreakpoint(int line)
 	Function void ScriptDebugger:SetGlobal(string name, Variant value)
 	Function void ScriptDebugger:SetLocal(string name, Variant value, int stackFrame = 0)
 	Function void ScriptDebugger:SetUpvalue(string name, Variant value, int stackFrame = 0)
-	Function void ScriptDebugger:StepIn()
-	Function void ScriptDebugger:StepOut()
-	Function void ScriptDebugger:StepOver()
+	Function void ScriptDebugger:StepIn() [deprecated]
+	Function void ScriptDebugger:StepOut() [deprecated]
+	Function void ScriptDebugger:StepOver() [deprecated]
 	Event ScriptDebugger.BreakpointAdded(Instance breakpoint)
 	Event ScriptDebugger.BreakpointRemoved(Instance breakpoint)
 	Event ScriptDebugger.EncounteredBreak(int line)
@@ -1829,7 +1855,7 @@ Class TouchTransmitter : Instance [notbrowsable] [notCreatable]
 Class TweenService : Instance
 Class UserGameSettings : Instance
 	Property bool UserGameSettings.AllTutorialsDisabled
-	Property CameraMode UserGameSettings.CameraMode
+	Property CustomCameraMode UserGameSettings.CameraMode
 	Property ControlMode UserGameSettings.ControlMode
 	Property bool UserGameSettings.Fullscreen
 	Property UploadSetting UserGameSettings.ImageUploadPromptBehavior
@@ -1849,6 +1875,7 @@ Class UserInputService : Instance
 	Property bool UserInputService.ModalEnabled
 	Property bool UserInputService.MouseEnabled [readonly]
 	Property bool UserInputService.TouchEnabled [readonly]
+	Function Platform UserInputService:GetPlatform() [RobloxScriptSecurity]
 	Function bool UserInputService:IsLuaTouchControls() [RobloxScriptSecurity]
 	Function void UserInputService:RotateCamera(Vector2 positionDelta) [RobloxScriptSecurity]
 	Function void UserInputService:ZoomCamera(float zoomDelta) [RobloxScriptSecurity]
@@ -1939,10 +1966,6 @@ Enum ButtonStyle
 Enum CameraMode
 	EnumItem CameraMode.Classic : 0
 	EnumItem CameraMode.LockFirstPerson : 1
-Enum CameraMode
-	EnumItem CameraMode.Default : 0
-	EnumItem CameraMode.Follow : 2
-	EnumItem CameraMode.Classic : 1
 Enum CameraPanMode
 	EnumItem CameraPanMode.Classic : 0
 	EnumItem CameraPanMode.EdgeBump : 1
@@ -2021,6 +2044,10 @@ Enum CurrencyType
 	EnumItem CurrencyType.Default : 0
 	EnumItem CurrencyType.Robux : 1
 	EnumItem CurrencyType.Tix : 2
+Enum CustomCameraMode
+	EnumItem CustomCameraMode.Default : 0
+	EnumItem CustomCameraMode.Follow : 2
+	EnumItem CustomCameraMode.Classic : 1
 Enum D3DDEVTYPE
 	EnumItem D3DDEVTYPE.D3DDEVTYPE_HAL : 1
 	EnumItem D3DDEVTYPE.D3DDEVTYPE_REF : 2
@@ -2519,6 +2546,9 @@ Enum Material
 	EnumItem Material.Sand : 1296
 	EnumItem Material.Fabric : 1312
 	EnumItem Material.SmoothPlastic : 272
+	EnumItem Material.WoodPlanks : 528
+	EnumItem Material.Cobblestone : 880
+	EnumItem Material.Metal : 1088
 Enum MembershipType
 	EnumItem MembershipType.None : 0
 	EnumItem MembershipType.BuildersClub : 1
@@ -2582,6 +2612,12 @@ Enum PhysicsSendMethod
 	EnumItem PhysicsSendMethod.ErrorComputation2 : 1
 	EnumItem PhysicsSendMethod.RoundRobin : 2
 	EnumItem PhysicsSendMethod.TopNErrors : 3
+Enum Platform
+	EnumItem Platform.Windows : 0
+	EnumItem Platform.OSX : 1
+	EnumItem Platform.IOS : 2
+	EnumItem Platform.Android : 3
+	EnumItem Platform.None : 4
 Enum PlayerChatType
 	EnumItem PlayerChatType.All : 0
 	EnumItem PlayerChatType.Team : 1
