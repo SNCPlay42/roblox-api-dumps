@@ -1,6 +1,6 @@
-SetupVersion: version-160e66fd833e4ad6
-ExeVersion: 0.156.0.48006
+SetupVersion: version-55f77f1a82ac49e3
+ExeVersion: 0.156.0.48019
 Site: gametest1.robloxlabs.com
-Date: 2014-06-24T03:26:33+0000
-Studio-SetupVersion: version-7071932a2f1940d1
-Studio-ExeVersion: 0.156.0.48006
+Date: 2014-06-24T19:01:33+0000
+Studio-SetupVersion: version-06d2e9cf3f8b40fe
+Studio-ExeVersion: 0.156.0.48019
