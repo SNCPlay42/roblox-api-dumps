@@ -3677,7 +3677,7 @@
     <Item class="ReflectionMetadataClass">
       <Properties>
         <string name="Name">UnionOperation</string>
-        <string name="summary">A Union operation on Parts</string>
+        <string name="summary">A UnionOperation is a union of multiple parts</string>
         <bool name="Browsable">true</bool>
         <bool name="Insertable">false</bool>
         <string name="ExplorerOrder">0</string>
@@ -3687,7 +3687,7 @@
     <Item class="ReflectionMetadataClass">
       <Properties>
         <string name="Name">NegateOperation</string>
-        <string name="summary">A Negate operation on Parts</string>
+        <string name="summary">A NegateOperation can be used to create holes in other parts</string>
         <bool name="Browsable">true</bool>
         <bool name="Insertable">false</bool>
         <string name="ExplorerOrder">0</string>
