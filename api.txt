@@ -963,6 +963,7 @@ Class LuaSettings : Instance
 	Property float LuaSettings.WaitingThreadsBudget
 Class LuaWebService : Instance
 Class MarketplaceService : Instance
+	Function void MarketplaceService:PromptNativePurchase(Instance player, string productId) [RobloxScriptSecurity]
 	Function void MarketplaceService:PromptProductPurchase(Instance player, int productId, bool equipIfPurchased = true, CurrencyType currencyType = Default)
 	Function void MarketplaceService:PromptPurchase(Instance player, int assetId, bool equipIfPurchased = true, CurrencyType currencyType = Default)
 	Function void MarketplaceService:PromptThirdPartyPurchase(Instance player, string productId) [RobloxPlaceSecurity]
@@ -978,6 +979,7 @@ Class MarketplaceService : Instance
 	YieldFunction bool MarketplaceService:PlayerOwnsAsset(Instance player, int assetId)
 	Event MarketplaceService.ClientLuaDialogRequested(Tuple arguments) [RobloxScriptSecurity]
 	Event MarketplaceService.ClientPurchaseSuccess(string ticket, int playerId, int productId) [RobloxScriptSecurity]
+	Event MarketplaceService.NativePurchaseFinished(Instance player, string productId, bool wasPurchased) [RobloxScriptSecurity]
 	Event MarketplaceService.PromptProductPurchaseFinished(int userId, int productId, bool isPurchased) [deprecated]
 	Event MarketplaceService.PromptProductPurchaseRequested(Instance player, int productId, bool equipIfPurchased, CurrencyType currencyType) [RobloxScriptSecurity]
 	Event MarketplaceService.PromptPurchaseFinished(Instance player, int assetId, bool isPurchased)
@@ -1179,7 +1181,7 @@ Class BasePart : PVInstance [notbrowsable]
 	Function bool BasePart:resize(NormalId normalId, int deltaAmount) [deprecated]
 	Event BasePart.LocalSimulationTouched(Instance part) [deprecated]
 	Event BasePart.OutfitChanged() [deprecated]
-	Event BasePart.StoppedTouching(Instance otherPart)
+	Event BasePart.StoppedTouching(Instance otherPart) [deprecated]
 	Event BasePart.TouchEnded(Instance otherPart)
 	Event BasePart.Touched(Instance otherPart)
 	Event BasePart.touched(Instance otherPart) [deprecated]
@@ -1294,7 +1296,7 @@ Class Pages : Instance
 	Function Array Pages:GetCurrentPage()
 	YieldFunction void Pages:AdvanceToNextPageAsync()
 Class DataStorePages : Pages
-Class Pages : Pages
+Class StandardPages : Pages
 Class PersonalServerService : Instance
 	Property string PersonalServerService.RoleSets [RobloxScriptSecurity]
 	Function void PersonalServerService:Demote(Instance player) [RobloxScriptSecurity]
@@ -1837,7 +1839,7 @@ Class TouchTransmitter : Instance [notbrowsable] [notCreatable]
 Class TweenService : Instance
 Class UserGameSettings : Instance
 	Property bool UserGameSettings.AllTutorialsDisabled
-	Property CameraMode UserGameSettings.CameraMode
+	Property CustomCameraMode UserGameSettings.CameraMode
 	Property ControlMode UserGameSettings.ControlMode
 	Property bool UserGameSettings.Fullscreen
 	Property UploadSetting UserGameSettings.ImageUploadPromptBehavior
@@ -1857,6 +1859,7 @@ Class UserInputService : Instance
 	Property bool UserInputService.ModalEnabled
 	Property bool UserInputService.MouseEnabled [readonly]
 	Property bool UserInputService.TouchEnabled [readonly]
+	Function Platform UserInputService:GetPlatform() [RobloxScriptSecurity]
 	Function bool UserInputService:IsLuaTouchControls() [RobloxScriptSecurity]
 	Function void UserInputService:RotateCamera(Vector2 positionDelta) [RobloxScriptSecurity]
 	Function void UserInputService:ZoomCamera(float zoomDelta) [RobloxScriptSecurity]
@@ -1947,10 +1950,6 @@ Enum ButtonStyle
 Enum CameraMode
 	EnumItem CameraMode.Classic : 0
 	EnumItem CameraMode.LockFirstPerson : 1
-Enum CameraMode
-	EnumItem CameraMode.Default : 0
-	EnumItem CameraMode.Follow : 2
-	EnumItem CameraMode.Classic : 1
 Enum CameraPanMode
 	EnumItem CameraPanMode.Classic : 0
 	EnumItem CameraPanMode.EdgeBump : 1
@@ -2029,6 +2028,10 @@ Enum CurrencyType
 	EnumItem CurrencyType.Default : 0
 	EnumItem CurrencyType.Robux : 1
 	EnumItem CurrencyType.Tix : 2
+Enum CustomCameraMode
+	EnumItem CustomCameraMode.Default : 0
+	EnumItem CustomCameraMode.Follow : 2
+	EnumItem CustomCameraMode.Classic : 1
 Enum D3DDEVTYPE
 	EnumItem D3DDEVTYPE.D3DDEVTYPE_HAL : 1
 	EnumItem D3DDEVTYPE.D3DDEVTYPE_REF : 2
@@ -2527,6 +2530,9 @@ Enum Material
 	EnumItem Material.Sand : 1296
 	EnumItem Material.Fabric : 1312
 	EnumItem Material.SmoothPlastic : 272
+	EnumItem Material.Metal : 1088
+	EnumItem Material.WoodPlanks : 528
+	EnumItem Material.Cobblestone : 880
 Enum MembershipType
 	EnumItem MembershipType.None : 0
 	EnumItem MembershipType.BuildersClub : 1
@@ -2590,6 +2596,12 @@ Enum PhysicsSendMethod
 	EnumItem PhysicsSendMethod.ErrorComputation2 : 1
 	EnumItem PhysicsSendMethod.RoundRobin : 2
 	EnumItem PhysicsSendMethod.TopNErrors : 3
+Enum Platform
+	EnumItem Platform.Windows : 0
+	EnumItem Platform.OSX : 1
+	EnumItem Platform.IOS : 2
+	EnumItem Platform.Android : 3
+	EnumItem Platform.None : 4
 Enum PlayerChatType
 	EnumItem PlayerChatType.All : 0
 	EnumItem PlayerChatType.Team : 1
