@@ -2543,9 +2543,9 @@ Enum Material
 	EnumItem Material.Sand : 1296
 	EnumItem Material.Fabric : 1312
 	EnumItem Material.SmoothPlastic : 272
-	EnumItem Material.Metal : 1088
 	EnumItem Material.WoodPlanks : 528
 	EnumItem Material.Cobblestone : 880
+	EnumItem Material.Metal : 1088
 Enum MembershipType
 	EnumItem MembershipType.None : 0
 	EnumItem MembershipType.BuildersClub : 1
