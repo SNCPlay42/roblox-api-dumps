@@ -1,6 +1,3 @@
-ERROR: Duplicate declaration of enum value HumanoidStateType.Running:
-	EnumItem HumanoidStateType.Running : 10
-	EnumItem HumanoidStateType.Running : 8
 Class Instance [notbrowsable]
 	Property bool Instance.Archivable
 	Property string Instance.ClassName [readonly]
@@ -2237,7 +2234,7 @@ Enum HttpContentType
 Enum HumanoidStateType
 	EnumItem HumanoidStateType.FallingDown : 0
 	EnumItem HumanoidStateType.Running : 8
-	EnumItem HumanoidStateType.Running : 10
+	EnumItem HumanoidStateType.RunningNoPhysics : 10
 	EnumItem HumanoidStateType.Climbing : 12
 	EnumItem HumanoidStateType.StrafingNoPhysics : 11
 	EnumItem HumanoidStateType.Ragdoll : 1
