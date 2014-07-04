@@ -1310,6 +1310,13 @@ Class Pages : Instance
 	YieldFunction void Pages:AdvanceToNextPageAsync()
 Class DataStorePages : Pages
 Class StandardPages : Pages
+Class Path : Instance
+	Property PathStatus Path.Status [readonly]
+	Function Array Path:GetPointCoordinates()
+	YieldFunction int Path:CheckOcclusionAsync(int start)
+Class PathfindingService : Instance
+	Property float PathfindingService.EmptyCutoff
+	YieldFunction Instance PathfindingService:ComputeRawPathAsync(Vector3 start, Vector3 finish, float maxDistance)
 Class PersonalServerService : Instance
 	Property string PersonalServerService.RoleSets [RobloxScriptSecurity]
 	Function void PersonalServerService:Demote(Instance player) [RobloxScriptSecurity]
@@ -2607,6 +2614,12 @@ Enum PartType
 	EnumItem PartType.Ball : 0
 	EnumItem PartType.Block : 1
 	EnumItem PartType.Cylinder : 2
+Enum PathStatus
+	EnumItem PathStatus.Success : 0
+	EnumItem PathStatus.ClosestNoPath : 1
+	EnumItem PathStatus.ClosestOutOfRange : 2
+	EnumItem PathStatus.FailStartNotEmpty : 3
+	EnumItem PathStatus.FailFinishNotEmpty : 4
 Enum PhysicsReceiveMethod
 	EnumItem PhysicsReceiveMethod.Direct : 0
 	EnumItem PhysicsReceiveMethod.Interpolation : 1
