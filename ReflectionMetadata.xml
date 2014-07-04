@@ -3671,6 +3671,26 @@
     </Item>
     <Item class="ReflectionMetadataClass">
       <Properties>
+        <string name="Name">UnionOperation</string>
+        <string name="summary">A UnionOperation is a union of multiple parts</string>
+        <bool name="Browsable">true</bool>
+        <bool name="Insertable">false</bool>
+        <string name="ExplorerOrder">0</string>
+        <string name="ExplorerImageIndex">73</string>
+      </Properties>
+    </Item>
+    <Item class="ReflectionMetadataClass">
+      <Properties>
+        <string name="Name">NegateOperation</string>
+        <string name="summary">A NegateOperation can be used to create holes in other parts</string>
+        <bool name="Browsable">true</bool>
+        <bool name="Insertable">false</bool>
+        <string name="ExplorerOrder">0</string>
+        <string name="ExplorerImageIndex">72</string>
+      </Properties>
+    </Item>
+    <Item class="ReflectionMetadataClass">
+      <Properties>
         <string name="Name">Terrain</string>
         <string name="summary">Object representing a high performance bounded grid of static 4x4 parts</string>
         <bool name="Browsable">true</bool>
