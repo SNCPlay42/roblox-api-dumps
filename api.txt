@@ -822,6 +822,7 @@ Class Humanoid : Instance
 	Event Humanoid.Strafing(bool active)
 	Event Humanoid.Swimming(float speed)
 Class InputObject : Instance
+	Property Vector3 InputObject.Delta
 	Property KeyCode InputObject.KeyCode
 	Property Vector3 InputObject.Position
 	Property UserInputState InputObject.UserInputState
@@ -1873,7 +1874,9 @@ Class UserInputService : Instance
 	Property bool UserInputService.InCameraGesture [RobloxScriptSecurity]
 	Property bool UserInputService.KeyboardEnabled [readonly]
 	Property bool UserInputService.ModalEnabled
+	Property MouseBehavior UserInputService.MouseBehavior
 	Property bool UserInputService.MouseEnabled [readonly]
+	Property bool UserInputService.MouseIconEnabled
 	Property bool UserInputService.TouchEnabled [readonly]
 	Function Platform UserInputService:GetPlatform() [RobloxScriptSecurity]
 	Function bool UserInputService:IsLuaTouchControls() [RobloxScriptSecurity]
@@ -2572,6 +2575,9 @@ Enum MessageType
 	EnumItem MessageType.MessageInfo : 1
 	EnumItem MessageType.MessageWarning : 2
 	EnumItem MessageType.MessageError : 3
+Enum MouseBehavior
+	EnumItem MouseBehavior.Default : 0
+	EnumItem MouseBehavior.LockCenter : 1
 Enum MoveState
 	EnumItem MoveState.Stopped : 0
 	EnumItem MoveState.Coasting : 1
