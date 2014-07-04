@@ -977,9 +977,6 @@ Class MarketplaceService : Instance
 	Function void MarketplaceService:PromptProductPurchase(Instance player, int productId, bool equipIfPurchased = true, CurrencyType currencyType = Default)
 	Function void MarketplaceService:PromptPurchase(Instance player, int assetId, bool equipIfPurchased = true, CurrencyType currencyType = Default)
 	Function void MarketplaceService:PromptThirdPartyPurchase(Instance player, string productId) [RobloxPlaceSecurity]
-	Function void MarketplaceService:SetDevProductInfoUrl(string url) [LocalUserSecurity]
-	Function void MarketplaceService:SetPlayerOwnsAssetUrl(string url) [LocalUserSecurity]
-	Function void MarketplaceService:SetProductInfoUrl(string url) [LocalUserSecurity]
 	Function void MarketplaceService:SignalClientPurchaseSuccess(string ticket, int playerId, int productId) [RobloxScriptSecurity]
 	Function void MarketplaceService:SignalPromptProductPurchaseFinished(int userId, int productId, bool success) [RobloxScriptSecurity]
 	Function void MarketplaceService:SignalPromptPurchaseFinished(Instance player, int assetId, bool success) [RobloxScriptSecurity]
