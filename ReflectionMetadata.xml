@@ -3678,6 +3678,14 @@
         <string name="ExplorerOrder">0</string>
         <string name="ExplorerImageIndex">73</string>
       </Properties>
+      <Item class="ReflectionMetadataProperties">
+        <Item class="ReflectionMetadataMember">
+          <Properties>
+            <string name="Name">UsePartColor</string>
+            <string name="summary">Override the colors of the mesh with the part color.</string>
+          </Properties>
+        </Item>
+      </Item>
     </Item>
     <Item class="ReflectionMetadataClass">
       <Properties>
@@ -3688,6 +3696,14 @@
         <string name="ExplorerOrder">0</string>
         <string name="ExplorerImageIndex">72</string>
       </Properties>
+      <Item class="ReflectionMetadataProperties">
+        <Item class="ReflectionMetadataMember">
+          <Properties>
+            <string name="Name">UsePartColor</string>
+            <string name="summary">Override the colors of the mesh with the part color.</string>
+          </Properties>
+        </Item>
+      </Item>
     </Item>
     <Item class="ReflectionMetadataClass">
       <Properties>

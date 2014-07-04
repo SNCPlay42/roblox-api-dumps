@@ -1227,6 +1227,7 @@ Class SpawnLocation : Part
 Class WedgePart : FormFactorPart
 Class ParallelRampPart : BasePart [notbrowsable]
 Class PartOperation : BasePart
+	Property bool PartOperation.UsePartColor
 Class NegateOperation : PartOperation
 Class UnionOperation : PartOperation
 Class PrismPart : BasePart [notbrowsable]
