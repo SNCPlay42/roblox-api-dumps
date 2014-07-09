@@ -1190,6 +1190,7 @@ Class BasePart : PVInstance [notbrowsable]
 	Function void BasePart:makeJoints() [deprecated]
 	Function bool BasePart:resize(NormalId normalId, int deltaAmount) [deprecated]
 	Event BasePart.LocalSimulationTouched(Instance part) [deprecated]
+	Event BasePart.NetworkOwnerChanged(SystemAddress systemAddress) [LocalUserSecurity]
 	Event BasePart.OutfitChanged() [deprecated]
 	Event BasePart.StoppedTouching(Instance otherPart) [deprecated]
 	Event BasePart.TouchEnded(Instance otherPart)
