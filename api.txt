@@ -1190,7 +1190,6 @@ Class BasePart : PVInstance [notbrowsable]
 	Function void BasePart:makeJoints() [deprecated]
 	Function bool BasePart:resize(NormalId normalId, int deltaAmount) [deprecated]
 	Event BasePart.LocalSimulationTouched(Instance part) [deprecated]
-	Event BasePart.NetworkOwnerChanged(SystemAddress systemAddress) [LocalUserSecurity]
 	Event BasePart.OutfitChanged() [deprecated]
 	Event BasePart.StoppedTouching(Instance otherPart) [deprecated]
 	Event BasePart.TouchEnded(Instance otherPart)
@@ -1228,7 +1227,6 @@ Class SpawnLocation : Part
 Class WedgePart : FormFactorPart
 Class ParallelRampPart : BasePart [notbrowsable]
 Class PartOperation : BasePart
-	Property bool PartOperation.UsePartColor
 Class NegateOperation : PartOperation
 Class UnionOperation : PartOperation
 Class PrismPart : BasePart [notbrowsable]
@@ -1559,6 +1557,7 @@ Class RenderSettings : Instance [notbrowsable]
 	Property QualityLevel RenderSettings.QualityLevel
 	Property bool RenderSettings.ReloadAssets
 	Property Resolution RenderSettings.Resolution
+	Property Shadow RenderSettings.Shadow
 	Property bool RenderSettings.ShowBoundingBoxes
 	Property bool RenderSettings.ShowInterpolationpath
 	Property int RenderSettings.TextureCacheSize
@@ -2755,6 +2754,11 @@ Enum SavedQualitySetting
 	EnumItem SavedQualitySetting.QualityLevel8 : 8
 	EnumItem SavedQualitySetting.QualityLevel9 : 9
 	EnumItem SavedQualitySetting.QualityLevel10 : 10
+Enum Shadow
+	EnumItem Shadow.Automatic : 0
+	EnumItem Shadow.All : 1
+	EnumItem Shadow.CharacterOnly : 3
+	EnumItem Shadow.Off : 2
 Enum SizeConstraint
 	EnumItem SizeConstraint.RelativeXY : 0
 	EnumItem SizeConstraint.RelativeXX : 1
