@@ -1061,6 +1061,9 @@ Class NetworkReplicator : Instance [notCreatable]
 	Function Instance NetworkReplicator:SendMarker() [LocalUserSecurity]
 	Function void NetworkReplicator:SetPropSyncExpiration(double seconds) [LocalUserSecurity]
 	Event NetworkReplicator.Disconnection(string peer, bool lostConnection) [LocalUserSecurity]
+	Event NetworkReplicator.StatsReceived(Dictionary stats) [RobloxScriptSecurity]
+Class ClientReplicator : NetworkReplicator [notCreatable]
+	Function void ClientReplicator:RequestServerStats(bool request) [RobloxScriptSecurity]
 Class ServerReplicator : NetworkReplicator [notCreatable]
 	Function void ServerReplicator:PreventTerrainChanges() [RobloxPlaceSecurity]
 	Function void ServerReplicator:SetBasicFilteringEnabled(bool value) [RobloxPlaceSecurity]
@@ -2543,9 +2546,9 @@ Enum Material
 	EnumItem Material.Sand : 1296
 	EnumItem Material.Fabric : 1312
 	EnumItem Material.SmoothPlastic : 272
+	EnumItem Material.Metal : 1088
 	EnumItem Material.WoodPlanks : 528
 	EnumItem Material.Cobblestone : 880
-	EnumItem Material.Metal : 1088
 Enum MembershipType
 	EnumItem MembershipType.None : 0
 	EnumItem MembershipType.BuildersClub : 1
