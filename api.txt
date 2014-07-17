@@ -1546,7 +1546,6 @@ Class RenderHooksService : Instance
 	Function void RenderHooksService:ResizeWindow(int width, int height) [LocalUserSecurity]
 Class RenderSettings : Instance [notbrowsable]
 	Property AASamples RenderSettings.AASamples
-	Property bool RenderSettings.AlwaysDrawConnectors
 	Property Antialiasing RenderSettings.Antialiasing
 	Property int RenderSettings.AutoFRMLevel
 	Property bool RenderSettings.DebugDisableInterpolation
