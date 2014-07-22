@@ -102,7 +102,6 @@ Class Script : BaseScript
 	Property ProtectedString Script.Source [PluginSecurity]
 	Function string Script:GetHash() [RobloxPlaceSecurity]
 Class LocalScript : Script
-Class BinaryStringValue : Instance
 Class BindableEvent : Instance
 	Function void BindableEvent:Fire(Tuple arguments)
 	Event BindableEvent.Event(Tuple arguments)
@@ -169,7 +168,6 @@ Class CFrameValue : Instance
 	Property CoordinateFrame CFrameValue.Value
 	Event CFrameValue.Changed(CoordinateFrame value)
 	Event CFrameValue.changed(CoordinateFrame value) [deprecated]
-Class CSGDictionaryService : Instance
 Class CacheableContentProvider : Instance
 Class MeshContentProvider : CacheableContentProvider
 Class TextureContentProvider : CacheableContentProvider
@@ -314,7 +312,6 @@ Class FileMesh : DataModelMesh
 Class SpecialMesh : FileMesh
 	Property MeshType SpecialMesh.MeshType
 Class DataStoreService : Instance
-	Property bool DataStoreService.LegacyNamingScheme [LocalUserSecurity]
 	Function Instance DataStoreService:GetDataStore(string name, string scope = global)
 	Function Instance DataStoreService:GetGlobalDataStore()
 	Function Instance DataStoreService:GetOrderedDataStore(string name, string scope = global)
@@ -391,10 +388,6 @@ Class DebuggerManager : Instance [notCreatable]
 	Function Instance DebuggerManager:AddDebugger(Instance script)
 	Function void DebuggerManager:EnableDebugging() [LocalUserSecurity]
 	Function Objects DebuggerManager:GetDebuggers()
-	Function void DebuggerManager:Resume()
-	Function void DebuggerManager:StepIn()
-	Function void DebuggerManager:StepOut()
-	Function void DebuggerManager:StepOver()
 	Event DebuggerManager.DebuggerAdded(Instance debugger)
 	Event DebuggerManager.DebuggerRemoved(Instance debugger)
 Class DebuggerWatch : Instance
@@ -743,20 +736,13 @@ Class GuiService : Instance [notCreatable]
 	Function void GuiService:AddCenterDialog(Instance dialog, CenterDialogType centerDialogType, Function showFunction, Function hideFunction) [RobloxScriptSecurity]
 	Function void GuiService:AddKey(string key) [RobloxScriptSecurity]
 	Function void GuiService:AddSpecialKey(SpecialKey key) [RobloxScriptSecurity]
-	Function int GuiService:GetBrickCount() [RobloxScriptSecurity]
-	Function int GuiService:GetConnectorCount() [RobloxScriptSecurity]
-	Function string GuiService:GetErrorMessage() [RobloxScriptSecurity]
-	Function int GuiService:GetInstanceCount() [RobloxScriptSecurity]
-	Function int GuiService:GetVoxelCount() [RobloxScriptSecurity]
 	Function void GuiService:OpenBrowserWindow(string url) [RobloxScriptSecurity]
 	Function void GuiService:RemoveCenterDialog(Instance dialog) [RobloxScriptSecurity]
 	Function void GuiService:RemoveKey(string key) [RobloxScriptSecurity]
 	Function void GuiService:SendNotification(string title, string text, string image, int duration, Function callback) [RobloxScriptSecurity]
-	Function void GuiService:SetErrorMessage(string errorMessage) [LocalUserSecurity]
 	Function void GuiService:SetGlobalGuiInset(int x1, int y1, int x2, int y2) [RobloxScriptSecurity]
 	YieldFunction Vector2 GuiService:GetScreenResolution() [RobloxScriptSecurity]
 	Event GuiService.BrowserWindowClosed() [RobloxScriptSecurity]
-	Event GuiService.ErrorMessageChanged(string newErrorMessage) [RobloxScriptSecurity]
 	Event GuiService.EscapeKeyPressed() [RobloxScriptSecurity]
 	Event GuiService.KeyPressed(string key, string modifiers) [RobloxScriptSecurity]
 	Event GuiService.SpecialKeyPressed(SpecialKey key, string modifiers) [RobloxScriptSecurity]
@@ -822,7 +808,6 @@ Class Humanoid : Instance
 	Event Humanoid.Strafing(bool active)
 	Event Humanoid.Swimming(float speed)
 Class InputObject : Instance
-	Property Vector3 InputObject.Delta
 	Property KeyCode InputObject.KeyCode
 	Property Vector3 InputObject.Position
 	Property UserInputState InputObject.UserInputState
@@ -973,20 +958,20 @@ Class LuaSettings : Instance
 	Property float LuaSettings.WaitingThreadsBudget
 Class LuaWebService : Instance
 Class MarketplaceService : Instance
-	Function void MarketplaceService:PromptNativePurchase(Instance player, string productId) [RobloxScriptSecurity]
 	Function void MarketplaceService:PromptProductPurchase(Instance player, int productId, bool equipIfPurchased = true, CurrencyType currencyType = Default)
 	Function void MarketplaceService:PromptPurchase(Instance player, int assetId, bool equipIfPurchased = true, CurrencyType currencyType = Default)
 	Function void MarketplaceService:PromptThirdPartyPurchase(Instance player, string productId) [RobloxPlaceSecurity]
+	Function void MarketplaceService:SetDevProductInfoUrl(string url) [LocalUserSecurity]
+	Function void MarketplaceService:SetPlayerOwnsAssetUrl(string url) [LocalUserSecurity]
+	Function void MarketplaceService:SetProductInfoUrl(string url) [LocalUserSecurity]
 	Function void MarketplaceService:SignalClientPurchaseSuccess(string ticket, int playerId, int productId) [RobloxScriptSecurity]
 	Function void MarketplaceService:SignalPromptProductPurchaseFinished(int userId, int productId, bool success) [RobloxScriptSecurity]
 	Function void MarketplaceService:SignalPromptPurchaseFinished(Instance player, int assetId, bool success) [RobloxScriptSecurity]
 	Function void MarketplaceService:SignalServerLuaDialogClosed(bool value) [RobloxScriptSecurity]
-	YieldFunction Instance MarketplaceService:GetDeveloperProductsAsync()
 	YieldFunction Dictionary MarketplaceService:GetProductInfo(int assetId, InfoType infoType = Asset)
 	YieldFunction bool MarketplaceService:PlayerOwnsAsset(Instance player, int assetId)
 	Event MarketplaceService.ClientLuaDialogRequested(Tuple arguments) [RobloxScriptSecurity]
 	Event MarketplaceService.ClientPurchaseSuccess(string ticket, int playerId, int productId) [RobloxScriptSecurity]
-	Event MarketplaceService.NativePurchaseFinished(Instance player, string productId, bool wasPurchased) [RobloxScriptSecurity]
 	Event MarketplaceService.PromptProductPurchaseFinished(int userId, int productId, bool isPurchased) [deprecated]
 	Event MarketplaceService.PromptProductPurchaseRequested(Instance player, int productId, bool equipIfPurchased, CurrencyType currencyType) [RobloxScriptSecurity]
 	Event MarketplaceService.PromptPurchaseFinished(Instance player, int assetId, bool isPurchased)
@@ -1059,9 +1044,6 @@ Class NetworkReplicator : Instance [notCreatable]
 	Function Instance NetworkReplicator:SendMarker() [LocalUserSecurity]
 	Function void NetworkReplicator:SetPropSyncExpiration(double seconds) [LocalUserSecurity]
 	Event NetworkReplicator.Disconnection(string peer, bool lostConnection) [LocalUserSecurity]
-	Event NetworkReplicator.StatsReceived(Dictionary stats) [RobloxScriptSecurity]
-Class ClientReplicator : NetworkReplicator [notCreatable]
-	Function void ClientReplicator:RequestServerStats(bool request) [RobloxScriptSecurity]
 Class ServerReplicator : NetworkReplicator [notCreatable]
 	Function void ServerReplicator:PreventTerrainChanges() [RobloxPlaceSecurity]
 	Function void ServerReplicator:SetBasicFilteringEnabled(bool value) [RobloxPlaceSecurity]
@@ -1190,9 +1172,8 @@ Class BasePart : PVInstance [notbrowsable]
 	Function void BasePart:makeJoints() [deprecated]
 	Function bool BasePart:resize(NormalId normalId, int deltaAmount) [deprecated]
 	Event BasePart.LocalSimulationTouched(Instance part) [deprecated]
-	Event BasePart.NetworkOwnerChanged(SystemAddress systemAddress) [LocalUserSecurity]
 	Event BasePart.OutfitChanged() [deprecated]
-	Event BasePart.StoppedTouching(Instance otherPart) [deprecated]
+	Event BasePart.StoppedTouching(Instance otherPart)
 	Event BasePart.TouchEnded(Instance otherPart)
 	Event BasePart.Touched(Instance otherPart)
 	Event BasePart.touched(Instance otherPart) [deprecated]
@@ -1227,10 +1208,6 @@ Class SpawnLocation : Part
 	Property BrickColor SpawnLocation.TeamColor
 Class WedgePart : FormFactorPart
 Class ParallelRampPart : BasePart [notbrowsable]
-Class PartOperation : BasePart
-	Property bool PartOperation.UsePartColor
-Class NegateOperation : PartOperation
-Class UnionOperation : PartOperation
 Class PrismPart : BasePart [notbrowsable]
 	Property PrismSides PrismPart.Sides
 Class PyramidPart : BasePart [notbrowsable]
@@ -1310,15 +1287,6 @@ Class Pages : Instance
 	Property bool Pages.IsFinished [readonly]
 	Function Array Pages:GetCurrentPage()
 	YieldFunction void Pages:AdvanceToNextPageAsync()
-Class DataStorePages : Pages
-Class StandardPages : Pages
-Class Path : Instance
-	Property PathStatus Path.Status [readonly]
-	Function Array Path:GetPointCoordinates()
-	YieldFunction int Path:CheckOcclusionAsync(int start)
-Class PathfindingService : Instance
-	Property float PathfindingService.EmptyCutoff
-	YieldFunction Instance PathfindingService:ComputeRawPathAsync(Vector3 start, Vector3 finish, float maxDistance)
 Class PersonalServerService : Instance
 	Property string PersonalServerService.RoleSets [RobloxScriptSecurity]
 	Function void PersonalServerService:Demote(Instance player) [RobloxScriptSecurity]
@@ -1513,7 +1481,6 @@ Class ReflectionMetadataItem : Instance
 Class ReflectionMetadataClass : ReflectionMetadataItem
 	Property int ReflectionMetadataClass.ExplorerImageIndex
 	Property int ReflectionMetadataClass.ExplorerOrder
-	Property bool ReflectionMetadataClass.Insertable
 	Property string ReflectionMetadataClass.PreferredParent
 Class ReflectionMetadataMember : ReflectionMetadataItem
 Class ReflectionMetadataProperties : Instance
@@ -1546,6 +1513,7 @@ Class RenderHooksService : Instance
 	Function void RenderHooksService:ResizeWindow(int width, int height) [LocalUserSecurity]
 Class RenderSettings : Instance [notbrowsable]
 	Property AASamples RenderSettings.AASamples
+	Property bool RenderSettings.AlwaysDrawConnectors
 	Property Antialiasing RenderSettings.Antialiasing
 	Property int RenderSettings.AutoFRMLevel
 	Property bool RenderSettings.DebugDisableInterpolation
@@ -1558,6 +1526,7 @@ Class RenderSettings : Instance [notbrowsable]
 	Property QualityLevel RenderSettings.QualityLevel
 	Property bool RenderSettings.ReloadAssets
 	Property Resolution RenderSettings.Resolution
+	Property Shadow RenderSettings.Shadow
 	Property bool RenderSettings.ShowBoundingBoxes
 	Property bool RenderSettings.ShowInterpolationpath
 	Property int RenderSettings.TextureCacheSize
@@ -1607,14 +1576,14 @@ Class ScriptDebugger : Instance [notCreatable]
 	Function Map ScriptDebugger:GetUpvalues(int stackFrame = 0)
 	Function Variant ScriptDebugger:GetWatchValue(Instance watch)
 	Function Objects ScriptDebugger:GetWatches()
-	Function void ScriptDebugger:Resume() [deprecated]
+	Function void ScriptDebugger:Resume()
 	Function Instance ScriptDebugger:SetBreakpoint(int line)
 	Function void ScriptDebugger:SetGlobal(string name, Variant value)
 	Function void ScriptDebugger:SetLocal(string name, Variant value, int stackFrame = 0)
 	Function void ScriptDebugger:SetUpvalue(string name, Variant value, int stackFrame = 0)
-	Function void ScriptDebugger:StepIn() [deprecated]
-	Function void ScriptDebugger:StepOut() [deprecated]
-	Function void ScriptDebugger:StepOver() [deprecated]
+	Function void ScriptDebugger:StepIn()
+	Function void ScriptDebugger:StepOut()
+	Function void ScriptDebugger:StepOver()
 	Event ScriptDebugger.BreakpointAdded(Instance breakpoint)
 	Event ScriptDebugger.BreakpointRemoved(Instance breakpoint)
 	Event ScriptDebugger.EncounteredBreak(int line)
@@ -1860,7 +1829,7 @@ Class TouchTransmitter : Instance [notbrowsable] [notCreatable]
 Class TweenService : Instance
 Class UserGameSettings : Instance
 	Property bool UserGameSettings.AllTutorialsDisabled
-	Property CustomCameraMode UserGameSettings.CameraMode
+	Property CameraMode UserGameSettings.CameraMode
 	Property ControlMode UserGameSettings.ControlMode
 	Property bool UserGameSettings.Fullscreen
 	Property UploadSetting UserGameSettings.ImageUploadPromptBehavior
@@ -1878,11 +1847,8 @@ Class UserInputService : Instance
 	Property bool UserInputService.InCameraGesture [RobloxScriptSecurity]
 	Property bool UserInputService.KeyboardEnabled [readonly]
 	Property bool UserInputService.ModalEnabled
-	Property MouseBehavior UserInputService.MouseBehavior
 	Property bool UserInputService.MouseEnabled [readonly]
-	Property bool UserInputService.MouseIconEnabled
 	Property bool UserInputService.TouchEnabled [readonly]
-	Function Platform UserInputService:GetPlatform() [RobloxScriptSecurity]
 	Function bool UserInputService:IsLuaTouchControls() [RobloxScriptSecurity]
 	Function void UserInputService:RotateCamera(Vector2 positionDelta) [RobloxScriptSecurity]
 	Function void UserInputService:ZoomCamera(float zoomDelta) [RobloxScriptSecurity]
@@ -1973,6 +1939,10 @@ Enum ButtonStyle
 Enum CameraMode
 	EnumItem CameraMode.Classic : 0
 	EnumItem CameraMode.LockFirstPerson : 1
+Enum CameraMode
+	EnumItem CameraMode.Default : 0
+	EnumItem CameraMode.Follow : 2
+	EnumItem CameraMode.Classic : 1
 Enum CameraPanMode
 	EnumItem CameraPanMode.Classic : 0
 	EnumItem CameraPanMode.EdgeBump : 1
@@ -2051,10 +2021,6 @@ Enum CurrencyType
 	EnumItem CurrencyType.Default : 0
 	EnumItem CurrencyType.Robux : 1
 	EnumItem CurrencyType.Tix : 2
-Enum CustomCameraMode
-	EnumItem CustomCameraMode.Default : 0
-	EnumItem CustomCameraMode.Follow : 2
-	EnumItem CustomCameraMode.Classic : 1
 Enum D3DDEVTYPE
 	EnumItem D3DDEVTYPE.D3DDEVTYPE_HAL : 1
 	EnumItem D3DDEVTYPE.D3DDEVTYPE_REF : 2
@@ -2244,7 +2210,7 @@ Enum HttpContentType
 Enum HumanoidStateType
 	EnumItem HumanoidStateType.FallingDown : 0
 	EnumItem HumanoidStateType.Running : 8
-	EnumItem HumanoidStateType.RunningNoPhysics : 10
+	EnumItem HumanoidStateType.Running : 10
 	EnumItem HumanoidStateType.Climbing : 12
 	EnumItem HumanoidStateType.StrafingNoPhysics : 11
 	EnumItem HumanoidStateType.Ragdoll : 1
@@ -2553,9 +2519,6 @@ Enum Material
 	EnumItem Material.Sand : 1296
 	EnumItem Material.Fabric : 1312
 	EnumItem Material.SmoothPlastic : 272
-	EnumItem Material.Metal : 1088
-	EnumItem Material.WoodPlanks : 528
-	EnumItem Material.Cobblestone : 880
 Enum MembershipType
 	EnumItem MembershipType.None : 0
 	EnumItem MembershipType.BuildersClub : 1
@@ -2579,9 +2542,6 @@ Enum MessageType
 	EnumItem MessageType.MessageInfo : 1
 	EnumItem MessageType.MessageWarning : 2
 	EnumItem MessageType.MessageError : 3
-Enum MouseBehavior
-	EnumItem MouseBehavior.Default : 0
-	EnumItem MouseBehavior.LockCenter : 1
 Enum MoveState
 	EnumItem MoveState.Stopped : 0
 	EnumItem MoveState.Coasting : 1
@@ -2614,12 +2574,6 @@ Enum PartType
 	EnumItem PartType.Ball : 0
 	EnumItem PartType.Block : 1
 	EnumItem PartType.Cylinder : 2
-Enum PathStatus
-	EnumItem PathStatus.Success : 0
-	EnumItem PathStatus.ClosestNoPath : 1
-	EnumItem PathStatus.ClosestOutOfRange : 2
-	EnumItem PathStatus.FailStartNotEmpty : 3
-	EnumItem PathStatus.FailFinishNotEmpty : 4
 Enum PhysicsReceiveMethod
 	EnumItem PhysicsReceiveMethod.Direct : 0
 	EnumItem PhysicsReceiveMethod.Interpolation : 1
@@ -2628,12 +2582,6 @@ Enum PhysicsSendMethod
 	EnumItem PhysicsSendMethod.ErrorComputation2 : 1
 	EnumItem PhysicsSendMethod.RoundRobin : 2
 	EnumItem PhysicsSendMethod.TopNErrors : 3
-Enum Platform
-	EnumItem Platform.Windows : 0
-	EnumItem Platform.OSX : 1
-	EnumItem Platform.IOS : 2
-	EnumItem Platform.Android : 3
-	EnumItem Platform.None : 4
 Enum PlayerChatType
 	EnumItem PlayerChatType.All : 0
 	EnumItem PlayerChatType.Team : 1
@@ -2754,6 +2702,11 @@ Enum SavedQualitySetting
 	EnumItem SavedQualitySetting.QualityLevel8 : 8
 	EnumItem SavedQualitySetting.QualityLevel9 : 9
 	EnumItem SavedQualitySetting.QualityLevel10 : 10
+Enum Shadow
+	EnumItem Shadow.Automatic : 0
+	EnumItem Shadow.All : 1
+	EnumItem Shadow.CharacterOnly : 3
+	EnumItem Shadow.Off : 2
 Enum SizeConstraint
 	EnumItem SizeConstraint.RelativeXY : 0
 	EnumItem SizeConstraint.RelativeXX : 1
