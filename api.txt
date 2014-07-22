@@ -822,6 +822,7 @@ Class Humanoid : Instance
 	Event Humanoid.Strafing(bool active)
 	Event Humanoid.Swimming(float speed)
 Class InputObject : Instance
+	Property Vector3 InputObject.Delta
 	Property KeyCode InputObject.KeyCode
 	Property Vector3 InputObject.Position
 	Property UserInputState InputObject.UserInputState
@@ -976,9 +977,6 @@ Class MarketplaceService : Instance
 	Function void MarketplaceService:PromptProductPurchase(Instance player, int productId, bool equipIfPurchased = true, CurrencyType currencyType = Default)
 	Function void MarketplaceService:PromptPurchase(Instance player, int assetId, bool equipIfPurchased = true, CurrencyType currencyType = Default)
 	Function void MarketplaceService:PromptThirdPartyPurchase(Instance player, string productId) [RobloxPlaceSecurity]
-	Function void MarketplaceService:SetDevProductInfoUrl(string url) [LocalUserSecurity]
-	Function void MarketplaceService:SetPlayerOwnsAssetUrl(string url) [LocalUserSecurity]
-	Function void MarketplaceService:SetProductInfoUrl(string url) [LocalUserSecurity]
 	Function void MarketplaceService:SignalClientPurchaseSuccess(string ticket, int playerId, int productId) [RobloxScriptSecurity]
 	Function void MarketplaceService:SignalPromptProductPurchaseFinished(int userId, int productId, bool success) [RobloxScriptSecurity]
 	Function void MarketplaceService:SignalPromptPurchaseFinished(Instance player, int assetId, bool success) [RobloxScriptSecurity]
@@ -1192,6 +1190,7 @@ Class BasePart : PVInstance [notbrowsable]
 	Function void BasePart:makeJoints() [deprecated]
 	Function bool BasePart:resize(NormalId normalId, int deltaAmount) [deprecated]
 	Event BasePart.LocalSimulationTouched(Instance part) [deprecated]
+	Event BasePart.NetworkOwnerChanged(SystemAddress systemAddress) [LocalUserSecurity]
 	Event BasePart.OutfitChanged() [deprecated]
 	Event BasePart.StoppedTouching(Instance otherPart) [deprecated]
 	Event BasePart.TouchEnded(Instance otherPart)
@@ -1229,6 +1228,7 @@ Class SpawnLocation : Part
 Class WedgePart : FormFactorPart
 Class ParallelRampPart : BasePart [notbrowsable]
 Class PartOperation : BasePart
+	Property bool PartOperation.UsePartColor
 Class NegateOperation : PartOperation
 Class UnionOperation : PartOperation
 Class PrismPart : BasePart [notbrowsable]
@@ -1312,6 +1312,13 @@ Class Pages : Instance
 	YieldFunction void Pages:AdvanceToNextPageAsync()
 Class DataStorePages : Pages
 Class StandardPages : Pages
+Class Path : Instance
+	Property PathStatus Path.Status [readonly]
+	Function Array Path:GetPointCoordinates()
+	YieldFunction int Path:CheckOcclusionAsync(int start)
+Class PathfindingService : Instance
+	Property float PathfindingService.EmptyCutoff
+	YieldFunction Instance PathfindingService:ComputeRawPathAsync(Vector3 start, Vector3 finish, float maxDistance)
 Class PersonalServerService : Instance
 	Property string PersonalServerService.RoleSets [RobloxScriptSecurity]
 	Function void PersonalServerService:Demote(Instance player) [RobloxScriptSecurity]
@@ -1539,7 +1546,6 @@ Class RenderHooksService : Instance
 	Function void RenderHooksService:ResizeWindow(int width, int height) [LocalUserSecurity]
 Class RenderSettings : Instance [notbrowsable]
 	Property AASamples RenderSettings.AASamples
-	Property bool RenderSettings.AlwaysDrawConnectors
 	Property Antialiasing RenderSettings.Antialiasing
 	Property int RenderSettings.AutoFRMLevel
 	Property bool RenderSettings.DebugDisableInterpolation
@@ -1552,7 +1558,6 @@ Class RenderSettings : Instance [notbrowsable]
 	Property QualityLevel RenderSettings.QualityLevel
 	Property bool RenderSettings.ReloadAssets
 	Property Resolution RenderSettings.Resolution
-	Property Shadow RenderSettings.Shadow
 	Property bool RenderSettings.ShowBoundingBoxes
 	Property bool RenderSettings.ShowInterpolationpath
 	Property int RenderSettings.TextureCacheSize
@@ -1873,7 +1878,9 @@ Class UserInputService : Instance
 	Property bool UserInputService.InCameraGesture [RobloxScriptSecurity]
 	Property bool UserInputService.KeyboardEnabled [readonly]
 	Property bool UserInputService.ModalEnabled
+	Property MouseBehavior UserInputService.MouseBehavior
 	Property bool UserInputService.MouseEnabled [readonly]
+	Property bool UserInputService.MouseIconEnabled
 	Property bool UserInputService.TouchEnabled [readonly]
 	Function Platform UserInputService:GetPlatform() [RobloxScriptSecurity]
 	Function bool UserInputService:IsLuaTouchControls() [RobloxScriptSecurity]
@@ -2572,6 +2579,9 @@ Enum MessageType
 	EnumItem MessageType.MessageInfo : 1
 	EnumItem MessageType.MessageWarning : 2
 	EnumItem MessageType.MessageError : 3
+Enum MouseBehavior
+	EnumItem MouseBehavior.Default : 0
+	EnumItem MouseBehavior.LockCenter : 1
 Enum MoveState
 	EnumItem MoveState.Stopped : 0
 	EnumItem MoveState.Coasting : 1
@@ -2604,6 +2614,12 @@ Enum PartType
 	EnumItem PartType.Ball : 0
 	EnumItem PartType.Block : 1
 	EnumItem PartType.Cylinder : 2
+Enum PathStatus
+	EnumItem PathStatus.Success : 0
+	EnumItem PathStatus.ClosestNoPath : 1
+	EnumItem PathStatus.ClosestOutOfRange : 2
+	EnumItem PathStatus.FailStartNotEmpty : 3
+	EnumItem PathStatus.FailFinishNotEmpty : 4
 Enum PhysicsReceiveMethod
 	EnumItem PhysicsReceiveMethod.Direct : 0
 	EnumItem PhysicsReceiveMethod.Interpolation : 1
@@ -2738,11 +2754,6 @@ Enum SavedQualitySetting
 	EnumItem SavedQualitySetting.QualityLevel8 : 8
 	EnumItem SavedQualitySetting.QualityLevel9 : 9
 	EnumItem SavedQualitySetting.QualityLevel10 : 10
-Enum Shadow
-	EnumItem Shadow.Automatic : 0
-	EnumItem Shadow.All : 1
-	EnumItem Shadow.CharacterOnly : 3
-	EnumItem Shadow.Off : 2
 Enum SizeConstraint
 	EnumItem SizeConstraint.RelativeXY : 0
 	EnumItem SizeConstraint.RelativeXX : 1
