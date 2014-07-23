@@ -2583,6 +2583,7 @@ Enum MessageType
 Enum MouseBehavior
 	EnumItem MouseBehavior.Default : 0
 	EnumItem MouseBehavior.LockCenter : 1
+	EnumItem MouseBehavior.LockCurrentPosition : 2
 Enum MoveState
 	EnumItem MoveState.Stopped : 0
 	EnumItem MoveState.Coasting : 1
