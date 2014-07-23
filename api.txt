@@ -1892,6 +1892,8 @@ Class UserInputService : Instance
 	Event UserInputService.InputEnded(Instance input, bool gameProcessedEvent)
 	Event UserInputService.JumpRequest()
 	Event UserInputService.ProcessedEvent(Instance inputObject, bool processed) [RobloxScriptSecurity]
+	Event UserInputService.TextBoxFocusReleased(Instance textboxReleased)
+	Event UserInputService.TextBoxFocused(Instance textboxFocused)
 	Event UserInputService.TouchEnded(Instance touch, bool gameProcessedEvent)
 	Event UserInputService.TouchLongPress(Array touchPositions, UserInputState state, bool gameProcessedEvent)
 	Event UserInputService.TouchMoved(Instance touch, bool gameProcessedEvent)

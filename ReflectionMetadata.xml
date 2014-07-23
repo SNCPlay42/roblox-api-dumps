@@ -1385,6 +1385,19 @@
                 </Properties>
             </Item>
 
+            <Item class="ReflectionMetadataMember">
+                <Properties>
+                    <string name="Name">TextBoxFocused</string>
+                    <string name="summary">Fired when a user clicks/taps on a textbox to begin text entry. Argument is the textbox that was put in focus. This also fires if a textbox forces focus on the user. This event only fires locally.</string>
+                </Properties>
+            </Item>
+            <Item class="ReflectionMetadataMember">
+                <Properties>
+                    <string name="Name">TextBoxFocusReleased</string>
+                    <string name="summary">Fired when a user stops text entry into a textbox (usually by pressing return or clicking/tapping somewhere else on the screen). Argument is the textbox that was taken out of focus. This event only fires locally.</string>
+                </Properties>
+            </Item>
+
         </Item>
     </Item>
 
