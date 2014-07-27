@@ -169,7 +169,6 @@ Class CFrameValue : Instance
 	Property CoordinateFrame CFrameValue.Value
 	Event CFrameValue.Changed(CoordinateFrame value)
 	Event CFrameValue.changed(CoordinateFrame value) [deprecated]
-Class CSGDictionaryService : Instance
 Class CacheableContentProvider : Instance
 Class MeshContentProvider : CacheableContentProvider
 Class TextureContentProvider : CacheableContentProvider
@@ -456,6 +455,9 @@ Class Fire : Instance
 	Property float Fire.Size
 	Property float Fire.size [deprecated]
 Class FlagStandService : Instance
+Class FlyweightService : Instance
+Class CSGDictionaryService : FlyweightService
+Class NonReplicatedCSGDictionaryService : FlyweightService
 Class ForceField : Instance
 Class FriendService : Instance [notCreatable]
 	Function void FriendService:SetBreakFriendUrl(string url) [LocalUserSecurity]
