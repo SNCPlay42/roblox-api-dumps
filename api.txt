@@ -954,6 +954,7 @@ Class Lighting : Instance [notCreatable]
 	Event Lighting.LightingChanged(bool skyboxChanged)
 Class LocalWorkspace : Instance [notCreatable]
 Class LogService : Instance
+	Function void LogService:ExecuteScript(string source) [RobloxScriptSecurity]
 	Function Array LogService:GetLogHistory()
 	Function void LogService:RequestServerOutput() [RobloxScriptSecurity]
 	Event LogService.MessageOut(string message, MessageType messageType)
@@ -1886,20 +1887,22 @@ Class UserInputService : Instance
 	Function bool UserInputService:IsLuaTouchControls() [RobloxScriptSecurity]
 	Function void UserInputService:RotateCamera(Vector2 positionDelta) [RobloxScriptSecurity]
 	Function void UserInputService:ZoomCamera(float zoomDelta) [RobloxScriptSecurity]
-	Event UserInputService.InputBegan(Instance input)
-	Event UserInputService.InputChanged(Instance input)
-	Event UserInputService.InputEnded(Instance input)
+	Event UserInputService.InputBegan(Instance input, bool gameProcessedEvent)
+	Event UserInputService.InputChanged(Instance input, bool gameProcessedEvent)
+	Event UserInputService.InputEnded(Instance input, bool gameProcessedEvent)
 	Event UserInputService.JumpRequest()
 	Event UserInputService.ProcessedEvent(Instance inputObject, bool processed) [RobloxScriptSecurity]
-	Event UserInputService.TouchEnded(Instance touch)
-	Event UserInputService.TouchLongPress(Array touchPositions, UserInputState state)
-	Event UserInputService.TouchMoved(Instance touch)
-	Event UserInputService.TouchPan(Array touchPositions, Vector2 totalTranslation, Vector2 velocity, UserInputState state)
-	Event UserInputService.TouchPinch(Array touchPositions, float scale, float velocity, UserInputState state)
-	Event UserInputService.TouchRotate(Array touchPositions, float rotation, float velocity, UserInputState state)
-	Event UserInputService.TouchStarted(Instance touch)
-	Event UserInputService.TouchSwipe(SwipeDirection swipeDirection, int numberOfTouches)
-	Event UserInputService.TouchTap(Array touchPositions)
+	Event UserInputService.TextBoxFocusReleased(Instance textboxReleased)
+	Event UserInputService.TextBoxFocused(Instance textboxFocused)
+	Event UserInputService.TouchEnded(Instance touch, bool gameProcessedEvent)
+	Event UserInputService.TouchLongPress(Array touchPositions, UserInputState state, bool gameProcessedEvent)
+	Event UserInputService.TouchMoved(Instance touch, bool gameProcessedEvent)
+	Event UserInputService.TouchPan(Array touchPositions, Vector2 totalTranslation, Vector2 velocity, UserInputState state, bool gameProcessedEvent)
+	Event UserInputService.TouchPinch(Array touchPositions, float scale, float velocity, UserInputState state, bool gameProcessedEvent)
+	Event UserInputService.TouchRotate(Array touchPositions, float rotation, float velocity, UserInputState state, bool gameProcessedEvent)
+	Event UserInputService.TouchStarted(Instance touch, bool gameProcessedEvent)
+	Event UserInputService.TouchSwipe(SwipeDirection swipeDirection, int numberOfTouches, bool gameProcessedEvent)
+	Event UserInputService.TouchTap(Array touchPositions, bool gameProcessedEvent)
 Class Vector3Value : Instance
 	Property Vector3 Vector3Value.Value
 	Event Vector3Value.Changed(Vector3 value)
@@ -2582,6 +2585,7 @@ Enum MessageType
 Enum MouseBehavior
 	EnumItem MouseBehavior.Default : 0
 	EnumItem MouseBehavior.LockCenter : 1
+	EnumItem MouseBehavior.LockCurrentPosition : 2
 Enum MoveState
 	EnumItem MoveState.Stopped : 0
 	EnumItem MoveState.Coasting : 1
