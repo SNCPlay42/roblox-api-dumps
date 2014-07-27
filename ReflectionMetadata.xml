@@ -1385,19 +1385,6 @@
                 </Properties>
             </Item>
 
-            <Item class="ReflectionMetadataMember">
-                <Properties>
-                    <string name="Name">TextBoxFocused</string>
-                    <string name="summary">Fired when a user clicks/taps on a textbox to begin text entry. Argument is the textbox that was put in focus. This also fires if a textbox forces focus on the user. This event only fires locally.</string>
-                </Properties>
-            </Item>
-            <Item class="ReflectionMetadataMember">
-                <Properties>
-                    <string name="Name">TextBoxFocusReleased</string>
-                    <string name="summary">Fired when a user stops text entry into a textbox (usually by pressing return or clicking/tapping somewhere else on the screen). Argument is the textbox that was taken out of focus. This event only fires locally.</string>
-                </Properties>
-            </Item>
-
         </Item>
     </Item>
 
@@ -3681,42 +3668,6 @@
         <string name="ExplorerOrder">22</string>
         <string name="ExplorerImageIndex">63</string>
       </Properties>
-    </Item>
-    <Item class="ReflectionMetadataClass">
-      <Properties>
-        <string name="Name">UnionOperation</string>
-        <string name="summary">A UnionOperation is a union of multiple parts</string>
-        <bool name="Browsable">true</bool>
-        <bool name="Insertable">false</bool>
-        <string name="ExplorerOrder">0</string>
-        <string name="ExplorerImageIndex">73</string>
-      </Properties>
-      <Item class="ReflectionMetadataProperties">
-        <Item class="ReflectionMetadataMember">
-          <Properties>
-            <string name="Name">UsePartColor</string>
-            <string name="summary">Override the colors of the mesh with the part color.</string>
-          </Properties>
-        </Item>
-      </Item>
-    </Item>
-    <Item class="ReflectionMetadataClass">
-      <Properties>
-        <string name="Name">NegateOperation</string>
-        <string name="summary">A NegateOperation can be used to create holes in other parts</string>
-        <bool name="Browsable">true</bool>
-        <bool name="Insertable">false</bool>
-        <string name="ExplorerOrder">0</string>
-        <string name="ExplorerImageIndex">72</string>
-      </Properties>
-      <Item class="ReflectionMetadataProperties">
-        <Item class="ReflectionMetadataMember">
-          <Properties>
-            <string name="Name">UsePartColor</string>
-            <string name="summary">Override the colors of the mesh with the part color.</string>
-          </Properties>
-        </Item>
-      </Item>
     </Item>
     <Item class="ReflectionMetadataClass">
       <Properties>
